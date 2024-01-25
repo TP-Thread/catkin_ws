@@ -1,0 +1,8 @@
+prefix=/home/dfq/catkin_ws/devel
+
+Name: sicktoolbox
+Description: Description of sicktoolbox
+Version: 1.0.103
+Cflags: -I/home/dfq/catkin_ws/src/ugv/sicktoolbox/include
+Libs: -L${prefix}/lib -lSickLD -lSickLMS1xx -lSickLMS2xx
+Requires: 

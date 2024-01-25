@@ -1,0 +1,19 @@
+<launch>
+
+    <arg name="world" default="$(find simulation)/worlds/landing_place.world" />
+    <arg name="sdf" default="$(find simulation)/models/iris_depth_camera_down/iris_depth_camera_down.sdf" />
+
+    <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
+        <arg name="x" value="0"/>
+        <arg name="y" value="0"/>
+        <arg name="z" value="0"/>
+        <arg name="R" value="0"/>
+        <arg name="P" value="0"/>
+        <arg name="Y" value="0"/>
+        <arg name="sdf" value="$(arg sdf)" />
+        <arg name="world" value="$(arg world)" />
+    </include>
+
+    <!-- 发布一个从 "base_link" 到 "depth_camera_link" 的静态变换 -->
+    <node pkg="tf" name="tf_depthCamera" type="static_transform_publisher" args="0 0 -0.04 -1.57 0 3.1415926 base_link camera_link 100"/>
+</launch>
