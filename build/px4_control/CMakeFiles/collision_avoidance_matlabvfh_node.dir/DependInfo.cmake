@@ -20,12 +20,18 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
   "/home/dfq/catkin_ws/src/px4_control/include"
   "/home/dfq/catkin_ws/devel/include"
-  "/opt/ros/noetic/include"
+  "/home/dfq/catkin_ws/src/apriltag_ros/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/opt/ros/noetic/include"
+  "/opt/ros/noetic/include/apriltag"
+  "/usr/include/opencv4"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/dfq/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/DependInfo.cmake"
+  "/home/dfq/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/DependInfo.cmake"
+  "/home/dfq/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

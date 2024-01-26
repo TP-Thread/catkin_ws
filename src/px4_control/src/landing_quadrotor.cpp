@@ -1,4 +1,5 @@
 #include "landing_quadrotor.h"
+#include "apriltag_ros/AprilTagDetectionArray.h"
 
 using namespace std;
 
@@ -20,7 +21,8 @@ PX4Landing::PX4Landing(const ros::NodeHandle& nh, const ros::NodeHandle& nh_priv
     // 订阅无人机local坐标系位置
     position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Landing::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅降落板相对飞机位置
-    ar_pose_sub_ = nh_private_.subscribe("/ar_pose_marker", 1, &PX4Landing::ArPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    // ar_pose_sub_ = nh_private_.subscribe("/ar_pose_marker", 1, &PX4Landing::ArPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Landing::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
     set_mode_client_ = nh_private_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
@@ -287,7 +289,7 @@ void PX4Landing::LandingStateUpdate()
 }
 
 /**
-  * @brief      接收降落板相对无人机的位置以及偏航角       
+  * @brief      接收 ar 降落板相对无人机的位置以及偏航角       
   **/
 void PX4Landing::ArPoseCallback(const ar_track_alvar_msgs::AlvarMarkers::ConstPtr &msg)
 {
@@ -308,6 +310,34 @@ void PX4Landing::ArPoseCallback(const ar_track_alvar_msgs::AlvarMarkers::ConstPt
             ar_pose_[2] = item.pose.pose.position.z;
             // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
             tf::quaternionMsgToTF(item.pose.pose.orientation,quat);
+            tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
+            // 更新标签的yaw角度
+            markers_yaw_ = temp_yaw;
+        }
+    }
+}
+
+/**
+  * @brief      接收 apriltag_ros 降落板相对无人机的位置以及偏航角       
+  **/
+void PX4Landing::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
+{
+    detect_state = false;
+    double temp_roll,temp_pitch,temp_yaw;
+    tf::Quaternion quat;
+
+    for(auto &item : msg->detections)
+    {
+        // 如果标签的ID与预期的ID匹配
+        if(item.id[0] == markers_id_)
+        {
+            detect_state = true;
+            // 获取标签在相机坐标系中的位置信息
+            ar_pose_[0] = item.pose.pose.pose.position.x;
+            ar_pose_[1] = item.pose.pose.pose.position.y;
+            ar_pose_[2] = item.pose.pose.pose.position.z;
+            // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
+            tf::quaternionMsgToTF(item.pose.pose.pose.orientation,quat);
             tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
             // 更新标签的yaw角度
             markers_yaw_ = temp_yaw;

@@ -19,7 +19,7 @@
     -->
 	<node pkg="px4_control" type="landing_quadrotor_node" name="landing_quadrotor_node" output="screen">
 		<param name="search_alt_" value = "4"/>	
-		<param name="markers_id_" value = "0"/>
+		<param name="markers_id_" value = "96"/>
 
 		<param name="desire_pose_x" value = "0"/>	
 		<param name="desire_pose_y" value = "0"/>	
@@ -37,10 +37,12 @@
 		<param name="PidYaw_i" value = "0"/>		
 	</node>
 
-    <include file="$(find robot_vision)/launch/ar_track_depth_camera.launch" >
+    <!-- 启动二维码识别节点 -->
+    <!-- <include file="$(find ar_track_alvar)/launch/ar_track_sim_camera.launch" >
+    </include> -->
+    <include file="$(find apriltag_ros)/launch/apriltag_sim_camera.launch" >
     </include>
 
     <!-- rviz view /-->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robot_vision)/rviz/ar_track_depth_camera.rviz"/>
-
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robot_vision)/rviz/apriltag_sim_camera.rviz"/>
 </launch>

@@ -10,7 +10,7 @@ material lpcode/Image
 
               texture_unit
               {
-                texture MarkerData_0.png
+                texture 96.png
               }
             }
           }

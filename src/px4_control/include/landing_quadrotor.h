@@ -1,6 +1,8 @@
 #include <ros/ros.h>
 #include <iostream>
 #include <ar_track_alvar_msgs/AlvarMarkers.h>
+#include <apriltag_ros/AprilTagDetection.h>
+#include <apriltag_ros/AprilTagDetectionArray.h>
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
@@ -28,6 +30,7 @@ private:
     void CmdLoopCallback(const ros::TimerEvent& event);
     void LandingStateUpdate();
     void ArPoseCallback(const ar_track_alvar_msgs::AlvarMarkers::ConstPtr &msg);
+    void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
     void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
     void Px4StateCallback(const mavros_msgs::State::ConstPtr& msg);
     Eigen::Vector4d LandingPidProcess(Eigen::Vector3d &currentPos,float currentYaw,Eigen::Vector3d &expectPos,float expectYaw);
@@ -64,6 +67,7 @@ private:
     }FlyState = WAITING;//初始状态WAITING
 
     ros::Subscriber ar_pose_sub_;
+    ros::Subscriber apriltag_sub_;
     ros::Subscriber position_sub_;
     ros::Subscriber state_sub_;
     ros::ServiceClient set_mode_client_;

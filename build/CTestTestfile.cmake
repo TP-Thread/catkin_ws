@@ -7,6 +7,7 @@
 subdirs("gtest")
 subdirs("ar_track_alvar/ar_track_alvar_msgs")
 subdirs("robot_vision")
+subdirs("apriltag_ros")
 subdirs("ar_track_alvar/ar_track_alvar")
 subdirs("px4_control")
 subdirs("simulation")

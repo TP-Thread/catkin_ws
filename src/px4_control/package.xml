@@ -21,16 +21,19 @@
   <build_depend>actionlib</build_depend>
   <build_depend>move_base_msgs</build_depend>
   <build_depend>ar_track_alvar_msgs</build_depend>
+  <build_depend>apriltag_ros</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>tf</build_export_depend>
   <build_export_depend>ar_track_alvar_msgs</build_export_depend>
+  <build_export_depend>apriltag_ros</build_export_depend>
 
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>tf</exec_depend>
   <exec_depend>ar_track_alvar_msgs</exec_depend>
+  <exec_depend>apriltag_ros</exec_depend>
 
   <exec_depend>actionlib</exec_depend>
   <exec_depend>move_base_msgs</exec_depend>
