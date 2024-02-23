@@ -1,6 +1,6 @@
 <launch>
 
-    <arg name="world" default="$(find simulation)/worlds/landing_place.world" />
+    <arg name="world" default="$(find simulation)/worlds/lawn.world" />
     <arg name="sdf" default="$(find simulation)/models/iris_depth_camera_down/iris_depth_camera_down.sdf" />
 
     <include file="$(find px4)/launch/mavros_posix_sitl.launch" >

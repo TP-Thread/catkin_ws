@@ -9,6 +9,7 @@
         "dense": "cpp",
         "eigen": "cpp",
         "sparse": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "ostream": "cpp"
     }
 }

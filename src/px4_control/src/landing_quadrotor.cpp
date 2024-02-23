@@ -1,5 +1,4 @@
 #include "landing_quadrotor.h"
-#include "apriltag_ros/AprilTagDetectionArray.h"
 
 using namespace std;
 
@@ -35,7 +34,8 @@ void PX4Landing::Initialize()
 {
     // 读取offboard模式下飞机的搜索高度和搜索ID
     nh_private_.param<float>("search_alt_", search_alt_, 3);
-    nh_private_.param<float>("markers_id_", markers_id_, 4.0);
+    nh_private_.param<float>("marker1_id_", marker1_id_, 4.0);
+    nh_private_.param<float>("marker2_id_", marker2_id_, 4.0);
 
     // 无人机降落时的PID参数
     nh_private_.param<float>("PidXY_p", s_PidXY.p, 0.4);
@@ -244,26 +244,34 @@ void PX4Landing::LandingStateUpdate()
 		case LANDING:
 			{
 				if(detect_state == true)
-				{               
-					desire_vel_ = LandingPidProcess(ar_pose_, markers_yaw_, desire_pose_, desire_yaw_);
+				{    
+                    if(april1_pose_[2]>1.5)
+                    {
+                        desire_vel_ = LandingPidProcess(april1_pose_, marker1_yaw_, desire_pose_, desire_yaw_);
+                        cout << "z1" << april1_pose_[2] <<endl;
+                    }
+                    else if((april1_pose_[2]<1.5)&&(april2_pose_[2]>0.8))
+                    {
+                        desire_vel_ = LandingPidProcess(april2_pose_, marker2_yaw_, desire_pose_, desire_yaw_);
+                        cout << "z2" << april2_pose_[2] <<endl;
+                    }
+                    else
+                    {
+                        FlyState = LANDOVER;
+                        cout << "LANDOVER" <<endl;
+                    } 
 
                     desire_xyzVel_[0] = desire_vel_[1];
                     desire_xyzVel_[1] = desire_vel_[0];
                     desire_xyzVel_[2] = desire_vel_[2];
                     desire_yawVel_ = desire_vel_[3];
 
-                    OffboardControl_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
+                    OffboardControl_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);           
 				}
 			    else
 				{
                     FlyState = SEARCH;
                     cout << "SEARCH" <<endl;
-				}
-
-				if(ar_pose_[2] <= 0.6)
-				{
-					FlyState = LANDOVER;
-					cout << "LANDOVER" <<endl;
 				}
 
                 // 如果在LANDING中途中切换到onboard，则跳到WAITING
@@ -291,31 +299,31 @@ void PX4Landing::LandingStateUpdate()
 /**
   * @brief      接收 ar 降落板相对无人机的位置以及偏航角       
   **/
-void PX4Landing::ArPoseCallback(const ar_track_alvar_msgs::AlvarMarkers::ConstPtr &msg)
-{
-    detect_state = false;
-    double temp_roll,temp_pitch,temp_yaw;
-    tf::Quaternion quat;
+// void PX4Landing::ArPoseCallback(const ar_track_alvar_msgs::AlvarMarkers::ConstPtr &msg)
+// {
+//     detect_state = false;
+//     double temp_roll,temp_pitch,temp_yaw;
+//     tf::Quaternion quat;
 
-    // C++11引入的范围for循环，遍历接收到的AR标签消息，&item引用代表msg->markers中的当前元素
-    for(auto &item : msg->markers)
-    {
-        // 如果标签的ID与预期的ID匹配
-        if(item.id == markers_id_)
-        {
-            detect_state = true;
-            // 获取标签在相机坐标系中的位置信息
-            ar_pose_[0] = item.pose.pose.position.x;
-            ar_pose_[1] = item.pose.pose.position.y;
-            ar_pose_[2] = item.pose.pose.position.z;
-            // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
-            tf::quaternionMsgToTF(item.pose.pose.orientation,quat);
-            tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
-            // 更新标签的yaw角度
-            markers_yaw_ = temp_yaw;
-        }
-    }
-}
+//     // C++11引入的范围for循环，遍历接收到的AR标签消息，&item引用代表msg->markers中的当前元素
+//     for(auto &item : msg->markers)
+//     {
+//         // 如果标签的ID与预期的ID匹配
+//         if(item.id == markers_id_)
+//         {
+//             detect_state = true;
+//             // 获取标签在相机坐标系中的位置信息
+//             ar_pose_[0] = item.pose.pose.position.x;
+//             ar_pose_[1] = item.pose.pose.position.y;
+//             ar_pose_[2] = item.pose.pose.position.z;
+//             // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
+//             tf::quaternionMsgToTF(item.pose.pose.orientation,quat);
+//             tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
+//             // 更新标签的yaw角度
+//             markers_yaw_ = temp_yaw;
+//         }
+//     }
+// }
 
 /**
   * @brief      接收 apriltag_ros 降落板相对无人机的位置以及偏航角       
@@ -329,18 +337,31 @@ void PX4Landing::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::C
     for(auto &item : msg->detections)
     {
         // 如果标签的ID与预期的ID匹配
-        if(item.id[0] == markers_id_)
+        if(item.id[0] == marker1_id_)
         {
             detect_state = true;
             // 获取标签在相机坐标系中的位置信息
-            ar_pose_[0] = item.pose.pose.pose.position.x;
-            ar_pose_[1] = item.pose.pose.pose.position.y;
-            ar_pose_[2] = item.pose.pose.pose.position.z;
+            april1_pose_[0] = item.pose.pose.pose.position.x;
+            april1_pose_[1] = item.pose.pose.pose.position.y;
+            april1_pose_[2] = item.pose.pose.pose.position.z;
             // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
             tf::quaternionMsgToTF(item.pose.pose.pose.orientation,quat);
             tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
             // 更新标签的yaw角度
-            markers_yaw_ = temp_yaw;
+            marker1_yaw_ = temp_yaw;
+        }
+        else if(item.id[0] == marker2_id_)
+        {
+            detect_state = true;
+            // 获取标签在相机坐标系中的位置信息
+            april2_pose_[0] = item.pose.pose.pose.position.x;
+            april2_pose_[1] = item.pose.pose.pose.position.y;
+            april2_pose_[2] = item.pose.pose.pose.position.z;
+            // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
+            tf::quaternionMsgToTF(item.pose.pose.pose.orientation,quat);
+            tf::Matrix3x3(quat).getRPY(temp_roll,temp_pitch,temp_yaw);
+            // 更新标签的yaw角度
+            marker2_yaw_ = temp_yaw;
         }
     }
 }

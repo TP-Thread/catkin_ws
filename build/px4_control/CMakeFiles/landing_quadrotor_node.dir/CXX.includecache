@@ -153,8 +153,6 @@ iostream
 /home/dfq/catkin_ws/src/px4_control/src/landing_quadrotor.cpp
 landing_quadrotor.h
 /home/dfq/catkin_ws/src/px4_control/src/landing_quadrotor.h
-apriltag_ros/AprilTagDetectionArray.h
-/home/dfq/catkin_ws/src/px4_control/src/apriltag_ros/AprilTagDetectionArray.h
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string

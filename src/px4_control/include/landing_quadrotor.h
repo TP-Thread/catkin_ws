@@ -38,6 +38,8 @@ private:
     Eigen::Vector3d posxyz_target;  //期望飞机的空间位置
     Eigen::Vector3d velxy_posz_target;  //offboard模式下，发送给飞控的期望值
     Eigen::Vector3d ar_pose_;   //降落板相对飞机位置
+    Eigen::Vector3d april1_pose_;   //apriltag1 降落板相对飞机位置
+    Eigen::Vector3d april2_pose_;   //apriltag2 降落板相对飞机位置
     Eigen::Vector3d px4_pose_;  //接收来自飞控的飞机位置 
     Eigen::Vector3d desire_pose_;   //期望的飞机相对降落板的位置
     float desire_yaw_;  //期望的飞机相对降落板的偏航角
@@ -45,7 +47,11 @@ private:
     mavros_msgs::SetMode mode_cmd_;
     float search_alt_;
     float markers_id_;//需要检测到的二维码，默认是4
+    float marker1_id_;//需要检测到的二维码，默认是4
+    float marker2_id_;//需要检测到的二维码，默认是4
     float markers_yaw_;//二维码相对飞机的偏航角
+    float marker1_yaw_;//二维码相对飞机的偏航角
+    float marker2_yaw_;//二维码相对飞机的偏航角
     bool detect_state;//是否检测到降落板标志位
     Eigen::Vector4d desire_vel_;
     Eigen::Vector3d desire_xyzVel_;
