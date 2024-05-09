@@ -1,8 +1,0 @@
-prefix=/home/dfq/catkin_ws/devel
-
-Name: simulation
-Description: Description of simulation
-Version: 1.0.7
-Cflags: -I/home/dfq/catkin_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp gazebo_ros std_msgs message_runtime

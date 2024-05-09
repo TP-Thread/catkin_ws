@@ -10,6 +10,8 @@
         "eigen": "cpp",
         "sparse": "cpp",
         "core": "cpp",
-        "ostream": "cpp"
-    }
+        "ostream": "cpp",
+        "iostream": "cpp"
+    },
+    "cmake.configureOnOpen": false
 }
