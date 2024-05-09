@@ -1,2 +1,0 @@
-apriltag_ros:ar_track_alvar/ar_track_alvar:ar_track_alvar/ar_track_alvar_msgs:px4_control:robot_vision:simulation
--DCATKIN_DEVEL_PREFIX=/home/dfq/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/dfq/catkin_ws/install -G Unix Makefiles

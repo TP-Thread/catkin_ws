@@ -3,7 +3,7 @@
   <arg name="launch_prefix" default="" />
 
   <!-- configure camera input -->
-  <arg name="camera_name" default="/camera/rgb" />
+  <arg name="camera_name" default="/iris/camera/rgb" />
   <arg name="image_topic" default="image_raw" />
   <arg name="queue_size" default="1" />
 

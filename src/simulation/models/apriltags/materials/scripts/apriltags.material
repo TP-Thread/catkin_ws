@@ -10,7 +10,7 @@ material apriltags/Image
 
 			texture_unit
 			{
-				texture apriltags.png
+				texture AprilTags.png
 			}
 		}
 	}

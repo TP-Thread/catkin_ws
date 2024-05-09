@@ -1,6 +1,6 @@
-<launch>
+<launch> 
     <arg name="world" default="$(find simulation)/worlds/lawn.world" />
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf" />
+    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/typhoon_h480/typhoon_h480.sdf" />
 
     <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
         <arg name="x" value="0"/>

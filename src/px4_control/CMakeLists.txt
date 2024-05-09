@@ -45,82 +45,18 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(test_node src/test.cpp)
-add_executable(offboard_node src/offboard_node.cpp )
-add_executable(position_to_mavros_node src/position_to_mavros.cpp)
-add_executable(set_mode_node src/set_mode.cpp)
-add_executable(collision_avoidance_vfh_node src/collision_avoidance_vfh.cpp)
-add_executable(avoidance_car_vfh_node src/avoidance_car_vfh.cpp)
-add_executable(collision_avoidance_matlabvfh_node src/collision_avoidance_matlabvfh.cpp)
+add_executable(offboard_node src/offboard_node.cpp)
 add_executable(circular_node src/circular.cpp)
-add_executable(circular_car_node src/circular_car.cpp)
-add_executable(ros_nav_quadrotor_node src/ros_nav_quadrotor.cpp)
-add_executable(mission_car_offboard_node src/mission_car_offboard.cpp)
-add_executable(landing_quadrotor_node src/landing_quadrotor.cpp)
-add_executable(tracking_ardupilot_node src/tracking_ardupilot.cpp)
-add_executable(tracking_quadrotor_node src/tracking_quadrotor.cpp)
-add_executable(tracking_down_kcf_quadrotor_node src/tracking_down__kcf_quadrotor.cpp)
-add_executable(auto_2d_nav_node src/auto_2d_nav.cpp)
-add_executable(simulinkVFH_node src/simulinkVFH.cpp)
-add_executable(omplControlPx4_node src/omplControlPx4.cpp)
+add_executable(landing_uav_node src/landing_uav.cpp)
+add_executable(tracking_uav_node src/tracking_uav.cpp)
+
 
 ## Specify libraries to link a library or executable target against
 
-target_link_libraries(test_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(offboard_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(position_to_mavros_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(set_mode_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(collision_avoidance_vfh_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(avoidance_car_vfh_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(collision_avoidance_matlabvfh_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(circular_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(circular_car_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(ros_nav_quadrotor_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(mission_car_offboard_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(landing_quadrotor_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(tracking_quadrotor_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(tracking_down_kcf_quadrotor_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(tracking_ardupilot_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(auto_2d_nav_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(simulinkVFH_node
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(omplControlPx4_node
-  ${catkin_LIBRARIES}
-)
-
+target_link_libraries(offboard_node ${catkin_LIBRARIES})
+target_link_libraries(circular_node ${catkin_LIBRARIES})
+target_link_libraries(landing_uav_node ${catkin_LIBRARIES})
+target_link_libraries(tracking_uav_node ${catkin_LIBRARIES})
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -128,21 +64,9 @@ install(DIRECTORY include/${PROJECT_NAME}/
   FILES_MATCHING PATTERN "*.h"
 )
 ## Mark executables and/or libraries for installation
-install(TARGETS  position_to_mavros_node
-  set_mode_node
-  collision_avoidance_vfh_node
-  avoidance_car_vfh_node
-  collision_avoidance_matlabvfh_node
-  circular_node circular_car_node 
-  ros_nav_quadrotor_node 
-  mission_car_offboard_node
-  landing_quadrotor_node
-  tracking_quadrotor_node
-  tracking_down_kcf_quadrotor_node
-  tracking_ardupilot_node
-  auto_2d_nav_node
-  simulinkVFH_node
-  omplControlPx4_node
+install(TARGETS  
+  landing_uav_node
+  tracking_uav_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

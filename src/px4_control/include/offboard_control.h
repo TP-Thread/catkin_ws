@@ -1,10 +1,10 @@
 #include <ros/ros.h>
 #include <iostream>
-#include <mavros_msgs/CommandBool.h>        // 无人机解锁服务
-#include <mavros_msgs/SetMode.h>            // 无人机飞行模式设置服务
-#include <mavros_msgs/State.h>              // 无人机飞行模式消息
+#include <mavros_msgs/CommandBool.h> // 无人机解锁服务
+#include <mavros_msgs/SetMode.h>     // 无人机飞行模式设置服务
+#include <mavros_msgs/State.h>       // 无人机飞行模式消息
 #include <geometry_msgs/Twist.h>
-#include <mavros_msgs/PositionTarget.h>     // 无人机位置、速度设置消息
+#include <mavros_msgs/PositionTarget.h> // 无人机位置、速度设置消息
 #include <geometry_msgs/PoseStamped.h>
 #include <mavros_msgs/ActuatorControl.h>
 #include <mavros_msgs/AttitudeTarget.h>
@@ -12,14 +12,14 @@
 #include <tf2_ros/transform_listener.h>
 #include "mavros_msgs/MountControl.h"
 
-#define pi  3.1415926
+#define pi 3.1415926
 using namespace std;
 
-class OffboardControl 
+class OffboardControl
 {
 public:
     // ("~") 表示将 offboard_nh_ 初始化为一个在私有命名空间 ~ 下的节点对象
-    OffboardControl(void):offboard_nh_("~") 
+    OffboardControl(void) : offboard_nh_("~")
     {
         mavros_setpoint_pos_pub_ = offboard_nh_.advertise<mavros_msgs::PositionTarget>("/mavros/setpoint_raw/local", 10);
         mount_control_pub_ = offboard_nh_.advertise<mavros_msgs::MountControl>("/mavros/mount_control/command", 1);
@@ -29,19 +29,19 @@ public:
         actuator_setpoint_pub_ = offboard_nh_.advertise<mavros_msgs::ActuatorControl>("/mavros/actuator_control", 10);
         setpoint_raw_attitude_pub_ = offboard_nh_.advertise<mavros_msgs::AttitudeTarget>("/mavros/setpoint_raw/attitude", 10);
     }
-    
-    void send_velxy_posz_setpoint(const Eigen::Vector3d& vel_sp, float desire_z);
-    void send_pos_setpoint(const Eigen::Vector3d& pos_sp, float yaw_sp);
-    void send_velxyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp);
-    void send_body_velxyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp);
-    void send_body_velyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp);
-    void send_local_pos_setpoint(const Eigen::Vector3d& pos_sp);
-    void send_actuator_setpoint(const Eigen::Vector4d& actuator_sp);
-    void send_attitude_setpoint(const Eigen::Vector3d& _AttitudeReference,float thrust_sp);
-    void send_attitude_rate_setpoint(const Eigen::Vector3d& attitude_rate_sp, float thrust_sp);
-    void send_mount_control_command(const Eigen::Vector3d& mount_sp);
-    void send_body_velxy_posz_setpoint(const Eigen::Vector3d& vel_sp, float desire_z);
-    void send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d& vel_sp, float desire_z, float yaw_sp);
+
+    void send_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z);
+    void send_pos_setpoint(const Eigen::Vector3d &pos_sp, float yaw_sp);
+    void send_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp);
+    void send_body_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp);
+    void send_body_velyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp);
+    void send_local_pos_setpoint(const Eigen::Vector3d &pos_sp);
+    void send_actuator_setpoint(const Eigen::Vector4d &actuator_sp);
+    void send_attitude_setpoint(const Eigen::Vector3d &_AttitudeReference, float thrust_sp);
+    void send_attitude_rate_setpoint(const Eigen::Vector3d &attitude_rate_sp, float thrust_sp);
+    void send_mount_control_command(const Eigen::Vector3d &mount_sp);
+    void send_body_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z);
+    void send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d &vel_sp, float desire_z, float yaw_sp);
 
 private:
     ros::NodeHandle offboard_nh_;
@@ -53,13 +53,13 @@ private:
 };
 
 // 机体坐标系下发送yz速度期望值以及期望偏航角速度至飞控，用于二维码跟踪,在ros机体坐标系下pos_setpoint.velocity.y+飞机向前飞，pos_setpoint.velocity.x+飞机向右飞
-void OffboardControl::send_body_velyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp)
+void OffboardControl::send_body_velyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
-    pos_setpoint.type_mask = /*1 +*/ 2 + 4 + /*8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024/* + 2048*/;
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
+    pos_setpoint.type_mask = /*1 +*/ 2 + 4 + /*8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 /* + 2048*/;
     pos_setpoint.coordinate_frame = 8;
 
     pos_setpoint.velocity.x = 0;
@@ -71,13 +71,13 @@ void OffboardControl::send_body_velyz_setpoint(const Eigen::Vector3d& vel_sp, fl
 }
 
 // 机体坐标系下发送xyz速度期望值以及期望偏航角速度至飞控
-void OffboardControl::send_body_velxyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp)
+void OffboardControl::send_body_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
-    pos_setpoint.type_mask = 1 + 2 + 4 +/* 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024/* + 2048*/;
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
+    pos_setpoint.type_mask = 1 + 2 + 4 + /* 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 /* + 2048*/;
     pos_setpoint.coordinate_frame = 8;
 
     pos_setpoint.velocity.x = vel_sp[0];
@@ -88,13 +88,13 @@ void OffboardControl::send_body_velxyz_setpoint(const Eigen::Vector3d& vel_sp, f
 }
 
 // local frame本地坐标系下发送xyz速度期望值以及期望偏航角速度至飞控
-void OffboardControl::send_velxyz_setpoint(const Eigen::Vector3d& vel_sp, float yaw_sp)
+void OffboardControl::send_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
-    pos_setpoint.type_mask = 1 + 2 + 4 +/* 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024/* + 2048*/;
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
+    pos_setpoint.type_mask = 1 + 2 + 4 + /* 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 /* + 2048*/;
     pos_setpoint.coordinate_frame = 1;
 
     pos_setpoint.velocity.x = vel_sp[0];
@@ -105,13 +105,13 @@ void OffboardControl::send_velxyz_setpoint(const Eigen::Vector3d& vel_sp, float 
 }
 
 // 机体坐标系下发送xy速度期望值以及高度z期望值和期望偏航角速度至飞控
-void OffboardControl::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d& vel_sp, float desire_z, float yaw_sp)
+void OffboardControl::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d &vel_sp, float desire_z, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
-    pos_setpoint.type_mask = 1 + 2 +/* 4 + 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024/* + 2048*/;
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
+    pos_setpoint.type_mask = 1 + 2 + /* 4 + 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 /* + 2048*/;
     pos_setpoint.coordinate_frame = 8;
 
     pos_setpoint.velocity.x = vel_sp[0];
@@ -122,12 +122,12 @@ void OffboardControl::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d& v
 }
 
 // 机体坐标系下发送xy速度期望值以及高度z期望值至飞控（输入：期望xy,期望高度）
-void OffboardControl::send_body_velxy_posz_setpoint(const Eigen::Vector3d& vel_sp, float desire_z)
+void OffboardControl::send_body_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
     pos_setpoint.type_mask = 1 + 2 + /*4 + 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 + 2048;
     pos_setpoint.coordinate_frame = 8;
 
@@ -139,12 +139,12 @@ void OffboardControl::send_body_velxy_posz_setpoint(const Eigen::Vector3d& vel_s
 }
 
 // 本地坐标系发送xy速度期望值以及高度z期望值至飞控（输入：期望xy,期望高度）
-void OffboardControl::send_velxy_posz_setpoint(const Eigen::Vector3d& vel_sp, float desire_z)
+void OffboardControl::send_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
     pos_setpoint.type_mask = 1 + 2 + /*4 + 8 + 16 + 32 +*/ 64 + 128 + 256 + 512 + 1024 + 2048;
     pos_setpoint.coordinate_frame = 1;
 
@@ -156,25 +156,25 @@ void OffboardControl::send_velxy_posz_setpoint(const Eigen::Vector3d& vel_sp, fl
 }
 
 // 发送位置期望值至飞控（输入：期望xyz,期望yaw）
-void OffboardControl::send_pos_setpoint(const Eigen::Vector3d& pos_sp, float yaw_sp)
+void OffboardControl::send_pos_setpoint(const Eigen::Vector3d &pos_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
-    //Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
-    //Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
-    //Bit 10 should set to 0, means is not force sp
-    pos_setpoint.type_mask = /*1 + 2 + 4 */+ 8 + 16 + 32 + 64 + 128 + 256 + 512 /*+ 1024*/ + 2048;
+    // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
+    // Bit 1:x, bit 2:y, bit 3:z, bit 4:vx, bit 5:vy, bit 6:vz, bit 7:ax, bit 8:ay, bit 9:az, bit 10:is_force_sp, bit 11:yaw, bit 12:yaw_rate
+    // Bit 10 should set to 0, means is not force sp
+    pos_setpoint.type_mask = /*1 + 2 + 4 */ +8 + 16 + 32 + 64 + 128 + 256 + 512 /*+ 1024*/ + 2048;
     pos_setpoint.coordinate_frame = 1;
 
     pos_setpoint.position.x = pos_sp[0];
     pos_setpoint.position.y = pos_sp[1];
     pos_setpoint.position.z = pos_sp[2];
     pos_setpoint.yaw = yaw_sp;
-    
+
     mavros_setpoint_pos_pub_.publish(pos_setpoint);
 }
 
 // 通过/mavros/setpoint_position/local这个topic发布位置控制至飞控
-void OffboardControl::send_local_pos_setpoint(const Eigen::Vector3d& pos_sp)
+void OffboardControl::send_local_pos_setpoint(const Eigen::Vector3d &pos_sp)
 {
     geometry_msgs::PoseStamped pos_target;
     pos_target.pose.position.x = pos_sp[0];
@@ -184,7 +184,7 @@ void OffboardControl::send_local_pos_setpoint(const Eigen::Vector3d& pos_sp)
 }
 
 // 发送底层至飞控（输入：MxMyMz,期望推力）
-void OffboardControl::send_actuator_setpoint(const Eigen::Vector4d& actuator_sp)
+void OffboardControl::send_actuator_setpoint(const Eigen::Vector4d &actuator_sp)
 {
     mavros_msgs::ActuatorControl actuator_setpoint;
 
@@ -202,26 +202,26 @@ void OffboardControl::send_actuator_setpoint(const Eigen::Vector4d& actuator_sp)
 }
 
 // 发送角度期望值至飞控（输入：期望角度-欧拉角,期望推力）(期望的是角度值 NED坐标系，而不是弧度值)
-void OffboardControl::send_attitude_setpoint(const Eigen::Vector3d& _AttitudeReference,float thrust_sp)
+void OffboardControl::send_attitude_setpoint(const Eigen::Vector3d &_AttitudeReference, float thrust_sp)
 {
     mavros_msgs::AttitudeTarget att_setpoint;
     Eigen::Vector3d temp_att;
     tf2::Quaternion quat_obj;
 
     /*角度值转成弧度值*/
-    temp_att[0] = _AttitudeReference[0]/(180/pi);
-    temp_att[1] = _AttitudeReference[1]/(180/pi);
-    temp_att[2] =(90- _AttitudeReference[2])/(180/pi);
-    if(temp_att[2]<0)
+    temp_att[0] = _AttitudeReference[0] / (180 / pi);
+    temp_att[1] = _AttitudeReference[1] / (180 / pi);
+    temp_att[2] = (90 - _AttitudeReference[2]) / (180 / pi);
+    if (temp_att[2] < 0)
     {
-    	temp_att[2] = 2*pi+temp_att[2];
+        temp_att[2] = 2 * pi + temp_att[2];
     }
     /*欧拉角转四元数*/
-    quat_obj.setRPY( temp_att[0], temp_att[1], temp_att[2]);
-    //Mappings: If any of these bits are set, the corresponding input should be ignored:
-    //bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude
+    quat_obj.setRPY(temp_att[0], temp_att[1], temp_att[2]);
+    // Mappings: If any of these bits are set, the corresponding input should be ignored:
+    // bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude
 
-    att_setpoint.type_mask = 1 + 2 + 4 + 8 + 16 + 32/* + 64 + 128*/;
+    att_setpoint.type_mask = 1 + 2 + 4 + 8 + 16 + 32 /* + 64 + 128*/;
     att_setpoint.orientation.x = quat_obj.x();
     att_setpoint.orientation.y = quat_obj.y();
     att_setpoint.orientation.z = quat_obj.z();
@@ -233,14 +233,14 @@ void OffboardControl::send_attitude_setpoint(const Eigen::Vector3d& _AttitudeRef
 }
 
 // 发送角速度期望值至飞控（输入：期望角速度,期望推力）
-void OffboardControl::send_attitude_rate_setpoint(const Eigen::Vector3d& attitude_rate_sp, float thrust_sp)
+void OffboardControl::send_attitude_rate_setpoint(const Eigen::Vector3d &attitude_rate_sp, float thrust_sp)
 {
     mavros_msgs::AttitudeTarget att_setpoint;
 
-    //Mappings: If any of these bits are set, the corresponding input should be ignored:
-    //bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude
+    // Mappings: If any of these bits are set, the corresponding input should be ignored:
+    // bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude
 
-    att_setpoint.type_mask = /*1 + 2 + 4 + */8 + 16 + 32 +/* 64 + */128;
+    att_setpoint.type_mask = /*1 + 2 + 4 + */ 8 + 16 + 32 + /* 64 + */ 128;
     att_setpoint.body_rate.x = attitude_rate_sp[0];
     att_setpoint.body_rate.y = attitude_rate_sp[1];
     att_setpoint.body_rate.z = attitude_rate_sp[2];
@@ -250,13 +250,13 @@ void OffboardControl::send_attitude_rate_setpoint(const Eigen::Vector3d& attitud
     setpoint_raw_attitude_pub_.publish(att_setpoint);
 }
 
-void OffboardControl::send_mount_control_command(const Eigen::Vector3d& mount_sp)
+void OffboardControl::send_mount_control_command(const Eigen::Vector3d &mount_sp)
 {
     mavros_msgs::MountControl mount_setpoint;
     mount_setpoint.mode = 2;
     mount_setpoint.pitch = mount_sp[0]; // Gimbal Pitch
-    mount_setpoint.roll = mount_sp[1]; // Gimbal  Yaw
-    mount_setpoint.yaw = mount_sp[2]; // Gimbal  Yaw
+    mount_setpoint.roll = mount_sp[1];  // Gimbal  Yaw
+    mount_setpoint.yaw = mount_sp[2];   // Gimbal  Yaw
 
     mount_control_pub_.publish(mount_setpoint);
 }

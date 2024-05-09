@@ -129,17 +129,17 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.563006 0.010445 0 0 -0 0</pose>
+      <pose>1.56114 0.453777 0 0 -0 0</pose>
     </model>
     <model name='apriltags'>
       <static>1</static>
-      <pose>1.53263 1.63095 0.1 0 -0 0</pose>
+      <pose>-11.5543 1.08658 0.01 0 -0 0</pose>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.5 0.5</size>
+              <size>0.85 0.85</size>
             </plane>
           </geometry>
           <surface>
@@ -164,7 +164,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.6 0.6</size>
+              <size>0.85 0.85</size>
             </plane>
           </geometry>
           <material>
@@ -181,15 +181,15 @@
       </link>
     </model>
     <state world_name='default'>
-      <sim_time>167 976000000</sim_time>
-      <real_time>168 340896030</real_time>
-      <wall_time>1706585960 767871640</wall_time>
-      <iterations>167976</iterations>
+      <sim_time>287 681000000</sim_time>
+      <real_time>288 174079065</real_time>
+      <wall_time>1715156907 985095018</wall_time>
+      <iterations>287681</iterations>
       <model name='apriltags'>
-        <pose>2 2 0.1 0 -0 0</pose>
+        <pose>3 4 0.1 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>2 2 0.1 0 -0 0</pose>
+          <pose>3 4 0.1 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -221,7 +221,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>13.8341 -37.1666 31.8909 -0 0.687643 1.72819</pose>
+        <pose>-0.237368 0.087298 23.0532 3.14159 1.57079 3.14159</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

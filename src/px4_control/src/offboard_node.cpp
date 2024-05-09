@@ -1,15 +1,16 @@
 #include <ros/ros.h>
-// 发布的位置消息体对应的头文件，该消息体的类型为geometry_msgs：：PoseStamped，用来进行发送目标位置
-#include <geometry_msgs/PoseStamped.h>
 // CommandBool服务的头文件，该服务的类型为mavros_msgs：：CommandBool，用来进行无人机解锁
 #include <mavros_msgs/CommandBool.h>
 // SetMode服务的头文件，该服务的类型为mavros_msgs：：SetMode，用来设置无人机的飞行模式，切换offboard
 #include <mavros_msgs/SetMode.h>
 // 订阅的消息体的头文件，该消息体的类型为mavros_msgs：：State，查看无人机的状态
 #include <mavros_msgs/State.h>
+// 发布的位置消息体对应的头文件，该消息体的类型为geometry_msgs：：PoseStamped，用来进行发送目标位置
+#include <geometry_msgs/PoseStamped.h>
 
 // 建立一个订阅消息体类型的变量，用于存储订阅的信息
 mavros_msgs::State current_state;
+
 // 订阅时的回调函数，接收到消息时赋值给 current_state
 void state_cb(const mavros_msgs::State::ConstPtr& msg)
 {
@@ -18,7 +19,6 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-    // ros系统的初始化，最后一个参数为节点名称
     ros::init(argc, argv, "offb_node");
     ros::NodeHandle nh;
 
@@ -28,14 +28,12 @@ int main(int argc, char **argv)
     // 发布话题之前需要公告，并获取句柄
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>("mavros/setpoint_position/local", 10);
 
-    // 启动服务1，设置客户端（Client）名称为arming_client，客户端的类型为ros::ServiceClient，
-    // 启动服务用的函数为nh下的serviceClient<>()函数，<>里面是该服务的类型，（）里面是该服务的路径
+    // 启动服务1，设置客户端（Client）名称为arming_client，启动服务用的函数为nh下的serviceClient<>()函数，<>里面是该服务的类型，（）里面是该服务的路径
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
 
-    // 启动服务2，设置客户端（Client）名称为set_mode_client，客户端的类型为ros::ServiceClient，
+    // 启动服务2，设置客户端（Client）名称为set_mode_client
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
 
-    //the setpoint publishing rate MUST be faster than 2Hz
     // 官方要求local_pos_pub发布速率必须快于2Hz，这里设置为20Hz
     // PX4在两个Offboard命令之间有一个500ms的延时，如果超过此延时，系统会将回到无人机进入Offboard模式之前的最后一个模式
     ros::Rate rate(20);
@@ -46,13 +44,12 @@ int main(int argc, char **argv)
         ros::spinOnce();
         rate.sleep();
     }
-
     ROS_INFO("mavros connected");
 
     // 先实例化一个geometry_msgs::PoseStamped类型的对象，并对其赋值，最后将其发布出去
     geometry_msgs::PoseStamped pose;
     pose.pose.position.x = 0;
-    pose.pose.position.y = 0;
+    pose.pose.position.y = 4;
     pose.pose.position.z = 2;
 
     // 在进入Offboard模式之前，必须已经启动了local_pos_pub数据流，否则模式切换将被拒绝

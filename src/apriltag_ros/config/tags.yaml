@@ -19,11 +19,15 @@
 #     {id: ID, size: SIZE, name: NAME},
 #     ...
 #   ]
-standalone_tags:
-  [
-    {id: 77, size: 0.6},
-    {id: 96, size: 0.04}
-  ]
+# standalone_tags:
+#   [
+#     {id: 323, size: 0.2},
+#     {id: 0, size: 0.0101},
+#     {id: 1, size: 0.0101},
+#     {id: 2, size: 0.0101},
+#     {id: 3, size: 0.0101},
+#     {id: 4, size: 0.0101}
+#   ]
 # ## Tag bundle definitions
 # ### Remarks
 #
@@ -45,14 +49,33 @@ standalone_tags:
 #     },
 #     ...
 #   ]
+tag_bundles:
+  [
+    {
+      name: 'AprilTags',
+      layout:
+        [
+          {id: 323, size: 0.8, x: 0, y: 0, z: 0},
+          {id: 0, size: 0.04, x: 0, y: 0, z: 0},
+          {id: 1, size: 0.04, x: 0.25, y: 0.25, z: 0},
+          {id: 2, size: 0.04, x: -0.25, y: 0.25, z: 0},
+          {id: 3, size: 0.04, x: -0.25, y: -0.25, z: 0},
+          {id: 4, size: 0.04, x: 0.25, y: -0.25, z: 0},
+        ]
+    },
+  ]
 # tag_bundles:
 #   [
 #     {
-#       name: 'my_bundle',
+#       name: 'AprilTags',
 #       layout:
-#       [
-#         {id: 0, size: 0.5},
-#         {id: 1, size: 0.21}
-#       ]
-#     }
+#         [
+#           {id: 323, size: 0.2, x: 0, y: 0, z: 0},
+#           {id: 0, size: 0.01, x: 0, y: 0, z: 0},
+#           {id: 1, size: 0.01, x: 0.0625, y: 0.0625, z: 0},
+#           {id: 2, size: 0.01, x: -0.0625, y: 0.0625, z: 0},
+#           {id: 3, size: 0.01, x: -0.0625, y: -0.0625, z: 0},
+#           {id: 4, size: 0.01, x: 0.0625, y: -0.0625, z: 0},
+#         ]
+#     },
 #   ]
