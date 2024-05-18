@@ -1,0 +1,15 @@
+<launch>
+    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf" />
+    <arg name="world" default="$(find simulation)/worlds/lawn.world" />
+
+    <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
+        <arg name="x" value="0"/>
+        <arg name="y" value="0"/>
+        <arg name="z" value="0"/>
+        <arg name="R" value="0"/>
+        <arg name="P" value="0"/>
+        <arg name="Y" value="0"/>
+        <arg name="sdf" value="$(arg sdf)" />
+        <arg name="world" value="$(arg world)" />
+    </include>
+</launch>

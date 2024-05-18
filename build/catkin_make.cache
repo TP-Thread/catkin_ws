@@ -1,0 +1,2 @@
+apriltag_ros:catvehicle/catvehicle:catvehicle/cmdvel2gazebo:catvehicle/control_toolbox:catvehicle/obstaclestopper:catvehicle/sicktoolbox:catvehicle/sicktoolbox_wrapper:catvehicle/stepvel:px4_control:robot_vision:simulation
+-DCATKIN_DEVEL_PREFIX=/home/dfq/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/dfq/catkin_ws/install -G Unix Makefiles

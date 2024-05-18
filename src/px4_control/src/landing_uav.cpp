@@ -28,6 +28,7 @@ PX4Landing::PX4Landing(const ros::NodeHandle &nh, const ros::NodeHandle &nh_priv
     apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Landing::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
+    arming_client_ = nh_private_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
     set_mode_client_ = nh_private_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
 }
 
@@ -234,7 +235,7 @@ void PX4Landing::LandingStateUpdate()
         {
             if (abs(markers_pose_[0]) < 0.5 && abs(markers_pose_[1]) < 0.5)
             {
-                if (markers_pose_[2] > 0.5)
+                if (markers_pose_[2] > 0.3)
                 {
                     desire_vel_ = LandingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
@@ -271,8 +272,9 @@ void PX4Landing::LandingStateUpdate()
 
         break;
     case LANDOVER:
+        // arm_cmd_.request.value = false;
+        // arming_client_.call(arm_cmd_);
         mode_cmd_.request.custom_mode = "AUTO.LAND";
-        // 请求修改飞行模式的服务
         set_mode_client_.call(mode_cmd_);
 
         break;

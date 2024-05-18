@@ -1,0 +1,8 @@
+prefix=/home/dfq/catkin_ws/devel
+
+Name: px4_control
+Description: Description of px4_control
+Version: 0.0.0
+Cflags: -I/home/dfq/catkin_ws/src/px4_control/include
+Libs: -L${prefix}/lib 
+Requires: 

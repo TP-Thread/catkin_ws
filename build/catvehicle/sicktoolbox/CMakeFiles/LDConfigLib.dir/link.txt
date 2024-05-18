@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libLDConfigLib.so -o /home/dfq/catkin_ws/devel/lib/libLDConfigLib.so CMakeFiles/LDConfigLib.dir/c++/examples/ld/ld_config/src/ConfigFile.cpp.o 

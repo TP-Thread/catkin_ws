@@ -3,11 +3,10 @@
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/PositionTarget.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h> // 用于TF2库和ROS消息类型之间相互转换
-#include <Eigen/Eigen>
 #include <std_msgs/Bool.h>
 #include <std_msgs/UInt32.h>
-#include <apriltag_ros/AprilTagDetection.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h> // 用于TF2库和ROS消息类型之间相互转换
+#include <Eigen/Eigen>
 #include <apriltag_ros/AprilTagDetectionArray.h>
 #include "offboard_control.h"
 #include "px4_control_cfg.h"
@@ -30,9 +29,11 @@ private:
     ros::Subscriber apriltag_sub_;
     ros::Subscriber position_sub_;
     ros::Subscriber state_sub_;
+    ros::ServiceClient arming_client_;
     ros::ServiceClient set_mode_client_;
 
     mavros_msgs::State px4_state_; // 飞机的状态
+    mavros_msgs::CommandBool arm_cmd_;
     mavros_msgs::SetMode mode_cmd_;
 
     void CmdLoopCallback(const ros::TimerEvent &event);

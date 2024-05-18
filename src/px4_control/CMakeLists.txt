@@ -19,7 +19,6 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   trajectory_msgs
   pluginlib
-  ar_track_alvar_msgs
   apriltag_ros
 )
 find_package(cmake_modules REQUIRED)

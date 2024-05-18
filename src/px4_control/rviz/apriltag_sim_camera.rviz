@@ -5,7 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /TF1
       Splitter Ratio: 0.5823529362678528
     Tree Height: 408
   - Class: rviz/Selection
@@ -58,14 +57,10 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        AprilTags:
-          Value: true
         base_link:
           Value: true
         base_link_frd:
           Value: false
-        camera_link:
-          Value: true
         map:
           Value: true
         map_ned:
@@ -83,9 +78,6 @@ Visualization Manager:
       Tree:
         base_link:
           base_link_frd:
-            {}
-        camera_link:
-          AprilTags:
             {}
         map:
           map_ned:
@@ -173,5 +165,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1048
-  X: 1543
-  Y: 142
+  X: 1510
+  Y: 105
