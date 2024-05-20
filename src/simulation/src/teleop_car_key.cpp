@@ -9,16 +9,10 @@
 #define KEYCODE_LEFT 0x44
 #define KEYCODE_UP 0x41
 #define KEYCODE_DOWN 0x42
+// 小写字母
+#define KEYCODE_A 0x61
 #define KEYCODE_B 0x62
-#define KEYCODE_C 0x63
-#define KEYCODE_D 0x64
-#define KEYCODE_E 0x65
-#define KEYCODE_F 0x66
-#define KEYCODE_G 0x67
 #define KEYCODE_Q 0x71
-#define KEYCODE_R 0x72
-#define KEYCODE_T 0x74
-#define KEYCODE_V 0x76
 
 class KeyboardReader
 {
@@ -64,18 +58,12 @@ public:
 
 private:
     ros::NodeHandle nh_;
-    double linear_, angular_, l_scale_, a_scale_;
+    double linear_, angular_;
     ros::Publisher twist_pub_;
 };
 
-TeleopCar::TeleopCar() : linear_(0),
-                         angular_(0),
-                         l_scale_(1.0),
-                         a_scale_(1.0)
+TeleopCar::TeleopCar() : linear_(0), angular_(0)
 {
-    nh_.param("scale_angular", a_scale_, a_scale_);
-    nh_.param("scale_linear", l_scale_, l_scale_);
-
     twist_pub_ = nh_.advertise<geometry_msgs::Twist>("catvehicle/cmd_vel", 1);
 }
 
@@ -122,31 +110,28 @@ void TeleopCar::keyLoop()
             return;
         }
 
-        linear_ = angular_ = 0;
         ROS_DEBUG("value: 0x%02X\n", c);
 
         switch (c)
         {
         case KEYCODE_LEFT:
             ROS_DEBUG("LEFT");
-            linear_ = 0.5;
             angular_ = 1.0;
             dirty = true;
             break;
         case KEYCODE_RIGHT:
             ROS_DEBUG("RIGHT");
-            linear_ = 0.5;
             angular_ = -1.0;
             dirty = true;
             break;
         case KEYCODE_UP:
-            ROS_DEBUG("UP");
-            linear_ = 1.0;
+            linear_ = linear_ + 0.5;
+            printf("线速度：%f\n", linear_);
             dirty = true;
             break;
         case KEYCODE_DOWN:
-            ROS_DEBUG("DOWN");
-            linear_ = -1.0;
+            linear_ = linear_ - 0.5;
+            printf("线速度：%f\n", linear_);
             dirty = true;
             break;
         case KEYCODE_Q:
@@ -157,8 +142,8 @@ void TeleopCar::keyLoop()
         }
 
         geometry_msgs::Twist twist;
-        twist.angular.z = a_scale_ * angular_;
-        twist.linear.x = l_scale_ * linear_;
+        twist.angular.z = angular_;
+        twist.linear.x = linear_;
         if (dirty == true)
         {
             twist_pub_.publish(twist);

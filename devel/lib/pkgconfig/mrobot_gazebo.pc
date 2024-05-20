@@ -1,8 +1,0 @@
-prefix=/home/dfq/catkin_ws/devel
-
-Name: mrobot_gazebo
-Description: Description of mrobot_gazebo
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
