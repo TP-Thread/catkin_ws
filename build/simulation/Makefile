@@ -167,48 +167,6 @@ depend:
 	cd /home/dfq/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-simulation/CMakeFiles/teleop_car_key.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 simulation/CMakeFiles/teleop_car_key.dir/rule
-.PHONY : simulation/CMakeFiles/teleop_car_key.dir/rule
-
-# Convenience name for target.
-teleop_car_key: simulation/CMakeFiles/teleop_car_key.dir/rule
-
-.PHONY : teleop_car_key
-
-# fast build rule for target.
-teleop_car_key/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f simulation/CMakeFiles/teleop_car_key.dir/build.make simulation/CMakeFiles/teleop_car_key.dir/build
-.PHONY : teleop_car_key/fast
-
-src/teleop_car_key.o: src/teleop_car_key.cpp.o
-
-.PHONY : src/teleop_car_key.o
-
-# target to build an object file
-src/teleop_car_key.cpp.o:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f simulation/CMakeFiles/teleop_car_key.dir/build.make simulation/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.o
-.PHONY : src/teleop_car_key.cpp.o
-
-src/teleop_car_key.i: src/teleop_car_key.cpp.i
-
-.PHONY : src/teleop_car_key.i
-
-# target to preprocess a source file
-src/teleop_car_key.cpp.i:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f simulation/CMakeFiles/teleop_car_key.dir/build.make simulation/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.i
-.PHONY : src/teleop_car_key.cpp.i
-
-src/teleop_car_key.s: src/teleop_car_key.cpp.s
-
-.PHONY : src/teleop_car_key.s
-
-# target to generate assembly for a file
-src/teleop_car_key.cpp.s:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f simulation/CMakeFiles/teleop_car_key.dir/build.make simulation/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.s
-.PHONY : src/teleop_car_key.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -222,10 +180,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... teleop_car_key"
-	@echo "... src/teleop_car_key.o"
-	@echo "... src/teleop_car_key.i"
-	@echo "... src/teleop_car_key.s"
 .PHONY : help
 
 

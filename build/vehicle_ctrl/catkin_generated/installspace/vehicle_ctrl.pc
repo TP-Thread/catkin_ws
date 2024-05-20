@@ -1,0 +1,8 @@
+prefix=/home/dfq/catkin_ws/install
+
+Name: vehicle_ctrl
+Description: Description of vehicle_ctrl
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

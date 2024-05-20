@@ -150,9 +150,6 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(teleop_car_key src/teleop_car_key.cpp)
-target_link_libraries(teleop_car_key ${catkin_LIBRARIES})
-
 #############
 ## Install ##
 #############

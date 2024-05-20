@@ -140,7 +140,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/dfq/catkin_ws/build/catvehicle/control_toolbox/cmake_install.cmake")
   include("/home/dfq/catkin_ws/build/catvehicle/sicktoolbox_wrapper/cmake_install.cmake")
   include("/home/dfq/catkin_ws/build/apriltag_ros/cmake_install.cmake")
-  include("/home/dfq/catkin_ws/build/px4_control/cmake_install.cmake")
+  include("/home/dfq/catkin_ws/build/vehicle_ctrl/cmake_install.cmake")
   include("/home/dfq/catkin_ws/build/catvehicle/catvehicle/cmake_install.cmake")
 
 endif()

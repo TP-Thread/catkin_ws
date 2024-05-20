@@ -743,12 +743,6 @@ pluginlib_DIR:PATH=/opt/ros/noetic/share/pluginlib/cmake
 //The directory containing a CMake configuration file for position_controllers.
 position_controllers_DIR:PATH=/opt/ros/noetic/share/position_controllers/cmake
 
-//Value Computed by CMake
-px4_control_BINARY_DIR:STATIC=/home/dfq/catkin_ws/build/px4_control
-
-//Value Computed by CMake
-px4_control_SOURCE_DIR:STATIC=/home/dfq/catkin_ws/src/px4_control
-
 //The directory containing a CMake configuration file for realtime_tools.
 realtime_tools_DIR:PATH=/opt/ros/noetic/share/realtime_tools/cmake
 
@@ -862,6 +856,12 @@ urdf_DIR:PATH=/opt/ros/noetic/share/urdf/cmake
 
 //The directory containing a CMake configuration file for uuid_msgs.
 uuid_msgs_DIR:PATH=/opt/ros/noetic/share/uuid_msgs/cmake
+
+//Value Computed by CMake
+vehicle_ctrl_BINARY_DIR:STATIC=/home/dfq/catkin_ws/build/vehicle_ctrl
+
+//Value Computed by CMake
+vehicle_ctrl_SOURCE_DIR:STATIC=/home/dfq/catkin_ws/src/vehicle_ctrl
 
 //The directory containing a CMake configuration file for velocity_controllers.
 velocity_controllers_DIR:PATH=/opt/ros/noetic/share/velocity_controllers/cmake

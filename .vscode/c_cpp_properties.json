@@ -9,7 +9,8 @@
                 "/opt/ros/noetic/include/**",
                 "/usr/include/**",
                 "${workspaceFolder}/devel/include",
-                "${workspaceFolder}/src/px4_control/include"
+                "${workspaceFolder}/src/px4_control/include",
+                "${workspaceFolder}/src/vehicle_ctrl/include"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

@@ -1,6 +1,6 @@
 <launch> 
-    <arg name="world" default="$(find simulation)/worlds/lawn.world" />
     <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/typhoon_h480/typhoon_h480.sdf" />
+    <arg name="world" value="$(find simulation)/worlds/cat.world"/>
 
     <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
         <arg name="x" value="0"/>
@@ -12,4 +12,16 @@
         <arg name="sdf" value="$(arg sdf)" />
         <arg name="world" value="$(arg world)" />
     </include>
+
+    <group ns="catvehicle">
+        <param name="robot_description"
+            command="$(find xacro)/xacro '$(find catvehicle)/urdf/cp_catvehicle.xacro' roboname:='catvehicle' updateRate:='20.0'" />
+
+        <include file="$(find catvehicle)/launch/catvehicle.launch">
+            <arg name="robot_name" value="catvehicle"/>
+            <arg name="obstaclestopper" value="false"/>
+            <arg name="init_pose" value="-x 5 -y 5 -z 0"/>
+            <arg name="config_file" value="catvehicle_control.yaml"/>
+        </include>
+    </group>
 </launch>

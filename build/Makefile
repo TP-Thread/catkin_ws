@@ -805,19 +805,6 @@ obstaclestopper_node/fast:
 .PHONY : obstaclestopper_node/fast
 
 #=============================================================================
-# Target rules for targets named teleop_car_key
-
-# Build rule for target.
-teleop_car_key: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 teleop_car_key
-.PHONY : teleop_car_key
-
-# fast build rule for target.
-teleop_car_key/fast:
-	$(MAKE) -f simulation/CMakeFiles/teleop_car_key.dir/build.make simulation/CMakeFiles/teleop_car_key.dir/build
-.PHONY : teleop_car_key/fast
-
-#=============================================================================
 # Target rules for targets named stepvel_node
 
 # Build rule for target.
@@ -2170,43 +2157,17 @@ _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray/fast:
 .PHONY : _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray/fast
 
 #=============================================================================
-# Target rules for targets named mavros_msgs_generate_messages_eus
+# Target rules for targets named teleop_car_key
 
 # Build rule for target.
-mavros_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_eus
-.PHONY : mavros_msgs_generate_messages_eus
+teleop_car_key: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 teleop_car_key
+.PHONY : teleop_car_key
 
 # fast build rule for target.
-mavros_msgs_generate_messages_eus/fast:
-	$(MAKE) -f px4_control/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build.make px4_control/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build
-.PHONY : mavros_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named uuid_msgs_generate_messages_nodejs
-
-# Build rule for target.
-uuid_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_nodejs
-.PHONY : uuid_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-uuid_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f px4_control/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build.make px4_control/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build
-.PHONY : uuid_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named mavros_msgs_generate_messages_lisp
-
-# Build rule for target.
-mavros_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_lisp
-.PHONY : mavros_msgs_generate_messages_lisp
-
-# fast build rule for target.
-mavros_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build.make px4_control/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build
-.PHONY : mavros_msgs_generate_messages_lisp/fast
+teleop_car_key/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build
+.PHONY : teleop_car_key/fast
 
 #=============================================================================
 # Target rules for targets named uuid_msgs_generate_messages_eus
@@ -2218,7 +2179,7 @@ uuid_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 uuid_msgs_generate_messages_eus/fast:
-	$(MAKE) -f px4_control/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make px4_control/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
 .PHONY : uuid_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -2231,21 +2192,8 @@ mavros_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 mavros_msgs_generate_messages_py/fast:
-	$(MAKE) -f px4_control/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make px4_control/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
 .PHONY : mavros_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named uuid_msgs_generate_messages_py
-
-# Build rule for target.
-uuid_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_py
-.PHONY : uuid_msgs_generate_messages_py
-
-# fast build rule for target.
-uuid_msgs_generate_messages_py/fast:
-	$(MAKE) -f px4_control/CMakeFiles/uuid_msgs_generate_messages_py.dir/build.make px4_control/CMakeFiles/uuid_msgs_generate_messages_py.dir/build
-.PHONY : uuid_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named geographic_msgs_generate_messages_lisp
@@ -2257,47 +2205,8 @@ geographic_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 geographic_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make px4_control/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
 .PHONY : geographic_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named geographic_msgs_generate_messages_eus
-
-# Build rule for target.
-geographic_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_eus
-.PHONY : geographic_msgs_generate_messages_eus
-
-# fast build rule for target.
-geographic_msgs_generate_messages_eus/fast:
-	$(MAKE) -f px4_control/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make px4_control/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
-.PHONY : geographic_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named uuid_msgs_generate_messages_cpp
-
-# Build rule for target.
-uuid_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_cpp
-.PHONY : uuid_msgs_generate_messages_cpp
-
-# fast build rule for target.
-uuid_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make px4_control/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
-.PHONY : uuid_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named geographic_msgs_generate_messages_py
-
-# Build rule for target.
-geographic_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_py
-.PHONY : geographic_msgs_generate_messages_py
-
-# fast build rule for target.
-geographic_msgs_generate_messages_py/fast:
-	$(MAKE) -f px4_control/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make px4_control/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
-.PHONY : geographic_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named uuid_msgs_generate_messages_lisp
@@ -2309,7 +2218,7 @@ uuid_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 uuid_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make px4_control/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
 .PHONY : uuid_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -2322,7 +2231,7 @@ std_srvs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_py/fast:
-	$(MAKE) -f px4_control/CMakeFiles/std_srvs_generate_messages_py.dir/build.make px4_control/CMakeFiles/std_srvs_generate_messages_py.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
 .PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
@@ -2335,60 +2244,34 @@ geographic_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 geographic_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build.make px4_control/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build
 .PHONY : geographic_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named tracking_uav_node
+# Target rules for targets named uuid_msgs_generate_messages_cpp
 
 # Build rule for target.
-tracking_uav_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tracking_uav_node
-.PHONY : tracking_uav_node
+uuid_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_cpp
+.PHONY : uuid_msgs_generate_messages_cpp
 
 # fast build rule for target.
-tracking_uav_node/fast:
-	$(MAKE) -f px4_control/CMakeFiles/tracking_uav_node.dir/build.make px4_control/CMakeFiles/tracking_uav_node.dir/build
-.PHONY : tracking_uav_node/fast
+uuid_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
+.PHONY : uuid_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named mavros_msgs_generate_messages_nodejs
+# Target rules for targets named std_srvs_generate_messages_nodejs
 
 # Build rule for target.
-mavros_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_nodejs
-.PHONY : mavros_msgs_generate_messages_nodejs
+std_srvs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_nodejs
+.PHONY : std_srvs_generate_messages_nodejs
 
 # fast build rule for target.
-mavros_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f px4_control/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build.make px4_control/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build
-.PHONY : mavros_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named nav_msgs_generate_messages_nodejs
-
-# Build rule for target.
-nav_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f px4_control/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make px4_control/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named geographic_msgs_generate_messages_nodejs
-
-# Build rule for target.
-geographic_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_nodejs
-.PHONY : geographic_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geographic_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f px4_control/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build.make px4_control/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build
-.PHONY : geographic_msgs_generate_messages_nodejs/fast
+std_srvs_generate_messages_nodejs/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+.PHONY : std_srvs_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named std_srvs_generate_messages_lisp
@@ -2400,21 +2283,73 @@ std_srvs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_lisp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make px4_control/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
 .PHONY : std_srvs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named landing_uav_node
+# Target rules for targets named geographic_msgs_generate_messages_nodejs
 
 # Build rule for target.
-landing_uav_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 landing_uav_node
-.PHONY : landing_uav_node
+geographic_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_nodejs
+.PHONY : geographic_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-landing_uav_node/fast:
-	$(MAKE) -f px4_control/CMakeFiles/landing_uav_node.dir/build.make px4_control/CMakeFiles/landing_uav_node.dir/build
-.PHONY : landing_uav_node/fast
+geographic_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build
+.PHONY : geographic_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named landing
+
+# Build rule for target.
+landing: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 landing
+.PHONY : landing
+
+# fast build rule for target.
+landing/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/build
+.PHONY : landing/fast
+
+#=============================================================================
+# Target rules for targets named geographic_msgs_generate_messages_py
+
+# Build rule for target.
+geographic_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_py
+.PHONY : geographic_msgs_generate_messages_py
+
+# fast build rule for target.
+geographic_msgs_generate_messages_py/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
+.PHONY : geographic_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named std_srvs_generate_messages_eus
+
+# Build rule for target.
+std_srvs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_eus
+.PHONY : std_srvs_generate_messages_eus
+
+# fast build rule for target.
+std_srvs_generate_messages_eus/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named std_srvs_generate_messages_cpp
+
+# Build rule for target.
+std_srvs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_cpp
+.PHONY : std_srvs_generate_messages_cpp
+
+# fast build rule for target.
+std_srvs_generate_messages_cpp/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+.PHONY : std_srvs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_cpp
@@ -2426,7 +2361,7 @@ nav_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make px4_control/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
 .PHONY : nav_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -2439,21 +2374,86 @@ nav_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make px4_control/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named std_srvs_generate_messages_cpp
+# Target rules for targets named uuid_msgs_generate_messages_nodejs
 
 # Build rule for target.
-std_srvs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_cpp
-.PHONY : std_srvs_generate_messages_cpp
+uuid_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_nodejs
+.PHONY : uuid_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make px4_control/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
+uuid_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build
+.PHONY : uuid_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named mavros_msgs_generate_messages_lisp
+
+# Build rule for target.
+mavros_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_lisp
+.PHONY : mavros_msgs_generate_messages_lisp
+
+# fast build rule for target.
+mavros_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build
+.PHONY : mavros_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named uuid_msgs_generate_messages_py
+
+# Build rule for target.
+uuid_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 uuid_msgs_generate_messages_py
+.PHONY : uuid_msgs_generate_messages_py
+
+# fast build rule for target.
+uuid_msgs_generate_messages_py/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build
+.PHONY : uuid_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named mavros_msgs_generate_messages_eus
+
+# Build rule for target.
+mavros_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_eus
+.PHONY : mavros_msgs_generate_messages_eus
+
+# fast build rule for target.
+mavros_msgs_generate_messages_eus/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build
+.PHONY : mavros_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named mavros_msgs_generate_messages_nodejs
+
+# Build rule for target.
+mavros_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mavros_msgs_generate_messages_nodejs
+.PHONY : mavros_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+mavros_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build
+.PHONY : mavros_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named nav_msgs_generate_messages_nodejs
+
+# Build rule for target.
+nav_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nav_msgs_generate_messages_nodejs
+.PHONY : nav_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+nav_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_eus
@@ -2465,8 +2465,47 @@ nav_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_eus/fast:
-	$(MAKE) -f px4_control/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make px4_control/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
 .PHONY : nav_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named offboard
+
+# Build rule for target.
+offboard: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 offboard
+.PHONY : offboard
+
+# fast build rule for target.
+offboard/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/offboard.dir/build.make vehicle_ctrl/CMakeFiles/offboard.dir/build
+.PHONY : offboard/fast
+
+#=============================================================================
+# Target rules for targets named geographic_msgs_generate_messages_eus
+
+# Build rule for target.
+geographic_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geographic_msgs_generate_messages_eus
+.PHONY : geographic_msgs_generate_messages_eus
+
+# fast build rule for target.
+geographic_msgs_generate_messages_eus/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
+.PHONY : geographic_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named tracking
+
+# Build rule for target.
+tracking: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tracking
+.PHONY : tracking
+
+# fast build rule for target.
+tracking/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/build
+.PHONY : tracking/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_py
@@ -2478,34 +2517,8 @@ nav_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_py/fast:
-	$(MAKE) -f px4_control/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make px4_control/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build
 .PHONY : nav_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named std_srvs_generate_messages_eus
-
-# Build rule for target.
-std_srvs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_eus
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	$(MAKE) -f px4_control/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make px4_control/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named std_srvs_generate_messages_nodejs
-
-# Build rule for target.
-std_srvs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_srvs_generate_messages_nodejs
-.PHONY : std_srvs_generate_messages_nodejs
-
-# fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	$(MAKE) -f px4_control/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make px4_control/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named mavros_msgs_generate_messages_cpp
@@ -2517,34 +2530,21 @@ mavros_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 mavros_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f px4_control/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make px4_control/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
 .PHONY : mavros_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named offboard_node
+# Target rules for targets named circular
 
 # Build rule for target.
-offboard_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 offboard_node
-.PHONY : offboard_node
+circular: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 circular
+.PHONY : circular
 
 # fast build rule for target.
-offboard_node/fast:
-	$(MAKE) -f px4_control/CMakeFiles/offboard_node.dir/build.make px4_control/CMakeFiles/offboard_node.dir/build
-.PHONY : offboard_node/fast
-
-#=============================================================================
-# Target rules for targets named circular_node
-
-# Build rule for target.
-circular_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 circular_node
-.PHONY : circular_node
-
-# fast build rule for target.
-circular_node/fast:
-	$(MAKE) -f px4_control/CMakeFiles/circular_node.dir/build.make px4_control/CMakeFiles/circular_node.dir/build
-.PHONY : circular_node/fast
+circular/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/circular.dir/build.make vehicle_ctrl/CMakeFiles/circular.dir/build
+.PHONY : circular/fast
 
 #=============================================================================
 # Target rules for targets named velocityEstimator
@@ -2829,7 +2829,6 @@ help:
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... obstaclestopper_node"
-	@echo "... teleop_car_key"
 	@echo "... stepvel_node"
 	@echo "... clean_test_results_control_toolbox"
 	@echo "... _run_tests_control_toolbox_gtest"
@@ -2934,35 +2933,36 @@ help:
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray"
-	@echo "... mavros_msgs_generate_messages_eus"
-	@echo "... uuid_msgs_generate_messages_nodejs"
-	@echo "... mavros_msgs_generate_messages_lisp"
+	@echo "... teleop_car_key"
 	@echo "... uuid_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_py"
-	@echo "... uuid_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
-	@echo "... geographic_msgs_generate_messages_eus"
-	@echo "... uuid_msgs_generate_messages_cpp"
-	@echo "... geographic_msgs_generate_messages_py"
 	@echo "... uuid_msgs_generate_messages_lisp"
 	@echo "... std_srvs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_cpp"
-	@echo "... tracking_uav_node"
-	@echo "... mavros_msgs_generate_messages_nodejs"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... geographic_msgs_generate_messages_nodejs"
+	@echo "... uuid_msgs_generate_messages_cpp"
+	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... std_srvs_generate_messages_lisp"
-	@echo "... landing_uav_node"
+	@echo "... geographic_msgs_generate_messages_nodejs"
+	@echo "... landing"
+	@echo "... geographic_msgs_generate_messages_py"
+	@echo "... std_srvs_generate_messages_eus"
+	@echo "... std_srvs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_cpp"
+	@echo "... uuid_msgs_generate_messages_nodejs"
+	@echo "... mavros_msgs_generate_messages_lisp"
+	@echo "... uuid_msgs_generate_messages_py"
+	@echo "... mavros_msgs_generate_messages_eus"
+	@echo "... mavros_msgs_generate_messages_nodejs"
+	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_eus"
+	@echo "... offboard"
+	@echo "... geographic_msgs_generate_messages_eus"
+	@echo "... tracking"
 	@echo "... nav_msgs_generate_messages_py"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... mavros_msgs_generate_messages_cpp"
-	@echo "... offboard_node"
-	@echo "... circular_node"
+	@echo "... circular"
 	@echo "... velocityEstimator"
 	@echo "... distanceEstimator"
 	@echo "... controller_manager_msgs_generate_messages_eus"
