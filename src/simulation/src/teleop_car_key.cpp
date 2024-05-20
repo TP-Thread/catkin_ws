@@ -126,12 +126,12 @@ void TeleopCar::keyLoop()
             break;
         case KEYCODE_UP:
             linear_ = linear_ + 0.5;
-            printf("线速度：%f\n", linear_);
+            printf("当前车速：%f\n", linear_);
             dirty = true;
             break;
         case KEYCODE_DOWN:
             linear_ = linear_ - 0.5;
-            printf("线速度：%f\n", linear_);
+            printf("当前车速：%f\n", linear_);
             dirty = true;
             break;
         case KEYCODE_Q:
