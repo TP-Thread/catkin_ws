@@ -2157,17 +2157,17 @@ _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray/fast:
 .PHONY : _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray/fast
 
 #=============================================================================
-# Target rules for targets named teleop_car_key
+# Target rules for targets named teleop_car
 
 # Build rule for target.
-teleop_car_key: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 teleop_car_key
-.PHONY : teleop_car_key
+teleop_car: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 teleop_car
+.PHONY : teleop_car
 
 # fast build rule for target.
-teleop_car_key/fast:
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build
-.PHONY : teleop_car_key/fast
+teleop_car/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/build
+.PHONY : teleop_car/fast
 
 #=============================================================================
 # Target rules for targets named uuid_msgs_generate_messages_eus
@@ -2933,7 +2933,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... _apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray"
-	@echo "... teleop_car_key"
+	@echo "... teleop_car"
 	@echo "... uuid_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"

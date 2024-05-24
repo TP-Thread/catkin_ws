@@ -146,7 +146,7 @@ add_executable(offboard src/offboard.cpp)
 add_executable(circular src/circular.cpp)
 add_executable(landing src/landing.cpp)
 add_executable(tracking src/tracking.cpp)
-add_executable(teleop_car_key src/teleop_car_key.cpp)
+add_executable(teleop_car src/teleop_car.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,7 +163,7 @@ target_link_libraries(offboard ${catkin_LIBRARIES})
 target_link_libraries(circular ${catkin_LIBRARIES})
 target_link_libraries(landing ${catkin_LIBRARIES})
 target_link_libraries(tracking ${catkin_LIBRARIES})
-target_link_libraries(teleop_car_key ${catkin_LIBRARIES})
+target_link_libraries(teleop_car ${catkin_LIBRARIES})
 
 #############
 ## Install ##

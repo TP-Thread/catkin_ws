@@ -531,7 +531,7 @@ simulation/clean:
 # Directory level rules for directory vehicle_ctrl
 
 # Recursive "all" directory target.
-vehicle_ctrl/all: vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all
+vehicle_ctrl/all: vehicle_ctrl/CMakeFiles/teleop_car.dir/all
 vehicle_ctrl/all: vehicle_ctrl/CMakeFiles/landing.dir/all
 vehicle_ctrl/all: vehicle_ctrl/CMakeFiles/offboard.dir/all
 vehicle_ctrl/all: vehicle_ctrl/CMakeFiles/tracking.dir/all
@@ -545,7 +545,7 @@ vehicle_ctrl/preinstall:
 .PHONY : vehicle_ctrl/preinstall
 
 # Recursive "clean" directory target.
-vehicle_ctrl/clean: vehicle_ctrl/CMakeFiles/teleop_car_key.dir/clean
+vehicle_ctrl/clean: vehicle_ctrl/CMakeFiles/teleop_car.dir/clean
 vehicle_ctrl/clean: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/clean
 vehicle_ctrl/clean: vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/clean
 vehicle_ctrl/clean: vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/clean
@@ -4872,33 +4872,33 @@ apriltag_ros/CMakeFiles/_apriltag_ros_generate_messages_check_deps_AprilTagDetec
 .PHONY : apriltag_ros/CMakeFiles/_apriltag_ros_generate_messages_check_deps_AprilTagDetectionArray.dir/clean
 
 #=============================================================================
-# Target rules for target vehicle_ctrl/CMakeFiles/teleop_car_key.dir
+# Target rules for target vehicle_ctrl/CMakeFiles/teleop_car.dir
 
 # All Build rule for target.
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_common.dir/all
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/all
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/all
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/depend
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dfq/catkin_ws/build/CMakeFiles --progress-num=95,96 "Built target teleop_car_key"
-.PHONY : vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all
+vehicle_ctrl/CMakeFiles/teleop_car.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_common.dir/all
+vehicle_ctrl/CMakeFiles/teleop_car.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/all
+vehicle_ctrl/CMakeFiles/teleop_car.dir/all: apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/all
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/depend
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dfq/catkin_ws/build/CMakeFiles --progress-num=95,96 "Built target teleop_car"
+.PHONY : vehicle_ctrl/CMakeFiles/teleop_car.dir/all
 
 # Build rule for subdir invocation for target.
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule: cmake_check_build_system
+vehicle_ctrl/CMakeFiles/teleop_car.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dfq/catkin_ws/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/teleop_car_key.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/teleop_car.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dfq/catkin_ws/build/CMakeFiles 0
-.PHONY : vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/teleop_car.dir/rule
 
 # Convenience name for target.
-teleop_car_key: vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule
+teleop_car: vehicle_ctrl/CMakeFiles/teleop_car.dir/rule
 
-.PHONY : teleop_car_key
+.PHONY : teleop_car
 
 # clean rule for target.
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/clean:
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/clean
-.PHONY : vehicle_ctrl/CMakeFiles/teleop_car_key.dir/clean
+vehicle_ctrl/CMakeFiles/teleop_car.dir/clean:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/clean
+.PHONY : vehicle_ctrl/CMakeFiles/teleop_car.dir/clean
 
 #=============================================================================
 # Target rules for target vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir

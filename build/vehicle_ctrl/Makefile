@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule
+vehicle_ctrl/CMakeFiles/teleop_car.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/teleop_car.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/teleop_car.dir/rule
 
 # Convenience name for target.
-teleop_car_key: vehicle_ctrl/CMakeFiles/teleop_car_key.dir/rule
+teleop_car: vehicle_ctrl/CMakeFiles/teleop_car.dir/rule
 
-.PHONY : teleop_car_key
+.PHONY : teleop_car
 
 # fast build rule for target.
-teleop_car_key/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build
-.PHONY : teleop_car_key/fast
+teleop_car/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/build
+.PHONY : teleop_car/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule:
@@ -698,32 +698,32 @@ src/offboard.cpp.s:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/offboard.dir/build.make vehicle_ctrl/CMakeFiles/offboard.dir/src/offboard.cpp.s
 .PHONY : src/offboard.cpp.s
 
-src/teleop_car_key.o: src/teleop_car_key.cpp.o
+src/teleop_car.o: src/teleop_car.cpp.o
 
-.PHONY : src/teleop_car_key.o
+.PHONY : src/teleop_car.o
 
 # target to build an object file
-src/teleop_car_key.cpp.o:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.o
-.PHONY : src/teleop_car_key.cpp.o
+src/teleop_car.cpp.o:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o
+.PHONY : src/teleop_car.cpp.o
 
-src/teleop_car_key.i: src/teleop_car_key.cpp.i
+src/teleop_car.i: src/teleop_car.cpp.i
 
-.PHONY : src/teleop_car_key.i
+.PHONY : src/teleop_car.i
 
 # target to preprocess a source file
-src/teleop_car_key.cpp.i:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.i
-.PHONY : src/teleop_car_key.cpp.i
+src/teleop_car.cpp.i:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i
+.PHONY : src/teleop_car.cpp.i
 
-src/teleop_car_key.s: src/teleop_car_key.cpp.s
+src/teleop_car.s: src/teleop_car.cpp.s
 
-.PHONY : src/teleop_car_key.s
+.PHONY : src/teleop_car.s
 
 # target to generate assembly for a file
-src/teleop_car_key.cpp.s:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car_key.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car_key.dir/src/teleop_car_key.cpp.s
-.PHONY : src/teleop_car_key.cpp.s
+src/teleop_car.cpp.s:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
+.PHONY : src/teleop_car.cpp.s
 
 src/tracking.o: src/tracking.cpp.o
 
@@ -761,7 +761,7 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... teleop_car_key"
+	@echo "... teleop_car"
 	@echo "... uuid_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
@@ -804,9 +804,9 @@ help:
 	@echo "... src/offboard.o"
 	@echo "... src/offboard.i"
 	@echo "... src/offboard.s"
-	@echo "... src/teleop_car_key.o"
-	@echo "... src/teleop_car_key.i"
-	@echo "... src/teleop_car_key.s"
+	@echo "... src/teleop_car.o"
+	@echo "... src/teleop_car.i"
+	@echo "... src/teleop_car.s"
 	@echo "... src/tracking.o"
 	@echo "... src/tracking.i"
 	@echo "... src/tracking.s"

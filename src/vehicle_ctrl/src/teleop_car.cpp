@@ -77,7 +77,7 @@ void quit(int sig)
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "teleop_car_key");
+    ros::init(argc, argv, "teleop_car");
     TeleopCar teleop_turtle;
 
     signal(SIGINT, quit);
@@ -116,13 +116,12 @@ void TeleopCar::keyLoop()
         {
         case KEYCODE_LEFT:
             ROS_DEBUG("LEFT");
-            angular_ = 1.0;
+            angular_ = angular_ + 0.5;
             dirty = true;
             break;
         case KEYCODE_RIGHT:
             ROS_DEBUG("RIGHT");
-            angular_ = -1.0;
-            dirty = true;
+            angular_ = angular_ - 0.5;
             break;
         case KEYCODE_UP:
             linear_ = linear_ + 0.5;
