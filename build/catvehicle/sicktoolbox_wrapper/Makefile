@@ -102,16 +102,16 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -124,16 +124,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : test/fast
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,96 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
-
-# Convenience name for target.
-log_scans: catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
-
-.PHONY : log_scans
-
-# fast build rule for target.
-log_scans/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/build
-.PHONY : log_scans/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
-
-# Convenience name for target.
-time_scans: catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
-
-.PHONY : time_scans
-
-# fast build rule for target.
-time_scans/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/build
-.PHONY : time_scans/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_nodejs: catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_nodejs/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
-.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_nodejs: catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
 .PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
@@ -271,21 +181,6 @@ diagnostic_msgs_generate_messages_cpp: catvehicle/sicktoolbox_wrapper/CMakeFiles
 diagnostic_msgs_generate_messages_cpp/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build
 .PHONY : diagnostic_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule:
@@ -318,6 +213,51 @@ sickld/fast:
 .PHONY : sickld/fast
 
 # Convenience name for target.
+catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
+.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
+
+# Convenience name for target.
+time_scans: catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/rule
+
+.PHONY : time_scans
+
+# fast build rule for target.
+time_scans/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/time_scans.dir/build
+.PHONY : time_scans/fast
+
+# Convenience name for target.
+catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
+.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
+
+# Convenience name for target.
+log_scans: catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/rule
+
+.PHONY : log_scans
+
+# fast build rule for target.
+log_scans/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/log_scans.dir/build
+.PHONY : log_scans/fast
+
+# Convenience name for target.
+catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_nodejs: catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_nodejs/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
+.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
 .PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
@@ -346,21 +286,6 @@ diagnostic_msgs_generate_messages_py: catvehicle/sicktoolbox_wrapper/CMakeFiles/
 diagnostic_msgs_generate_messages_py/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
 .PHONY : diagnostic_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_eus: catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make catvehicle/sicktoolbox_wrapper/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 catvehicle/sicktoolbox_wrapper/CMakeFiles/print_scans.dir/rule:
@@ -537,24 +462,19 @@ help:
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... log_scans"
-	@echo "... time_scans"
-	@echo "... diagnostic_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... diagnostic_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... diagnostic_msgs_generate_messages_eus"
 	@echo "... sickld"
+	@echo "... time_scans"
+	@echo "... log_scans"
+	@echo "... test"
+	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... diagnostic_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... print_scans"
 	@echo "... sicklms"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... ros/sickld/sickld.o"
 	@echo "... ros/sickld/sickld.i"
 	@echo "... ros/sickld/sickld.s"

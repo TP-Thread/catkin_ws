@@ -13,6 +13,7 @@
 #define KEYCODE_A 0x61
 #define KEYCODE_B 0x62
 #define KEYCODE_Q 0x71
+#define KEYCODE_R 0x72
 
 class KeyboardReader
 {
@@ -65,6 +66,7 @@ private:
 TeleopCar::TeleopCar() : linear_(0), angular_(0)
 {
     twist_pub_ = nh_.advertise<geometry_msgs::Twist>("catvehicle/cmd_vel", 1);
+    // twist_pub_ = nh_.advertise<geometry_msgs::Twist>("ackermann_steering_controller/cmd_vel", 1);
 }
 
 void quit(int sig)
@@ -78,11 +80,11 @@ void quit(int sig)
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "teleop_car");
-    TeleopCar teleop_turtle;
+    TeleopCar teleop_car;
 
     signal(SIGINT, quit);
 
-    teleop_turtle.keyLoop();
+    teleop_car.keyLoop();
     quit(0);
 
     return (0);
@@ -110,26 +112,25 @@ void TeleopCar::keyLoop()
             return;
         }
 
-        ROS_DEBUG("value: 0x%02X\n", c);
-
         switch (c)
         {
         case KEYCODE_LEFT:
-            ROS_DEBUG("LEFT");
-            angular_ = angular_ + 0.5;
+            angular_ = angular_ + 0.2;
+            printf("当前转向速度：%f\n", angular_);
             dirty = true;
             break;
         case KEYCODE_RIGHT:
-            ROS_DEBUG("RIGHT");
-            angular_ = angular_ - 0.5;
+            angular_ = angular_ - 0.2;
+            printf("当前转向速度：%f\n", angular_);
+            dirty = true;
             break;
         case KEYCODE_UP:
-            linear_ = linear_ + 0.5;
+            linear_ = linear_ + 0.1;
             printf("当前车速：%f\n", linear_);
             dirty = true;
             break;
         case KEYCODE_DOWN:
-            linear_ = linear_ - 0.5;
+            linear_ = linear_ - 0.1;
             printf("当前车速：%f\n", linear_);
             dirty = true;
             break;

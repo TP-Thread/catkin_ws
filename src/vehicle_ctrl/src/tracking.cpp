@@ -6,7 +6,6 @@
 #include "tracking.h"
 
 using namespace std;
-using namespace Eigen;
 
 PX4Tracking::PX4Tracking(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
 {
@@ -189,9 +188,9 @@ void PX4Tracking::TrackingStateUpdate()
         {
             posxyz_target[0] = px4_pose_[0];
             posxyz_target[1] = px4_pose_[1];
-            posxyz_target[2] = px4_pose_[2] + 0.2;
+            posxyz_target[2] = (px4_pose_[2] + 0.1) < 10 ? (px4_pose_[2] + 0.1) : 10;
             OffboardControl_.send_pos_setpoint(posxyz_target, 0);
-            cout << "CHECKING Target" << endl;
+            cout << "SEARCHING Target" << endl;
         }
 
         break;
@@ -227,7 +226,7 @@ void PX4Tracking::TrackingStateUpdate()
         {
             if (abs(markers_pose_[0]) < 0.5 && abs(markers_pose_[1]) < 0.5)
             {
-                if (markers_pose_[2] > 0.3)
+                if (markers_pose_[2] > 0.2)
                 {
                     desire_vel_ = TrackingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
@@ -238,6 +237,16 @@ void PX4Tracking::TrackingStateUpdate()
 
                     OffboardControl_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
                     cout << "当前高度:" << markers_pose_[2] << endl;
+
+                    // 如果在准备中途中切换到onboard，则保持当前位置
+                    if (px4_state_.mode != "OFFBOARD")
+                    {
+                        cout << "离线信号丢失" << endl;
+                        temp_pos_drone[0] = px4_pose_[0];
+                        temp_pos_drone[1] = px4_pose_[1];
+                        temp_pos_drone[2] = px4_pose_[2];
+                        OffboardControl_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点，否则模式开关将被拒绝。
+                    }
                 }
                 else
                 {
@@ -247,21 +256,16 @@ void PX4Tracking::TrackingStateUpdate()
                     cout << "LANDOVER" << endl;
                 }
             }
+            else
+            {
+                FlyState = TRACKING;
+                cout << "TRACKING" << endl;
+            }
         }
         else
         {
-            FlyState = TRACKING;
-            cout << "TRACKING" << endl;
-        }
-
-        // 如果在准备中途中切换到onboard，则跳到WAITING
-        if (px4_state_.mode != "OFFBOARD")
-        {
-            cout << "离线信号丢失" << endl;
-            temp_pos_drone[0] = px4_pose_[0];
-            temp_pos_drone[1] = px4_pose_[1];
-            temp_pos_drone[2] = px4_pose_[2];
-            OffboardControl_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点。否则模式开关将被拒绝。
+            FlyState = SEARCHING;
+            cout << "SEARCHING" << endl;
         }
 
         break;

@@ -1,6 +1,7 @@
 <launch>
-    <arg name="sdf" value="$(find mavlink_sitl_gazebo)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf" />
-    <arg name="world" value="$(find simulation)/worlds/cat.world"/>
+    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf" />
+    <arg name="world" default="$(find simulation)/worlds/lawn_void.world" />
+    <!-- <arg name="world" default="$(find simulation)/worlds/cat.world"/> -->
 
     <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
         <arg name="x" value="0"/>
@@ -13,7 +14,13 @@
         <arg name="world" value="$(arg world)" />
     </include>
 
-    <group ns="catvehicle">
+    <include file="$(find steer_mini_gazebo)/launch/steer_mini_sim.launch" >
+        <arg name="x" default="3.0"/>
+        <arg name="y" default="4.0"/>
+        <arg name="z" default="0.0" />
+    </include>
+
+    <!-- <group ns="catvehicle">
         <param name="robot_description"
             command="$(find xacro)/xacro '$(find catvehicle)/urdf/cp_catvehicle.xacro' roboname:='catvehicle' updateRate:='20.0'" />
 
@@ -23,5 +30,5 @@
             <arg name="init_pose" value="-x 5 -y 5 -z 0"/>
             <arg name="config_file" value="catvehicle_control.yaml"/>
         </include>
-    </group>
+    </group> -->
 </launch>

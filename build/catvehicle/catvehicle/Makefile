@@ -90,17 +90,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -122,6 +111,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -168,66 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
-
-# Convenience name for target.
-velocityEstimator: catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
-
-.PHONY : velocityEstimator
-
-# fast build rule for target.
-velocityEstimator/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/build.make catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/build
-.PHONY : velocityEstimator/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
-
-# Convenience name for target.
-distanceEstimator: catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
-
-.PHONY : distanceEstimator
-
-# fast build rule for target.
-distanceEstimator/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/build.make catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/build
-.PHONY : distanceEstimator/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-controller_manager_msgs_generate_messages_eus: catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
-
-.PHONY : controller_manager_msgs_generate_messages_eus
-
-# fast build rule for target.
-controller_manager_msgs_generate_messages_eus/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build.make catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build
-.PHONY : controller_manager_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-controller_manager_msgs_generate_messages_cpp: catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : controller_manager_msgs_generate_messages_cpp
-
-# fast build rule for target.
-controller_manager_msgs_generate_messages_cpp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build.make catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build
-.PHONY : controller_manager_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
 catvehicle/catvehicle/CMakeFiles/velodyne_pointcloud_gencfg.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velodyne_pointcloud_gencfg.dir/rule
 .PHONY : catvehicle/catvehicle/CMakeFiles/velodyne_pointcloud_gencfg.dir/rule
@@ -243,64 +183,19 @@ velodyne_pointcloud_gencfg/fast:
 .PHONY : velodyne_pointcloud_gencfg/fast
 
 # Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
+catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
 
 # Convenience name for target.
-velodyne_msgs_generate_messages_lisp: catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
+velocityEstimator: catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/rule
 
-.PHONY : velodyne_msgs_generate_messages_lisp
+.PHONY : velocityEstimator
 
 # fast build rule for target.
-velodyne_msgs_generate_messages_lisp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/build.make catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/build
-.PHONY : velodyne_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-velodyne_msgs_generate_messages_nodejs: catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : velodyne_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-velodyne_msgs_generate_messages_nodejs/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/build.make catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/build
-.PHONY : velodyne_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
-
-# Convenience name for target.
-catmin_distance: catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
-
-.PHONY : catmin_distance
-
-# fast build rule for target.
-catmin_distance/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/build.make catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/build
-.PHONY : catmin_distance/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-controller_manager_msgs_generate_messages_nodejs: catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : controller_manager_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-controller_manager_msgs_generate_messages_nodejs/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build.make catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build
-.PHONY : controller_manager_msgs_generate_messages_nodejs/fast
+velocityEstimator/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/build.make catvehicle/catvehicle/CMakeFiles/velocityEstimator.dir/build
+.PHONY : velocityEstimator/fast
 
 # Convenience name for target.
 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_cpp.dir/rule:
@@ -333,19 +228,34 @@ velodyne_msgs_generate_messages_eus/fast:
 .PHONY : velodyne_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-controller_manager_msgs_generate_messages_py: catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+velodyne_msgs_generate_messages_lisp: catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : controller_manager_msgs_generate_messages_py
+.PHONY : velodyne_msgs_generate_messages_lisp
 
 # fast build rule for target.
-controller_manager_msgs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build.make catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build
-.PHONY : controller_manager_msgs_generate_messages_py/fast
+velodyne_msgs_generate_messages_lisp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/build.make catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_lisp.dir/build
+.PHONY : velodyne_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+velodyne_msgs_generate_messages_nodejs: catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : velodyne_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+velodyne_msgs_generate_messages_nodejs/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/build.make catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_nodejs.dir/build
+.PHONY : velodyne_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 catvehicle/catvehicle/CMakeFiles/velodyne_msgs_generate_messages_py.dir/rule:
@@ -363,19 +273,49 @@ velodyne_msgs_generate_messages_py/fast:
 .PHONY : velodyne_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
+catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
 
 # Convenience name for target.
-distanceEstimatorSteeringBased: catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
+catvehiclegazebo: catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
 
-.PHONY : distanceEstimatorSteeringBased
+.PHONY : catvehiclegazebo
 
 # fast build rule for target.
-distanceEstimatorSteeringBased/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/build.make catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/build
-.PHONY : distanceEstimatorSteeringBased/fast
+catvehiclegazebo/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/build.make catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/build
+.PHONY : catvehiclegazebo/fast
+
+# Convenience name for target.
+catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
+
+# Convenience name for target.
+catmin_distance: catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/rule
+
+.PHONY : catmin_distance
+
+# fast build rule for target.
+catmin_distance/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/build.make catvehicle/catvehicle/CMakeFiles/catmin_distance.dir/build
+.PHONY : catmin_distance/fast
+
+# Convenience name for target.
+catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
+
+# Convenience name for target.
+distanceEstimator: catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/rule
+
+.PHONY : distanceEstimator
+
+# fast build rule for target.
+distanceEstimator/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/build.make catvehicle/catvehicle/CMakeFiles/distanceEstimator.dir/build
+.PHONY : distanceEstimator/fast
 
 # Convenience name for target.
 catvehicle/catvehicle/CMakeFiles/velodyne_driver_gencfg.dir/rule:
@@ -393,34 +333,19 @@ velodyne_driver_gencfg/fast:
 .PHONY : velodyne_driver_gencfg/fast
 
 # Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
+catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
+.PHONY : catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
 
 # Convenience name for target.
-controller_manager_msgs_generate_messages_lisp: catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
+distanceEstimatorSteeringBased: catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/rule
 
-.PHONY : controller_manager_msgs_generate_messages_lisp
+.PHONY : distanceEstimatorSteeringBased
 
 # fast build rule for target.
-controller_manager_msgs_generate_messages_lisp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build.make catvehicle/catvehicle/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build
-.PHONY : controller_manager_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
-.PHONY : catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
-
-# Convenience name for target.
-catvehiclegazebo: catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/rule
-
-.PHONY : catvehiclegazebo
-
-# fast build rule for target.
-catvehiclegazebo/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/build.make catvehicle/catvehicle/CMakeFiles/catvehiclegazebo.dir/build
-.PHONY : catvehiclegazebo/fast
+distanceEstimatorSteeringBased/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/build.make catvehicle/catvehicle/CMakeFiles/distanceEstimatorSteeringBased.dir/build
+.PHONY : distanceEstimatorSteeringBased/fast
 
 src/cont.o: src/cont.cc.o
 
@@ -566,27 +491,22 @@ help:
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... test"
-	@echo "... velocityEstimator"
-	@echo "... distanceEstimator"
-	@echo "... controller_manager_msgs_generate_messages_eus"
-	@echo "... controller_manager_msgs_generate_messages_cpp"
 	@echo "... velodyne_pointcloud_gencfg"
+	@echo "... velocityEstimator"
+	@echo "... velodyne_msgs_generate_messages_cpp"
+	@echo "... velodyne_msgs_generate_messages_eus"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... velodyne_msgs_generate_messages_lisp"
 	@echo "... velodyne_msgs_generate_messages_nodejs"
-	@echo "... catmin_distance"
-	@echo "... controller_manager_msgs_generate_messages_nodejs"
-	@echo "... velodyne_msgs_generate_messages_cpp"
-	@echo "... velodyne_msgs_generate_messages_eus"
-	@echo "... controller_manager_msgs_generate_messages_py"
 	@echo "... velodyne_msgs_generate_messages_py"
-	@echo "... install/local"
-	@echo "... distanceEstimatorSteeringBased"
-	@echo "... velodyne_driver_gencfg"
-	@echo "... controller_manager_msgs_generate_messages_lisp"
 	@echo "... catvehiclegazebo"
+	@echo "... catmin_distance"
+	@echo "... distanceEstimator"
+	@echo "... test"
+	@echo "... install/local"
+	@echo "... velodyne_driver_gencfg"
+	@echo "... distanceEstimatorSteeringBased"
 	@echo "... src/cont.o"
 	@echo "... src/cont.i"
 	@echo "... src/cont.s"
