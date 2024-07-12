@@ -1,25 +1,33 @@
 <launch>
+    <!-- 启动二维码识别节点 -->
+    <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
+	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->
+		<arg name="camera_name" default="/camera" />
+		<!-- <arg name="camera_name" default="/iris/camera/rgb" /> -->
+		<arg name="image_topic" default="image_raw" />
+    </include>
+
 	<node pkg="vehicle_ctrl" type="landing" name="landing" output="screen">
-		<param name="search_alt_" value = "8"/>	
+		<param name="search_alt_" value = "8"/>
 		<!-- <param name="marker1_id_" value = "77"/>
         <param name="marker2_id_" value = "96"/> -->
 
-		<param name="desire_pose_x" value = "0"/>	
-		<param name="desire_pose_y" value = "0"/>	
+		<param name="desire_pose_x" value = "0"/>
+		<param name="desire_pose_y" value = "0"/>
 		<param name="desire_pose_z" value = "0"/>
 		<param name="desire_yaw_" value = "0"/>
 
-		<param name="PidXY_p" value = "0.4"/>	
-        <param name="PidXY_i" value = "0"/>	
-		<param name="PidXY_d" value = "0"/>	
+		<param name="PidXY_p" value = "0.4"/>
+        <param name="PidXY_i" value = "0"/>
+		<param name="PidXY_d" value = "0"/>
 
-		<param name="PidZ_p" value = "0.1"/>	
-        <param name="PidZ_i" value = "0"/>	
-		<param name="PidZ_d" value = "0"/>	
+		<param name="PidZ_p" value = "0.1"/>
+        <param name="PidZ_i" value = "0"/>
+		<param name="PidZ_d" value = "0"/>
 
-		<param name="PidYaw_p" value = "0.2"/>	
+		<param name="PidYaw_p" value = "0.2"/>
         <param name="PidYaw_i" value = "0"/>
-		<param name="PidYaw_d" value = "0"/>	
+		<param name="PidYaw_d" value = "0"/>
         <!-- <param name="PidXY_p" value = "1"/>	
 		<param name="PidXY_d" value = "0.1"/>	
 		<param name="PidXY_i" value = "0.02"/>	
@@ -31,9 +39,5 @@
 		<param name="PidYaw_i" value = "0"/>		 -->
 	</node>
 
-    <!-- 启动二维码识别节点 -->
-    <include file="$(find apriltag_ros)/launch/apriltag_sim_camera.launch" >
-    </include>
-
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find vehicle_ctrl)/rviz/apriltag_sim_camera.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find vehicle_ctrl)/rviz/landing.rviz"/>
 </launch>

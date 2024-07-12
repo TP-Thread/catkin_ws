@@ -34,7 +34,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/dfq/catkin_ws/src/minicar/steer_drive_ros/steer_drive_controller/include"
   "/home/dfq/catkin_ws/devel/include"
-  "/home/dfq/catkin_ws/src/catvehicle/control_toolbox/include"
+  "/home/dfq/catkin_ws/src/catcar/control_toolbox/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/lib/x86_64-linux-gnu/pkgconfig/../../../include/gazebo-11"
@@ -66,7 +66,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/dfq/catkin_ws/build/catvehicle/control_toolbox/CMakeFiles/control_toolbox.dir/DependInfo.cmake"
+  "/home/dfq/catkin_ws/build/catcar/control_toolbox/CMakeFiles/control_toolbox.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

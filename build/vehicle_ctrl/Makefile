@@ -89,17 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -123,6 +112,17 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -183,34 +183,49 @@ teleop_car/fast:
 .PHONY : teleop_car/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+vehicle_ctrl/CMakeFiles/landing.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/landing.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/landing.dir/rule
 
 # Convenience name for target.
-uuid_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+landing: vehicle_ctrl/CMakeFiles/landing.dir/rule
 
-.PHONY : uuid_msgs_generate_messages_eus
+.PHONY : landing
 
 # fast build rule for target.
-uuid_msgs_generate_messages_eus/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
-.PHONY : uuid_msgs_generate_messages_eus/fast
+landing/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/build
+.PHONY : landing/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+vehicle_ctrl/CMakeFiles/offboard.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/offboard.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/offboard.dir/rule
 
 # Convenience name for target.
-mavros_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+offboard: vehicle_ctrl/CMakeFiles/offboard.dir/rule
 
-.PHONY : mavros_msgs_generate_messages_py
+.PHONY : offboard
 
 # fast build rule for target.
-mavros_msgs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
-.PHONY : mavros_msgs_generate_messages_py/fast
+offboard/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/offboard.dir/build.make vehicle_ctrl/CMakeFiles/offboard.dir/build
+.PHONY : offboard/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule:
@@ -228,34 +243,49 @@ geographic_msgs_generate_messages_lisp/fast:
 .PHONY : geographic_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+vehicle_ctrl/CMakeFiles/tracking.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/tracking.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/tracking.dir/rule
 
 # Convenience name for target.
-uuid_msgs_generate_messages_lisp: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+tracking: vehicle_ctrl/CMakeFiles/tracking.dir/rule
 
-.PHONY : uuid_msgs_generate_messages_lisp
+.PHONY : tracking
 
 # fast build rule for target.
-uuid_msgs_generate_messages_lisp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
-.PHONY : uuid_msgs_generate_messages_lisp/fast
+tracking/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/build
+.PHONY : tracking/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_py: vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+geographic_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
 
-.PHONY : std_srvs_generate_messages_py
+.PHONY : geographic_msgs_generate_messages_eus
 
 # fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
+geographic_msgs_generate_messages_eus/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
+.PHONY : geographic_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_py
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_py/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
+.PHONY : diagnostic_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule:
@@ -273,21 +303,6 @@ geographic_msgs_generate_messages_cpp/fast:
 .PHONY : geographic_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-uuid_msgs_generate_messages_cpp: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : uuid_msgs_generate_messages_cpp
-
-# fast build rule for target.
-uuid_msgs_generate_messages_cpp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
-.PHONY : uuid_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
 .PHONY : vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
@@ -301,6 +316,36 @@ std_srvs_generate_messages_nodejs: vehicle_ctrl/CMakeFiles/std_srvs_generate_mes
 std_srvs_generate_messages_nodejs/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
 .PHONY : std_srvs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_eus: vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+.PHONY : std_srvs_generate_messages_eus
+
+# fast build rule for target.
+std_srvs_generate_messages_eus/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_eus
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_eus/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build
+.PHONY : diagnostic_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
@@ -333,49 +378,19 @@ geographic_msgs_generate_messages_nodejs/fast:
 .PHONY : geographic_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/landing.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/landing.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/landing.dir/rule
+vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-landing: vehicle_ctrl/CMakeFiles/landing.dir/rule
+diagnostic_msgs_generate_messages_cpp: vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : landing
+.PHONY : diagnostic_msgs_generate_messages_cpp
 
 # fast build rule for target.
-landing/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/build
-.PHONY : landing/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_py
-
-# fast build rule for target.
-geographic_msgs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
-.PHONY : geographic_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
+diagnostic_msgs_generate_messages_cpp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
@@ -423,6 +438,96 @@ nav_msgs_generate_messages_lisp/fast:
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
+vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_py
+
+# fast build rule for target.
+geographic_msgs_generate_messages_py/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
+.PHONY : geographic_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_cpp: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_cpp
+
+# fast build rule for target.
+uuid_msgs_generate_messages_cpp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
+.PHONY : uuid_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_eus
+
+# fast build rule for target.
+uuid_msgs_generate_messages_eus/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
+.PHONY : uuid_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_py
+
+# fast build rule for target.
+mavros_msgs_generate_messages_py/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
+.PHONY : mavros_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_py: vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+.PHONY : std_srvs_generate_messages_py
+
+# fast build rule for target.
+std_srvs_generate_messages_py/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
+.PHONY : std_srvs_generate_messages_py/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_lisp: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_lisp
+
+# fast build rule for target.
+uuid_msgs_generate_messages_lisp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
+.PHONY : uuid_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
 .PHONY : vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
@@ -466,6 +571,51 @@ uuid_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messa
 uuid_msgs_generate_messages_py/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build
 .PHONY : uuid_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/circular.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/circular.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/circular.dir/rule
+
+# Convenience name for target.
+circular: vehicle_ctrl/CMakeFiles/circular.dir/rule
+
+.PHONY : circular
+
+# fast build rule for target.
+circular/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/circular.dir/build.make vehicle_ctrl/CMakeFiles/circular.dir/build
+.PHONY : circular/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_cpp: vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_cpp
+
+# fast build rule for target.
+mavros_msgs_generate_messages_cpp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
+.PHONY : mavros_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_nodejs: vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_nodejs/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
+.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule:
@@ -513,6 +663,21 @@ nav_msgs_generate_messages_nodejs/fast:
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
+vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_lisp: vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_lisp
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_lisp/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
 .PHONY : vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
@@ -526,96 +691,6 @@ nav_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/nav_msgs_generate_messag
 nav_msgs_generate_messages_eus/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
 .PHONY : nav_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/offboard.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/offboard.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/offboard.dir/rule
-
-# Convenience name for target.
-offboard: vehicle_ctrl/CMakeFiles/offboard.dir/rule
-
-.PHONY : offboard
-
-# fast build rule for target.
-offboard/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/offboard.dir/build.make vehicle_ctrl/CMakeFiles/offboard.dir/build
-.PHONY : offboard/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_eus: vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_eus
-
-# fast build rule for target.
-geographic_msgs_generate_messages_eus/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
-.PHONY : geographic_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/tracking.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/tracking.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/tracking.dir/rule
-
-# Convenience name for target.
-tracking: vehicle_ctrl/CMakeFiles/tracking.dir/rule
-
-.PHONY : tracking
-
-# fast build rule for target.
-tracking/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/build
-.PHONY : tracking/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_py: vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_cpp: vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_cpp
-
-# fast build rule for target.
-mavros_msgs_generate_messages_cpp/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make vehicle_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
-.PHONY : mavros_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/circular.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/circular.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/circular.dir/rule
-
-# Convenience name for target.
-circular: vehicle_ctrl/CMakeFiles/circular.dir/rule
-
-.PHONY : circular
-
-# fast build rule for target.
-circular/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/circular.dir/build.make vehicle_ctrl/CMakeFiles/circular.dir/build
-.PHONY : circular/fast
 
 src/circular.o: src/circular.cpp.o
 
@@ -762,39 +837,44 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... teleop_car"
-	@echo "... uuid_msgs_generate_messages_eus"
-	@echo "... mavros_msgs_generate_messages_py"
+	@echo "... landing"
+	@echo "... offboard"
+	@echo "... nav_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
-	@echo "... test"
-	@echo "... uuid_msgs_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_py"
+	@echo "... tracking"
+	@echo "... geographic_msgs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... install/strip"
 	@echo "... geographic_msgs_generate_messages_cpp"
-	@echo "... uuid_msgs_generate_messages_cpp"
 	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... std_srvs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_lisp"
 	@echo "... geographic_msgs_generate_messages_nodejs"
-	@echo "... landing"
-	@echo "... geographic_msgs_generate_messages_py"
-	@echo "... std_srvs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_cpp"
 	@echo "... std_srvs_generate_messages_cpp"
 	@echo "... install/local"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... geographic_msgs_generate_messages_py"
+	@echo "... uuid_msgs_generate_messages_cpp"
+	@echo "... uuid_msgs_generate_messages_eus"
+	@echo "... mavros_msgs_generate_messages_py"
+	@echo "... test"
+	@echo "... std_srvs_generate_messages_py"
+	@echo "... uuid_msgs_generate_messages_lisp"
 	@echo "... uuid_msgs_generate_messages_nodejs"
 	@echo "... edit_cache"
 	@echo "... mavros_msgs_generate_messages_lisp"
 	@echo "... uuid_msgs_generate_messages_py"
+	@echo "... circular"
+	@echo "... mavros_msgs_generate_messages_cpp"
+	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... mavros_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_nodejs"
+	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_eus"
-	@echo "... offboard"
-	@echo "... geographic_msgs_generate_messages_eus"
-	@echo "... tracking"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... mavros_msgs_generate_messages_cpp"
-	@echo "... circular"
 	@echo "... src/circular.o"
 	@echo "... src/circular.i"
 	@echo "... src/circular.s"

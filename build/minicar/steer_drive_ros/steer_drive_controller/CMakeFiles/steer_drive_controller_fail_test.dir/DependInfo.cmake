@@ -22,7 +22,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/dfq/catkin_ws/src/minicar/steer_drive_ros/steer_drive_controller/include"
   "/home/dfq/catkin_ws/devel/include"
-  "/home/dfq/catkin_ws/src/catvehicle/control_toolbox/include"
+  "/home/dfq/catkin_ws/src/catcar/control_toolbox/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/lib/x86_64-linux-gnu/pkgconfig/../../../include/gazebo-11"

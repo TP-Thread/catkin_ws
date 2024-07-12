@@ -1,4 +1,12 @@
 <launch>
+    <!-- 启动二维码识别节点 -->
+    <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
+	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->
+		<arg name="camera_name" default="/camera" />
+		<!-- <arg name="camera_name" default="/iris/camera/rgb" /> -->
+		<arg name="image_topic" default="image_raw" />
+    </include>
+
 	<node pkg="vehicle_ctrl" type="tracking" name="tracking" output="screen">
 		<param name="search_alt_" value = "8"/>	
 		<!-- <param name="marker1_id_" value = "77"/>
@@ -31,9 +39,5 @@
 		<param name="PidYaw_i" value = "0"/>		 -->
 	</node>
 
-    <!-- 启动二维码识别节点 -->
-    <include file="$(find apriltag_ros)/launch/apriltag_sim_camera.launch" >
-    </include>
-
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find vehicle_ctrl)/rviz/apriltag_sim_camera.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find vehicle_ctrl)/rviz/tracking.rviz"/>
 </launch>
