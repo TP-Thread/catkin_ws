@@ -1,11 +1,11 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/dfq/catkin_ws/src/apriltag_ros/msg/AprilTagDetection.msg;/home/dfq/catkin_ws/src/apriltag_ros/msg/AprilTagDetectionArray.msg"
-services_str = "/home/dfq/catkin_ws/src/apriltag_ros/srv/AnalyzeSingleImage.srv"
+messages_str = "/home/nano/catkin_ws/src/apriltag_ros/msg/AprilTagDetection.msg;/home/nano/catkin_ws/src/apriltag_ros/msg/AprilTagDetectionArray.msg"
+services_str = "/home/nano/catkin_ws/src/apriltag_ros/srv/AnalyzeSingleImage.srv"
 pkg_name = "apriltag_ros"
 dependencies_str = "geometry_msgs;sensor_msgs;std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"
-dep_include_paths_str = "apriltag_ros;/home/dfq/catkin_ws/src/apriltag_ros/msg;geometry_msgs;/opt/ros/noetic/share/geometry_msgs/cmake/../msg;sensor_msgs;/opt/ros/noetic/share/sensor_msgs/cmake/../msg;std_msgs;/opt/ros/noetic/share/std_msgs/cmake/../msg"
-PYTHON_EXECUTABLE = "/usr/bin/python3"
+dep_include_paths_str = "apriltag_ros;/home/nano/catkin_ws/src/apriltag_ros/msg;geometry_msgs;/opt/ros/melodic/share/geometry_msgs/cmake/../msg;sensor_msgs;/opt/ros/melodic/share/sensor_msgs/cmake/../msg;std_msgs;/opt/ros/melodic/share/std_msgs/cmake/../msg"
+PYTHON_EXECUTABLE = "/usr/bin/python2"
 package_has_static_sources = '' == 'TRUE'
-genmsg_check_deps_script = "/opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py"
+genmsg_check_deps_script = "/opt/ros/melodic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py"

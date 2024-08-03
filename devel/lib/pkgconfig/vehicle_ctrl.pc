@@ -1,8 +1,8 @@
-prefix=/home/dfq/catkin_ws/devel
+prefix=/home/nano/catkin_ws/devel
 
 Name: vehicle_ctrl
 Description: Description of vehicle_ctrl
 Version: 0.0.0
-Cflags: -I/home/dfq/catkin_ws/src/vehicle_ctrl/include
+Cflags: -I/home/nano/catkin_ws/src/vehicle_ctrl/include
 Libs: -L${prefix}/lib 
 Requires: 

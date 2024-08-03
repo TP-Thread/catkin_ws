@@ -95,16 +95,6 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsMessage< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> >
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
-struct IsMessage< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> const>
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
 struct IsFixedSize< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> >
   : FalseType
   { };
@@ -112,6 +102,16 @@ struct IsFixedSize< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> 
 template <class ContainerAllocator>
 struct IsFixedSize< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> const>
   : FalseType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> >
+  : TrueType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::apriltag_ros::AprilTagDetectionArray_<ContainerAllocator> const>
+  : TrueType
   { };
 
 template <class ContainerAllocator>

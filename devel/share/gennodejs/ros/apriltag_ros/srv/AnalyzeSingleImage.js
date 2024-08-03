@@ -75,8 +75,8 @@ class AnalyzeSingleImageRequest {
 
   static getMessageSize(object) {
     let length = 0;
-    length += _getByteLength(object.full_path_where_to_get_image);
-    length += _getByteLength(object.full_path_where_to_save_image);
+    length += object.full_path_where_to_get_image.length;
+    length += object.full_path_where_to_save_image.length;
     length += sensor_msgs.msg.CameraInfo.getMessageSize(object.camera_info);
     return length + 8;
   }

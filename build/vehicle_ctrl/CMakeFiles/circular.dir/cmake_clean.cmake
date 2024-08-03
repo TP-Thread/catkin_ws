@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/circular"
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/circular.pdb"
   "CMakeFiles/circular.dir/src/circular.cpp.o"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/circular.pdb"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/circular"
 )
 
 # Per-language clean rules from dependency scanning.

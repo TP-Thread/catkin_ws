@@ -1,4 +1,4 @@
-prefix=/home/dfq/catkin_ws/install
+prefix=/home/nano/catkin_ws/install
 
 Name: robot_vision
 Description: Description of robot_vision

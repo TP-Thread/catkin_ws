@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "/home/dfq/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetection.py"
-  "/home/dfq/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetectionArray.py"
-  "/home/dfq/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/__init__.py"
-  "/home/dfq/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/_AnalyzeSingleImage.py"
-  "/home/dfq/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/__init__.py"
   "CMakeFiles/apriltag_ros_generate_messages_py"
+  "/home/nano/catkin_ws/devel/lib/python2.7/dist-packages/apriltag_ros/msg/_AprilTagDetectionArray.py"
+  "/home/nano/catkin_ws/devel/lib/python2.7/dist-packages/apriltag_ros/msg/_AprilTagDetection.py"
+  "/home/nano/catkin_ws/devel/lib/python2.7/dist-packages/apriltag_ros/srv/_AnalyzeSingleImage.py"
+  "/home/nano/catkin_ws/devel/lib/python2.7/dist-packages/apriltag_ros/msg/__init__.py"
+  "/home/nano/catkin_ws/devel/lib/python2.7/dist-packages/apriltag_ros/srv/__init__.py"
 )
 
 # Per-language clean rules from dependency scanning.

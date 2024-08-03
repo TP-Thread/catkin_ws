@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/offboard"
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/offboard.pdb"
   "CMakeFiles/offboard.dir/src/offboard.cpp.o"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/offboard.pdb"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/offboard"
 )
 
 # Per-language clean rules from dependency scanning.

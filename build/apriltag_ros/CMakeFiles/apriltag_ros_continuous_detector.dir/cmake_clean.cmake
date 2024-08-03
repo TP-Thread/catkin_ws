@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/dfq/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.pdb"
-  "/home/dfq/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.so"
   "CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o"
+  "/home/nano/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.pdb"
+  "/home/nano/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.so"
 )
 
 # Per-language clean rules from dependency scanning.

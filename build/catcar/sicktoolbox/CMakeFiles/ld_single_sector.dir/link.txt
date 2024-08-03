@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/ld_single_sector.dir/c++/examples/ld/ld_single_sector/src/main.cc.o  -o /home/dfq/catkin_ws/devel/lib/sicktoolbox/ld_single_sector  -Wl,-rpath,/home/dfq/catkin_ws/devel/lib: /home/dfq/catkin_ws/devel/lib/libSickLD.so -lpthread 

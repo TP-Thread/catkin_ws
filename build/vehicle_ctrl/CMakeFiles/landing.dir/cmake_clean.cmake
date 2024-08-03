@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/landing"
-  "/home/dfq/catkin_ws/devel/lib/vehicle_ctrl/landing.pdb"
   "CMakeFiles/landing.dir/src/landing.cpp.o"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/landing.pdb"
+  "/home/nano/catkin_ws/devel/lib/vehicle_ctrl/landing"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,4 +1,4 @@
-prefix=/home/dfq/catkin_ws/install
+prefix=/home/nano/catkin_ws/install
 
 Name: vehicle_ctrl
 Description: Description of vehicle_ctrl

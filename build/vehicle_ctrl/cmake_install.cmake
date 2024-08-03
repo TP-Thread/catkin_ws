@@ -1,8 +1,8 @@
-# Install script for directory: /home/dfq/catkin_ws/src/vehicle_ctrl
+# Install script for directory: /home/nano/catkin_ws/src/vehicle_ctrl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/dfq/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/nano/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/dfq/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrl.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/nano/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrl.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/vehicle_ctrl/cmake" TYPE FILE FILES
-    "/home/dfq/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrlConfig.cmake"
-    "/home/dfq/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrlConfig-version.cmake"
+    "/home/nano/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrlConfig.cmake"
+    "/home/nano/catkin_ws/build/vehicle_ctrl/catkin_generated/installspace/vehicle_ctrlConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/vehicle_ctrl" TYPE FILE FILES "/home/dfq/catkin_ws/src/vehicle_ctrl/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/vehicle_ctrl" TYPE FILE FILES "/home/nano/catkin_ws/src/vehicle_ctrl/package.xml")
 endif()
 

@@ -7,5 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/dfq/catkin_ws/build'
-export ROS_PACKAGE_PATH='/home/dfq/catkin_ws/src:/opt/ros/noetic/share'
+export LD_LIBRARY_PATH='/opt/ros/melodic/lib'
+export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig'
+export PWD='/home/nano/catkin_ws/build'

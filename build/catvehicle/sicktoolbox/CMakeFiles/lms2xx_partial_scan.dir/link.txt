@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/lms2xx_partial_scan.dir/c++/examples/lms2xx/lms2xx_partial_scan/src/main.cc.o  -o /home/dfq/catkin_ws/devel/lib/sicktoolbox/lms2xx_partial_scan  -Wl,-rpath,/home/dfq/catkin_ws/devel/lib: /home/dfq/catkin_ws/devel/lib/libSickLMS2xx.so -lpthread 

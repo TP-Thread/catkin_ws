@@ -22,7 +22,7 @@
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:detections __detections) ())
+    ((:detections __detections) (let (r) (dotimes (i 0) (push (instance apriltag_ros::AprilTagDetection :init) r)) r))
     )
    (send-super :init)
    (setq _header __header)
