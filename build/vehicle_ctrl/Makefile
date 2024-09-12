@@ -183,19 +183,34 @@ teleop_car/fast:
 .PHONY : teleop_car/fast
 
 # Convenience name for target.
-vehicle_ctrl/CMakeFiles/landing.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/landing.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/landing.dir/rule
+vehicle_ctrl/CMakeFiles/uav_tracking.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uav_tracking.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/uav_tracking.dir/rule
 
 # Convenience name for target.
-landing: vehicle_ctrl/CMakeFiles/landing.dir/rule
+uav_tracking: vehicle_ctrl/CMakeFiles/uav_tracking.dir/rule
 
-.PHONY : landing
+.PHONY : uav_tracking
 
 # fast build rule for target.
-landing/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/build
-.PHONY : landing/fast
+uav_tracking/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_tracking.dir/build.make vehicle_ctrl/CMakeFiles/uav_tracking.dir/build
+.PHONY : uav_tracking/fast
+
+# Convenience name for target.
+vehicle_ctrl/CMakeFiles/uav_landing.dir/rule:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/uav_landing.dir/rule
+.PHONY : vehicle_ctrl/CMakeFiles/uav_landing.dir/rule
+
+# Convenience name for target.
+uav_landing: vehicle_ctrl/CMakeFiles/uav_landing.dir/rule
+
+.PHONY : uav_landing
+
+# fast build rule for target.
+uav_landing/fast:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_landing.dir/build.make vehicle_ctrl/CMakeFiles/uav_landing.dir/build
+.PHONY : uav_landing/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/offboard.dir/rule:
@@ -241,21 +256,6 @@ geographic_msgs_generate_messages_lisp: vehicle_ctrl/CMakeFiles/geographic_msgs_
 geographic_msgs_generate_messages_lisp/fast:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
 .PHONY : geographic_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-vehicle_ctrl/CMakeFiles/tracking.dir/rule:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vehicle_ctrl/CMakeFiles/tracking.dir/rule
-.PHONY : vehicle_ctrl/CMakeFiles/tracking.dir/rule
-
-# Convenience name for target.
-tracking: vehicle_ctrl/CMakeFiles/tracking.dir/rule
-
-.PHONY : tracking
-
-# fast build rule for target.
-tracking/fast:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/build
-.PHONY : tracking/fast
 
 # Convenience name for target.
 vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule:
@@ -719,33 +719,6 @@ src/circular.cpp.s:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/circular.dir/build.make vehicle_ctrl/CMakeFiles/circular.dir/src/circular.cpp.s
 .PHONY : src/circular.cpp.s
 
-src/landing.o: src/landing.cpp.o
-
-.PHONY : src/landing.o
-
-# target to build an object file
-src/landing.cpp.o:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/src/landing.cpp.o
-.PHONY : src/landing.cpp.o
-
-src/landing.i: src/landing.cpp.i
-
-.PHONY : src/landing.i
-
-# target to preprocess a source file
-src/landing.cpp.i:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/src/landing.cpp.i
-.PHONY : src/landing.cpp.i
-
-src/landing.s: src/landing.cpp.s
-
-.PHONY : src/landing.s
-
-# target to generate assembly for a file
-src/landing.cpp.s:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/src/landing.cpp.s
-.PHONY : src/landing.cpp.s
-
 src/offboard.o: src/offboard.cpp.o
 
 .PHONY : src/offboard.o
@@ -800,32 +773,59 @@ src/teleop_car.cpp.s:
 	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/teleop_car.dir/build.make vehicle_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
 .PHONY : src/teleop_car.cpp.s
 
-src/tracking.o: src/tracking.cpp.o
+src/uav_landing.o: src/uav_landing.cpp.o
 
-.PHONY : src/tracking.o
+.PHONY : src/uav_landing.o
 
 # target to build an object file
-src/tracking.cpp.o:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/src/tracking.cpp.o
-.PHONY : src/tracking.cpp.o
+src/uav_landing.cpp.o:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_landing.dir/build.make vehicle_ctrl/CMakeFiles/uav_landing.dir/src/uav_landing.cpp.o
+.PHONY : src/uav_landing.cpp.o
 
-src/tracking.i: src/tracking.cpp.i
+src/uav_landing.i: src/uav_landing.cpp.i
 
-.PHONY : src/tracking.i
+.PHONY : src/uav_landing.i
 
 # target to preprocess a source file
-src/tracking.cpp.i:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/src/tracking.cpp.i
-.PHONY : src/tracking.cpp.i
+src/uav_landing.cpp.i:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_landing.dir/build.make vehicle_ctrl/CMakeFiles/uav_landing.dir/src/uav_landing.cpp.i
+.PHONY : src/uav_landing.cpp.i
 
-src/tracking.s: src/tracking.cpp.s
+src/uav_landing.s: src/uav_landing.cpp.s
 
-.PHONY : src/tracking.s
+.PHONY : src/uav_landing.s
 
 # target to generate assembly for a file
-src/tracking.cpp.s:
-	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/src/tracking.cpp.s
-.PHONY : src/tracking.cpp.s
+src/uav_landing.cpp.s:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_landing.dir/build.make vehicle_ctrl/CMakeFiles/uav_landing.dir/src/uav_landing.cpp.s
+.PHONY : src/uav_landing.cpp.s
+
+src/uav_tracking.o: src/uav_tracking.cpp.o
+
+.PHONY : src/uav_tracking.o
+
+# target to build an object file
+src/uav_tracking.cpp.o:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_tracking.dir/build.make vehicle_ctrl/CMakeFiles/uav_tracking.dir/src/uav_tracking.cpp.o
+.PHONY : src/uav_tracking.cpp.o
+
+src/uav_tracking.i: src/uav_tracking.cpp.i
+
+.PHONY : src/uav_tracking.i
+
+# target to preprocess a source file
+src/uav_tracking.cpp.i:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_tracking.dir/build.make vehicle_ctrl/CMakeFiles/uav_tracking.dir/src/uav_tracking.cpp.i
+.PHONY : src/uav_tracking.cpp.i
+
+src/uav_tracking.s: src/uav_tracking.cpp.s
+
+.PHONY : src/uav_tracking.s
+
+# target to generate assembly for a file
+src/uav_tracking.cpp.s:
+	cd /home/dfq/catkin_ws/build && $(MAKE) -f vehicle_ctrl/CMakeFiles/uav_tracking.dir/build.make vehicle_ctrl/CMakeFiles/uav_tracking.dir/src/uav_tracking.cpp.s
+.PHONY : src/uav_tracking.cpp.s
 
 # Help Target
 help:
@@ -837,11 +837,11 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... teleop_car"
-	@echo "... landing"
+	@echo "... uav_tracking"
+	@echo "... uav_landing"
 	@echo "... offboard"
 	@echo "... nav_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
-	@echo "... tracking"
 	@echo "... geographic_msgs_generate_messages_eus"
 	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... install/strip"
@@ -878,18 +878,18 @@ help:
 	@echo "... src/circular.o"
 	@echo "... src/circular.i"
 	@echo "... src/circular.s"
-	@echo "... src/landing.o"
-	@echo "... src/landing.i"
-	@echo "... src/landing.s"
 	@echo "... src/offboard.o"
 	@echo "... src/offboard.i"
 	@echo "... src/offboard.s"
 	@echo "... src/teleop_car.o"
 	@echo "... src/teleop_car.i"
 	@echo "... src/teleop_car.s"
-	@echo "... src/tracking.o"
-	@echo "... src/tracking.i"
-	@echo "... src/tracking.s"
+	@echo "... src/uav_landing.o"
+	@echo "... src/uav_landing.i"
+	@echo "... src/uav_landing.s"
+	@echo "... src/uav_tracking.o"
+	@echo "... src/uav_tracking.i"
+	@echo "... src/uav_tracking.s"
 .PHONY : help
 
 

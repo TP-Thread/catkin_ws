@@ -144,8 +144,8 @@ include
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(offboard src/offboard.cpp)
 add_executable(circular src/circular.cpp)
-add_executable(landing src/landing.cpp)
-add_executable(tracking src/tracking.cpp)
+add_executable(uav_landing src/uav_landing.cpp)
+add_executable(uav_tracking src/uav_tracking.cpp)
 add_executable(teleop_car src/teleop_car.cpp)
 
 ## Rename C++ executable without prefix
@@ -161,8 +161,8 @@ add_executable(teleop_car src/teleop_car.cpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(offboard ${catkin_LIBRARIES})
 target_link_libraries(circular ${catkin_LIBRARIES})
-target_link_libraries(landing ${catkin_LIBRARIES})
-target_link_libraries(tracking ${catkin_LIBRARIES})
+target_link_libraries(uav_landing ${catkin_LIBRARIES})
+target_link_libraries(uav_tracking ${catkin_LIBRARIES})
 target_link_libraries(teleop_car ${catkin_LIBRARIES})
 
 #############

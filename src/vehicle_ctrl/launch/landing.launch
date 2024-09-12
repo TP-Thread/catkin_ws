@@ -7,7 +7,7 @@
 		<arg name="image_topic" default="image_raw" />
     </include>
 
-	<node pkg="vehicle_ctrl" type="landing" name="landing" output="screen">
+	<node pkg="vehicle_ctrl" type="uav_landing" name="uav_landing" output="screen">
 		<param name="search_alt_" value = "8"/>
 		<!-- <param name="marker1_id_" value = "77"/>
         <param name="marker2_id_" value = "96"/> -->

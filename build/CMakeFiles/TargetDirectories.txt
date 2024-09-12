@@ -248,11 +248,11 @@
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/list_install_components.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/rebuild_cache.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/teleop_car.dir
-/home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/landing.dir
+/home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/uav_tracking.dir
+/home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/uav_landing.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/offboard.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir
-/home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/tracking.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir
 /home/dfq/catkin_ws/build/vehicle_ctrl/CMakeFiles/install/strip.dir

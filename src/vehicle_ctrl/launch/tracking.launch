@@ -7,7 +7,7 @@
 		<arg name="image_topic" default="image_raw" />
     </include>
 
-	<node pkg="vehicle_ctrl" type="tracking" name="tracking" output="screen">
+	<node pkg="vehicle_ctrl" type="uav_tracking" name="uav_tracking" output="screen">
 		<param name="search_alt_" value = "8"/>	
 		<!-- <param name="marker1_id_" value = "77"/>
         <param name="marker2_id_" value = "96"/> -->
@@ -21,7 +21,7 @@
         <param name="PidXY_i" value = "0"/>	
 		<param name="PidXY_d" value = "0"/>	
 
-		<param name="PidZ_p" value = "0.1"/>	
+		<param name="PidZ_p" value = "0.1"/>
         <param name="PidZ_i" value = "0"/>	
 		<param name="PidZ_d" value = "0"/>	
 

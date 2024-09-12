@@ -2105,17 +2105,30 @@ teleop_car/fast:
 .PHONY : teleop_car/fast
 
 #=============================================================================
-# Target rules for targets named landing
+# Target rules for targets named uav_tracking
 
 # Build rule for target.
-landing: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 landing
-.PHONY : landing
+uav_tracking: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 uav_tracking
+.PHONY : uav_tracking
 
 # fast build rule for target.
-landing/fast:
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/landing.dir/build.make vehicle_ctrl/CMakeFiles/landing.dir/build
-.PHONY : landing/fast
+uav_tracking/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uav_tracking.dir/build.make vehicle_ctrl/CMakeFiles/uav_tracking.dir/build
+.PHONY : uav_tracking/fast
+
+#=============================================================================
+# Target rules for targets named uav_landing
+
+# Build rule for target.
+uav_landing: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 uav_landing
+.PHONY : uav_landing
+
+# fast build rule for target.
+uav_landing/fast:
+	$(MAKE) -f vehicle_ctrl/CMakeFiles/uav_landing.dir/build.make vehicle_ctrl/CMakeFiles/uav_landing.dir/build
+.PHONY : uav_landing/fast
 
 #=============================================================================
 # Target rules for targets named offboard
@@ -2155,19 +2168,6 @@ geographic_msgs_generate_messages_lisp: cmake_check_build_system
 geographic_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make vehicle_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
 .PHONY : geographic_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named tracking
-
-# Build rule for target.
-tracking: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tracking
-.PHONY : tracking
-
-# fast build rule for target.
-tracking/fast:
-	$(MAKE) -f vehicle_ctrl/CMakeFiles/tracking.dir/build.make vehicle_ctrl/CMakeFiles/tracking.dir/build
-.PHONY : tracking/fast
 
 #=============================================================================
 # Target rules for targets named geographic_msgs_generate_messages_eus
@@ -3735,11 +3735,11 @@ help:
 	@echo "... controller_manager_msgs_generate_messages_eus"
 	@echo "... controller_manager_msgs_generate_messages_cpp"
 	@echo "... teleop_car"
-	@echo "... landing"
+	@echo "... uav_tracking"
+	@echo "... uav_landing"
 	@echo "... offboard"
 	@echo "... nav_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
-	@echo "... tracking"
 	@echo "... geographic_msgs_generate_messages_eus"
 	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_cpp"

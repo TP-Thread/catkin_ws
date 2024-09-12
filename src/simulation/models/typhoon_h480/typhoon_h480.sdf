@@ -390,8 +390,8 @@
           <horizontal_fov>2.0</horizontal_fov>
           <image>
             <format>R8G8B8</format>
-            <width>640</width>
-            <height>360</height>
+            <width>1280</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.05</near>
@@ -422,8 +422,8 @@
         <plugin name="CameraManagerPlugin" filename="libgazebo_camera_manager_plugin.so">
             <robotNamespace>typhoon_h480</robotNamespace>
             <interval>1</interval>
-            <width>3840</width>
-            <height>2160</height>
+            <width>1280</width>
+            <height>720</height>
             <maximum_zoom>8.0</maximum_zoom>
             <video_uri>udp://127.0.0.1:5600</video_uri>
             <system_id>1</system_id>

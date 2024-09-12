@@ -1,26 +1,31 @@
 /**
- * @file    tracking_uav.cpp
- * @brief   实现px4 二维码跟踪
+ * @file    uav_landing.cpp
+ * @brief   实现px4 二维码降落
  */
 
-#include "tracking.h"
+#include "landing.h"
 
 using namespace std;
 
-PX4Tracking::PX4Tracking(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
+/**
+ * @brief  PX4Landing 构造函数
+ * @param  nh          ros::NodeHandle 类型的引用
+ * @param  nh_private  ros::NodeHandle 类型的引用
+ *          ：后面表示将构造函数参数值赋给 PX4Landing 类的成员变量。
+ **/
+PX4Landing::PX4Landing(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
 {
     Initialize();
 
     // 用全局句柄创建定时器，周期为0.1s，定时器触发回调函数，this表示回调函数属于哪个对象
-    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracking::CmdLoopCallback, this);
+    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Landing::CmdLoopCallback, this);
 
     // 订阅无人机当前状态
-    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Tracking::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
+    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Landing::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅无人机local坐标系位置
-    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Tracking::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
-
+    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Landing::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅降落板相对飞机位置
-    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Tracking::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Landing::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
     arming_client_ = nh_private_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
@@ -30,7 +35,7 @@ PX4Tracking::PX4Tracking(const ros::NodeHandle &nh, const ros::NodeHandle &nh_pr
 /**
  * @brief      参数初始化
  **/
-void PX4Tracking::Initialize()
+void PX4Landing::Initialize()
 {
     // 读取offboard模式下飞机的搜索高度和搜索ID
     nh_private_.param<float>("search_alt_", search_alt_, 5);
@@ -46,7 +51,7 @@ void PX4Tracking::Initialize()
     nh_private_.param<float>("PidZ_i", s_PidZ.i, 0);
     nh_private_.param<float>("PidZ_d", s_PidZ.d, 0);
 
-    nh_private_.param<float>("PidYaw_p", s_PidYaw.p, 0.2);
+    nh_private_.param<float>("PidYaw_p", s_PidYaw.p, 0);
     nh_private_.param<float>("PidYaw_i", s_PidYaw.i, 0);
     nh_private_.param<float>("PidYaw_d", s_PidYaw.d, 0);
 
@@ -86,7 +91,7 @@ void PX4Tracking::Initialize()
  * @param[in]  &expectPos 期望位置，expectYaw 飞机相对降落板的期望方向:默认0
  * @param[out] 机体系下x,y,z的期望速度,以及yaw方向的期望速度。
  **/
-Eigen::Vector4d PX4Tracking::TrackingPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw)
+Eigen::Vector4d PX4Landing::LandingPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw)
 {
     Eigen::Vector4d s_PidOut;
 
@@ -152,20 +157,24 @@ Eigen::Vector4d PX4Tracking::TrackingPidProcess(Eigen::Vector3d &currentPos, flo
 /**
  * @brief   10Hz状态机更新函数
  **/
-void PX4Tracking::CmdLoopCallback(const ros::TimerEvent &event)
+void PX4Landing::CmdLoopCallback(const ros::TimerEvent &event)
 {
-    TrackingStateUpdate();
+    LandingStateUpdate();
 }
 
-/**
- * @brief      状态机更新函数
- **/
-void PX4Tracking::TrackingStateUpdate()
+/* 状态机更新函数 */
+void PX4Landing::LandingStateUpdate()
 {
     switch (FlyState)
     {
     case WAITING:
-        if (px4_state_.mode != "OFFBOARD") // 等待offboard模式
+        if (px4_state_.mode == "AUTO.RTL" && detect_state == true) // 进入返航模式，同时检测到二维码
+        {
+            mode_cmd_.request.custom_mode = "OFFBOARD";
+            // 请求修改飞行模式的服务
+            set_mode_client_.call(mode_cmd_);
+        }
+        else if (px4_state_.mode != "OFFBOARD") // 等待offboard模式
         {
             temp_pos_drone[0] = px4_pose_[0];
             temp_pos_drone[1] = px4_pose_[1];
@@ -178,23 +187,20 @@ void PX4Tracking::TrackingStateUpdate()
             cout << "SEARCHING" << endl;
         }
         break;
-    case SEARCHING:
-        if (detect_state == true)
+    case SEARCHING: // 起飞到指定高度
+        posxyz_target[0] = temp_pos_drone[0];
+        posxyz_target[1] = temp_pos_drone[1];
+        posxyz_target[2] = search_alt_;
+
+        if ((px4_pose_[2] <= search_alt_ + 0.2) && (px4_pose_[2] >= search_alt_ - 0.2))
         {
-            FlyState = TRACKING;
-            cout << "TRACKING" << endl;
+            FlyState = CHECKING;
+            cout << "CHECKING" << endl;
         }
-        else // 如果没有检测到二维码则升高一段距离
-        {
-            posxyz_target[0] = px4_pose_[0];
-            posxyz_target[1] = px4_pose_[1];
-            posxyz_target[2] = (px4_pose_[2] + 0.1) < 10 ? (px4_pose_[2] + 0.1) : 10;
-            OffboardControl_.send_pos_setpoint(posxyz_target, 0);
-            cout << "SEARCHING Target" << endl;
-        }
+        OffboardControl_.send_pos_setpoint(posxyz_target, 0);
 
         break;
-    case TRACKING:
+    case CHECKING:
         if (detect_state == true)
         {
             if (abs(markers_pose_[0]) < 0.5 && abs(markers_pose_[1]) < 0.5)
@@ -204,7 +210,7 @@ void PX4Tracking::TrackingStateUpdate()
             }
             else
             {
-                desire_vel_ = TrackingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
+                desire_vel_ = LandingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
                 desire_xyzVel_[0] = desire_vel_[1];
                 desire_xyzVel_[1] = desire_vel_[0];
@@ -214,10 +220,13 @@ void PX4Tracking::TrackingStateUpdate()
                 OffboardControl_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
             }
         }
-        else
+        else // 如果没有检测到二维码则升高一段距离
         {
-            FlyState = SEARCHING;
-            cout << "SEARCHING" << endl;
+            posxyz_target[0] = px4_pose_[0];
+            posxyz_target[1] = px4_pose_[1];
+            posxyz_target[2] = px4_pose_[2] + 0.1;
+            OffboardControl_.send_pos_setpoint(posxyz_target, 0);
+            cout << "CHECKING Target" << endl;
         }
 
         break;
@@ -228,7 +237,7 @@ void PX4Tracking::TrackingStateUpdate()
             {
                 if (markers_pose_[2] > 0.2)
                 {
-                    desire_vel_ = TrackingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
+                    desire_vel_ = LandingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
                     desire_xyzVel_[0] = desire_vel_[1];
                     desire_xyzVel_[1] = desire_vel_[0];
@@ -258,14 +267,9 @@ void PX4Tracking::TrackingStateUpdate()
             }
             else
             {
-                FlyState = TRACKING;
-                cout << "TRACKING" << endl;
+                FlyState = CHECKING;
+                cout << "CHECKING" << endl;
             }
-        }
-        else
-        {
-            FlyState = SEARCHING;
-            cout << "SEARCHING" << endl;
         }
 
         break;
@@ -282,7 +286,7 @@ void PX4Tracking::TrackingStateUpdate()
 /**
  * @brief   接收 apriltag_ros 降落板相对无人机的位置以及偏航角
  **/
-void PX4Tracking::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
+void PX4Landing::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
 {
     detect_state = false;
     double temp_roll, temp_pitch, temp_yaw;
@@ -308,27 +312,35 @@ void PX4Tracking::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::
     }
 }
 
-/*接收来自飞控的当前飞机位置*/
-void PX4Tracking::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
+/**
+ * @brief   读取无人机在local坐标系中的位置，东北天，坐标原点在PX4上电的地方
+ **/
+void PX4Landing::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 {
-    // Read the Drone Position from the Mavros Package [Frame: ENU]
     Eigen::Vector3d pos_drone_fcu_enu(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
 
     px4_pose_ = pos_drone_fcu_enu;
 }
-/*接收来自飞控的当前飞机状态*/
-void PX4Tracking::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
+
+/**
+ * @brief   接收来自飞控的当前飞机状态
+ **/
+void PX4Landing::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
 {
     px4_state_ = *msg;
 }
 
+/**
+ * @brief   主函数
+ **/
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "tracking_uav");
-    ros::NodeHandle nh("");
-    ros::NodeHandle nh_private("~");
+    ros::init(argc, argv, "uav_landing");
+    ros::NodeHandle nh("");          // 全局的 NodeHandle 对象
+    ros::NodeHandle nh_private("~"); // 私有的 NodeHandle 对象
 
-    PX4Tracking PX4Tracking(nh, nh_private);
+    // 隐式调用构造函数初始化对象
+    PX4Landing PX4Landing(nh, nh_private);
 
     ros::spin();
     return 0;
