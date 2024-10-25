@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libSickLD.so -o /home/dfq/catkin_ws/devel/lib/libSickLD.so CMakeFiles/SickLD.dir/c++/drivers/ld/sickld/SickLD.cc.o CMakeFiles/SickLD.dir/c++/drivers/ld/sickld/SickLDBufferMonitor.cc.o CMakeFiles/SickLD.dir/c++/drivers/ld/sickld/SickLDMessage.cc.o  -lpthread 

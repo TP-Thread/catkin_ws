@@ -1,8 +1,0 @@
-prefix=/home/dfq/catkin_ws/devel
-
-Name: neor_mini
-Description: Description of neor_mini
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

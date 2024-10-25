@@ -1,8 +1,0 @@
-prefix=/home/dfq/catkin_ws/devel
-
-Name: control_toolbox
-Description: Description of control_toolbox
-Version: 1.17.0
-Cflags: -I/home/dfq/catkin_ws/devel/include -I/home/dfq/catkin_ws/src/catcar/control_toolbox/include -I/usr/include
-Libs: -L${prefix}/lib -lcontrol_toolbox /usr/lib/x86_64-linux-gnu/libtinyxml.so
-Requires: control_msgs dynamic_reconfigure message_runtime realtime_tools roscpp std_msgs
