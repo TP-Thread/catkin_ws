@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import rospy
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 
-class image_converter:
+class ImageConverter:
     def __init__(self):    
         # 创建cv_bridge，声明图像的发布者和订阅者
-        self.image_pub = rospy.Publisher("cv_bridge_image", Image, queue_size=1)
         self.bridge = CvBridge()
+        self.image_pub = rospy.Publisher("/cv_bridge_image", Image, queue_size=1)
         self.image_sub = rospy.Subscriber("/usb_cam/image_raw", Image, self.callback)
 
-    def callback(self,data):
+    def callback(self, data):
         # 使用cv_bridge将ROS的图像数据转换成OpenCV的图像格式
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -35,13 +33,18 @@ class image_converter:
         except CvBridgeError as e:
             print (e)
 
-if __name__ == '__main__':
+
+def main():
     try:
         # 初始化ros节点
         rospy.init_node("cv_bridge_test")
         rospy.loginfo("Starting cv_bridge_test node")
-        image_converter()
+        ImageConverter()
         rospy.spin()
     except KeyboardInterrupt:
         print ("Shutting down cv_bridge_test node.")
         cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    main()

@@ -2,8 +2,8 @@
     <!-- 启动二维码识别节点 -->
     <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
 	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->
-		<arg name="camera_name" default="/camera" />
-		<!-- <arg name="camera_name" default="/iris/camera/rgb" /> -->
+		<!-- <arg name="camera_name" default="/camera" /> -->
+		<arg name="camera_name" default="/iris/camera/rgb" />
 		<arg name="image_topic" default="image_raw" />
     </include>
 
