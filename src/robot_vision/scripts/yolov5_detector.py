@@ -74,7 +74,8 @@ def main():
     # 订阅的图像话题
     sub_image_topic = rospy.get_param('~sub_image_topic', '')
     
-    ObjectDetector(yolov5_path, weight_path, conf, sub_image_topic)
+    yolov5_detector = ObjectDetector(yolov5_path, weight_path, conf, sub_image_topic)
+    
     rospy.spin()
     cv2.destroyAllWindows()
 
