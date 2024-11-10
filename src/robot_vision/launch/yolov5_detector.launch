@@ -14,8 +14,8 @@
     <param name="yolov5_path"       value="$(find robot_vision)/yolov5"/>
     <param name="weight_path"       value="$(find robot_vision)/yolov5/runs/train/exp/weights/best.pt"/>
     <param name="conf"              value="0.8" />
-    <!-- <param name="sub_image_topic"       value="/iris/camera/rgb/image_raw" /> -->
-    <param name="sub_image_topic"       value="/usb_cam/image_raw" />
+    <param name="sub_image_topic"       value="/iris/camera/rgb/image_raw" />
+    <!-- <param name="sub_image_topic"       value="/usb_cam/image_raw" /> -->
   </node>
   
   <node pkg="rqt_image_view" type="rqt_image_view" name="rqt_image_view" output="screen"/>
