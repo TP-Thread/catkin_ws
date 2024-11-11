@@ -3,29 +3,29 @@
  * @brief   实现 PX4 二维码降落
  */
 
-#include "px4_landing.h"
+#include "px4_tracker.h"
 
 using namespace std;
 
 /**
- * @brief  PX4Landing 构造函数
+ * @brief  PX4Tracker 构造函数
  * @param  nh          ros::NodeHandle 类型的引用
  * @param  nh_private  ros::NodeHandle 类型的引用
- *          ：后面表示将构造函数参数值赋给 PX4Landing 类的成员变量。
+ *          ：后面表示将构造函数参数值赋给 PX4Tracker 类的成员变量。
  **/
-PX4Landing::PX4Landing(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
+PX4Tracker::PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
 {
     Initialize();
 
     // 用全局句柄创建定时器，周期为0.1s，定时器触发回调函数，this表示回调函数属于哪个对象
-    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Landing::CmdLoopCallback, this);
+    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracker::CmdLoopCallback, this);
 
     // 订阅无人机当前状态
-    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Landing::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
+    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅无人机local坐标系位置
-    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Landing::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
+    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅降落板相对飞机位置
-    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Landing::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
     arming_client_ = nh_private_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
@@ -35,7 +35,7 @@ PX4Landing::PX4Landing(const ros::NodeHandle &nh, const ros::NodeHandle &nh_priv
 /**
  * @brief      参数初始化
  **/
-void PX4Landing::Initialize()
+void PX4Tracker::Initialize()
 {
     // 读取offboard模式下飞机的搜索高度和搜索ID
     nh_private_.param<float>("search_alt_", search_alt_, 5);
@@ -91,7 +91,7 @@ void PX4Landing::Initialize()
  * @param[in]  &expectPos 期望位置，expectYaw 飞机相对降落板的期望方向:默认0
  * @param[out] 机体系下x,y,z的期望速度,以及yaw方向的期望速度。
  **/
-Eigen::Vector4d PX4Landing::LandingPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw)
+Eigen::Vector4d PX4Tracker::TrackerPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw)
 {
     Eigen::Vector4d s_PidOut;
 
@@ -157,13 +157,13 @@ Eigen::Vector4d PX4Landing::LandingPidProcess(Eigen::Vector3d &currentPos, float
 /**
  * @brief   10Hz状态机更新函数
  **/
-void PX4Landing::CmdLoopCallback(const ros::TimerEvent &event)
+void PX4Tracker::CmdLoopCallback(const ros::TimerEvent &event)
 {
-    LandingStateUpdate();
+    TrackerStateUpdate();
 }
 
 /* 状态机更新函数 */
-void PX4Landing::LandingStateUpdate()
+void PX4Tracker::TrackerStateUpdate()
 {
     switch (FlyState)
     {
@@ -179,7 +179,7 @@ void PX4Landing::LandingStateUpdate()
             temp_pos_drone[0] = px4_pose_[0];
             temp_pos_drone[1] = px4_pose_[1];
             temp_pos_drone[2] = px4_pose_[2];
-            px4control_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点。否则模式开关将被拒绝。
+            px4cmd_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点。否则模式开关将被拒绝。
         }
         else
         {
@@ -197,7 +197,7 @@ void PX4Landing::LandingStateUpdate()
             FlyState = CHECKING;
             cout << "CHECKING" << endl;
         }
-        px4control_.send_pos_setpoint(posxyz_target, 0);
+        px4cmd_.send_pos_setpoint(posxyz_target, 0);
 
         break;
     case CHECKING:
@@ -210,14 +210,14 @@ void PX4Landing::LandingStateUpdate()
             }
             else
             {
-                desire_vel_ = LandingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
+                desire_vel_ = TrackerPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
                 desire_xyzVel_[0] = desire_vel_[1];
                 desire_xyzVel_[1] = desire_vel_[0];
                 desire_xyzVel_[2] = 0;
                 desire_yawVel_ = desire_vel_[3];
 
-                px4control_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
+                px4cmd_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
             }
         }
         else // 如果没有检测到二维码则升高一段距离
@@ -225,7 +225,7 @@ void PX4Landing::LandingStateUpdate()
             posxyz_target[0] = px4_pose_[0];
             posxyz_target[1] = px4_pose_[1];
             posxyz_target[2] = px4_pose_[2] + 0.1;
-            px4control_.send_pos_setpoint(posxyz_target, 0);
+            px4cmd_.send_pos_setpoint(posxyz_target, 0);
             cout << "CHECKING Target" << endl;
         }
 
@@ -237,14 +237,14 @@ void PX4Landing::LandingStateUpdate()
             {
                 if (markers_pose_[2] > 0.2)
                 {
-                    desire_vel_ = LandingPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
+                    desire_vel_ = TrackerPidProcess(markers_pose_, markers_yaw_, desire_pose_, desire_yaw_);
 
                     desire_xyzVel_[0] = desire_vel_[1];
                     desire_xyzVel_[1] = desire_vel_[0];
                     desire_xyzVel_[2] = desire_vel_[2];
                     desire_yawVel_ = desire_vel_[3];
 
-                    px4control_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
+                    px4cmd_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
                     cout << "当前高度:" << markers_pose_[2] << endl;
 
                     // 如果在准备中途中切换到onboard，则保持当前位置
@@ -254,7 +254,7 @@ void PX4Landing::LandingStateUpdate()
                         temp_pos_drone[0] = px4_pose_[0];
                         temp_pos_drone[1] = px4_pose_[1];
                         temp_pos_drone[2] = px4_pose_[2];
-                        px4control_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点，否则模式开关将被拒绝。
+                        px4cmd_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点，否则模式开关将被拒绝。
                     }
                 }
                 else
@@ -286,7 +286,7 @@ void PX4Landing::LandingStateUpdate()
 /**
  * @brief   接收 apriltag_ros 降落板相对无人机的位置以及偏航角
  **/
-void PX4Landing::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
+void PX4Tracker::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
 {
     detect_state = false;
     double temp_roll, temp_pitch, temp_yaw;
@@ -315,7 +315,7 @@ void PX4Landing::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::C
 /**
  * @brief   读取无人机在local坐标系中的位置，东北天，坐标原点在PX4上电的地方
  **/
-void PX4Landing::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
+void PX4Tracker::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 {
     Eigen::Vector3d pos_drone_fcu_enu(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
 
@@ -325,7 +325,7 @@ void PX4Landing::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 /**
  * @brief   接收来自飞控的当前飞机状态
  **/
-void PX4Landing::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
+void PX4Tracker::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
 {
     px4_state_ = *msg;
 }
@@ -340,7 +340,7 @@ int main(int argc, char **argv)
     ros::NodeHandle nh_private("~"); // 私有的 NodeHandle 对象
 
     // 隐式调用构造函数初始化对象
-    PX4Landing PX4Landing(nh, nh_private);
+    PX4Tracker PX4Tracker(nh, nh_private);
 
     ros::spin();
     return 0;

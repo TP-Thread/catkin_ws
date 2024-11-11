@@ -58,7 +58,7 @@ all: catcar/sicktoolbox/all
 all: minicar/steer_drive_ros/steer_drive_ros/all
 all: catcar/cmdvel2gazebo/all
 all: catcar/obstaclestopper/all
-all: simulation/all
+all: px4_sim/all
 all: catcar/control_toolbox/all
 all: robot_vision/all
 all: catcar/sicktoolbox_wrapper/all
@@ -79,7 +79,7 @@ preinstall: catcar/sicktoolbox/preinstall
 preinstall: minicar/steer_drive_ros/steer_drive_ros/preinstall
 preinstall: catcar/cmdvel2gazebo/preinstall
 preinstall: catcar/obstaclestopper/preinstall
-preinstall: simulation/preinstall
+preinstall: px4_sim/preinstall
 preinstall: catcar/control_toolbox/preinstall
 preinstall: robot_vision/preinstall
 preinstall: catcar/sicktoolbox_wrapper/preinstall
@@ -105,7 +105,7 @@ clean: catcar/sicktoolbox/clean
 clean: minicar/steer_drive_ros/steer_drive_ros/clean
 clean: catcar/cmdvel2gazebo/clean
 clean: catcar/obstaclestopper/clean
-clean: simulation/clean
+clean: px4_sim/clean
 clean: catcar/control_toolbox/clean
 clean: robot_vision/clean
 clean: catcar/sicktoolbox_wrapper/clean
@@ -708,6 +708,24 @@ px4_ctrl/clean: px4_ctrl/CMakeFiles/px4_landing.dir/clean
 .PHONY : px4_ctrl/clean
 
 #=============================================================================
+# Directory level rules for directory px4_sim
+
+# Recursive "all" directory target.
+px4_sim/all:
+
+.PHONY : px4_sim/all
+
+# Recursive "preinstall" directory target.
+px4_sim/preinstall:
+
+.PHONY : px4_sim/preinstall
+
+# Recursive "clean" directory target.
+px4_sim/clean:
+
+.PHONY : px4_sim/clean
+
+#=============================================================================
 # Directory level rules for directory robot_vision
 
 # Recursive "all" directory target.
@@ -741,24 +759,6 @@ robot_vision/clean: robot_vision/CMakeFiles/robot_vision_generate_messages_cpp.d
 robot_vision/clean: robot_vision/CMakeFiles/robot_vision_generate_messages_lisp.dir/clean
 
 .PHONY : robot_vision/clean
-
-#=============================================================================
-# Directory level rules for directory simulation
-
-# Recursive "all" directory target.
-simulation/all:
-
-.PHONY : simulation/all
-
-# Recursive "preinstall" directory target.
-simulation/preinstall:
-
-.PHONY : simulation/preinstall
-
-# Recursive "clean" directory target.
-simulation/clean:
-
-.PHONY : simulation/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir

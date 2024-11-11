@@ -7,10 +7,10 @@
 #include <mavros_msgs/ActuatorControl.h>
 #include <mavros_msgs/AttitudeTarget.h>
 #include "mavros_msgs/MountControl.h"
+#include <tf2_ros/transform_listener.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Twist.h>
 #include <Eigen/Dense>
-#include <tf2_ros/transform_listener.h>
 
 #define pi 3.1415926
 using namespace std;
@@ -30,11 +30,11 @@ typedef struct
     float i; // 积分项系数
 } S_PID;
 
-class PX4Ctrl
+class PX4Cmd
 {
 public:
     // ("~") 表示将 offboard_nh_ 初始化为一个在私有命名空间 ~ 下的节点对象
-    PX4Ctrl(void) : offboard_nh_("~")
+    PX4Cmd(void) : offboard_nh_("~")
     {
         mavros_setpoint_pos_pub_ = offboard_nh_.advertise<mavros_msgs::PositionTarget>("/mavros/setpoint_raw/local", 10);
         mount_control_pub_ = offboard_nh_.advertise<mavros_msgs::MountControl>("/mavros/mount_control/command", 1);
@@ -68,7 +68,7 @@ private:
 };
 
 // 机体坐标系下发送yz速度期望值以及期望偏航角速度至飞控，用于二维码跟踪,在ros机体坐标系下pos_setpoint.velocity.y+飞机向前飞，pos_setpoint.velocity.x+飞机向右飞
-void PX4Ctrl::send_body_velyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
+void PX4Cmd::send_body_velyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -86,7 +86,7 @@ void PX4Ctrl::send_body_velyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_
 }
 
 // 机体坐标系下发送xyz速度期望值以及期望偏航角速度至飞控
-void PX4Ctrl::send_body_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
+void PX4Cmd::send_body_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -103,7 +103,7 @@ void PX4Ctrl::send_body_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw
 }
 
 // local frame本地坐标系下发送xyz速度期望值以及期望偏航角速度至飞控
-void PX4Ctrl::send_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
+void PX4Cmd::send_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -120,7 +120,7 @@ void PX4Ctrl::send_velxyz_setpoint(const Eigen::Vector3d &vel_sp, float yaw_sp)
 }
 
 // 机体坐标系下发送xy速度期望值以及高度z期望值和期望偏航角速度至飞控
-void PX4Ctrl::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d &vel_sp, float desire_z, float yaw_sp)
+void PX4Cmd::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d &vel_sp, float desire_z, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -137,7 +137,7 @@ void PX4Ctrl::send_body_velxy_posz_yaw_setpoint(const Eigen::Vector3d &vel_sp, f
 }
 
 // 机体坐标系下发送xy速度期望值以及高度z期望值至飞控（输入：期望xy,期望高度）
-void PX4Ctrl::send_body_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
+void PX4Cmd::send_body_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -154,7 +154,7 @@ void PX4Ctrl::send_body_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float
 }
 
 // 本地坐标系发送xy速度期望值以及高度z期望值至飞控（输入：期望xy,期望高度）
-void PX4Ctrl::send_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
+void PX4Cmd::send_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desire_z)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -171,7 +171,7 @@ void PX4Ctrl::send_velxy_posz_setpoint(const Eigen::Vector3d &vel_sp, float desi
 }
 
 // 发送位置期望值至飞控（输入：期望xyz,期望yaw）
-void PX4Ctrl::send_pos_setpoint(const Eigen::Vector3d &pos_sp, float yaw_sp)
+void PX4Cmd::send_pos_setpoint(const Eigen::Vector3d &pos_sp, float yaw_sp)
 {
     mavros_msgs::PositionTarget pos_setpoint;
     // Bitmask toindicate which dimensions should be ignored (1 means ignore,0 means not ignore; Bit 10 must set to 0)
@@ -189,7 +189,7 @@ void PX4Ctrl::send_pos_setpoint(const Eigen::Vector3d &pos_sp, float yaw_sp)
 }
 
 // 通过/mavros/setpoint_position/local这个topic发布位置控制至飞控
-void PX4Ctrl::send_local_pos_setpoint(const Eigen::Vector3d &pos_sp)
+void PX4Cmd::send_local_pos_setpoint(const Eigen::Vector3d &pos_sp)
 {
     geometry_msgs::PoseStamped pos_target;
     pos_target.pose.position.x = pos_sp[0];
@@ -199,7 +199,7 @@ void PX4Ctrl::send_local_pos_setpoint(const Eigen::Vector3d &pos_sp)
 }
 
 // 发送底层至飞控（输入：MxMyMz,期望推力）
-void PX4Ctrl::send_actuator_setpoint(const Eigen::Vector4d &actuator_sp)
+void PX4Cmd::send_actuator_setpoint(const Eigen::Vector4d &actuator_sp)
 {
     mavros_msgs::ActuatorControl actuator_setpoint;
 
@@ -217,7 +217,7 @@ void PX4Ctrl::send_actuator_setpoint(const Eigen::Vector4d &actuator_sp)
 }
 
 // 发送角度期望值至飞控（输入：期望角度-欧拉角,期望推力）(期望的是角度值 NED坐标系，而不是弧度值)
-void PX4Ctrl::send_attitude_setpoint(const Eigen::Vector3d &_AttitudeReference, float thrust_sp)
+void PX4Cmd::send_attitude_setpoint(const Eigen::Vector3d &_AttitudeReference, float thrust_sp)
 {
     mavros_msgs::AttitudeTarget att_setpoint;
     Eigen::Vector3d temp_att;
@@ -248,7 +248,7 @@ void PX4Ctrl::send_attitude_setpoint(const Eigen::Vector3d &_AttitudeReference, 
 }
 
 // 发送角速度期望值至飞控（输入：期望角速度,期望推力）
-void PX4Ctrl::send_attitude_rate_setpoint(const Eigen::Vector3d &attitude_rate_sp, float thrust_sp)
+void PX4Cmd::send_attitude_rate_setpoint(const Eigen::Vector3d &attitude_rate_sp, float thrust_sp)
 {
     mavros_msgs::AttitudeTarget att_setpoint;
 
@@ -265,7 +265,7 @@ void PX4Ctrl::send_attitude_rate_setpoint(const Eigen::Vector3d &attitude_rate_s
     setpoint_raw_attitude_pub_.publish(att_setpoint);
 }
 
-void PX4Ctrl::send_mount_control_command(const Eigen::Vector3d &mount_sp)
+void PX4Cmd::send_mount_control_command(const Eigen::Vector3d &mount_sp)
 {
     mavros_msgs::MountControl mount_setpoint;
     mount_setpoint.mode = 2;

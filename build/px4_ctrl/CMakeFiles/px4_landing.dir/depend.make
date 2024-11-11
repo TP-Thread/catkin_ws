@@ -3,8 +3,10 @@
 
 px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/devel/include/apriltag_ros/AprilTagDetection.h
 px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/devel/include/apriltag_ros/AprilTagDetectionArray.h
-px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_ctrl.h
-px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_landing.h
+px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/devel/include/robot_vision/BoundingBox.h
+px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/devel/include/robot_vision/BoundingBoxes.h
+px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_cmd.h
+px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_tracker.h
 px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/src/px4_landing.cpp
 px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
 px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h

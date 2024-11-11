@@ -17,9 +17,9 @@ class ObjectDetector:
         # 创建cv_bridge，声明图像的发布者和订阅者
         self.cv_bridge = CvBridge()
         self.image_sub = rospy.Subscriber(sub_image_topic, Image, self.callback)
-        self.image_pub = rospy.Publisher("/yolov5/detection_image", Image, queue_size=1)
+        self.image_pub = rospy.Publisher("/yolov5_detections_image", Image, queue_size=1)
         # 发布识别到的目标框信息，BoundingBoxes是自定义的消息类型
-        self.target_pub = rospy.Publisher("/yolov5/detection_tags",  BoundingBoxes, queue_size=1) 
+        self.target_pub = rospy.Publisher("/yolov5_detections",  BoundingBoxes, queue_size=1) 
 
     def callback(self, ros_image):
         # 将ROS的图像数据转换成OpenCV的图像格式            

@@ -3,8 +3,10 @@
 
 px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/devel/include/apriltag_ros/AprilTagDetection.h
 px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/devel/include/apriltag_ros/AprilTagDetectionArray.h
-px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_ctrl.h
-px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_tracking.h
+px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/devel/include/robot_vision/BoundingBox.h
+px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/devel/include/robot_vision/BoundingBoxes.h
+px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_cmd.h
+px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/include/px4_tracker.h
 px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/src/px4_tracking.cpp
 px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
 px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h

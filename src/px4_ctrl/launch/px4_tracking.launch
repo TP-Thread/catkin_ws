@@ -1,4 +1,7 @@
 <launch>
+	<!-- 启动二维码检测节点 -->
+	<!-- <include file="$(find robot_vision)/launch/yolov5_detector.launch"/> -->
+  
     <!-- 启动二维码识别节点 -->
     <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
 	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->

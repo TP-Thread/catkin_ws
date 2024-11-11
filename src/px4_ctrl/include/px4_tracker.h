@@ -1,27 +1,31 @@
-#include "px4_ctrl.h"
+#include "px4_cmd.h"
 
 #include <std_msgs/Bool.h>
 #include <std_msgs/UInt32.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h> // 用于TF2库和ROS消息类型之间相互转换
+#include <robot_vision/BoundingBoxes.h>
 #include <apriltag_ros/AprilTagDetectionArray.h>
 
-class PX4Landing
+class PX4Tracker
 {
 public:
     // 构造函数
-    PX4Landing(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private);
+    PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private);
 
     void Initialize();
-    PX4Ctrl px4control_;
+    PX4Cmd px4cmd_;
 
 private:
     ros::NodeHandle nh_;
     ros::NodeHandle nh_private_;
     ros::Timer cmdloop_timer_;
 
-    ros::Subscriber apriltag_sub_;
-    ros::Subscriber position_sub_;
     ros::Subscriber state_sub_;
+    ros::Subscriber position_sub_;
+
+    // ros::Subscriber yolov5tag_sub_;
+    ros::Subscriber apriltag_sub_;
+
     ros::ServiceClient arming_client_;
     ros::ServiceClient set_mode_client_;
 
@@ -30,11 +34,11 @@ private:
     mavros_msgs::SetMode mode_cmd_;
 
     void CmdLoopCallback(const ros::TimerEvent &event);
-    void LandingStateUpdate();
+    void TrackerStateUpdate();
     void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
     void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
     void Px4StateCallback(const mavros_msgs::State::ConstPtr &msg);
-    Eigen::Vector4d LandingPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw);
+    Eigen::Vector4d TrackerPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw);
 
     Eigen::Vector3d px4_pose_; // 接收飞控的东北天local坐标
     Eigen::Vector3d temp_pos_drone;
@@ -69,6 +73,7 @@ private:
         WAITING,          // 等待offboard模式
         SEARCHING,        // 起飞到指定高度搜索目标
         CHECKING,         // 检查合作目标
+        TRACKING,         // 检测到二维码，开始跟踪
         LANDING,          // 检测到降落板，开始降落
         LANDOVER,         // 结束
     } FlyState = WAITING; // 初始状态WAITING
