@@ -23,7 +23,7 @@ private:
     ros::Subscriber state_sub_;
     ros::Subscriber position_sub_;
 
-    // ros::Subscriber yolov5tag_sub_;
+    ros::Subscriber yolotag_sub_;
     ros::Subscriber apriltag_sub_;
 
     ros::ServiceClient arming_client_;
@@ -35,44 +35,44 @@ private:
 
     void CmdLoopCallback(const ros::TimerEvent &event);
     void TrackerStateUpdate();
+    void YoloPoseCallback(const robot_vision::BoundingBoxes::ConstPtr &msg);
     void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
     void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
     void Px4StateCallback(const mavros_msgs::State::ConstPtr &msg);
+    Eigen::Vector4d TrackerPidProcess(Eigen::Vector2d &currentPos, Eigen::Vector2d &expectPos);
     Eigen::Vector4d TrackerPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw);
 
     Eigen::Vector3d px4_pose_; // 接收飞控的东北天local坐标
     Eigen::Vector3d temp_pos_drone;
     Eigen::Vector3d posxyz_target; // 期望飞机的空间位置
+    float search_alt_, track_alt_;
 
-    bool detect_state;             // 是否检测到降落板标志位
-    Eigen::Vector3d desire_pose_;  // 期望的飞机相对降落板的位置
-    float desire_yaw_;             // 期望的飞机相对降落板的偏航角
-    Eigen::Vector3d markers_pose_; // apriltags 降落板相对飞机位置
-    float markers_yaw_;            // 二维码相对飞机的偏航角
+    bool detect_track_state, detect_land_state; // 是否检测到降落板标志位
+
+    Eigen::Vector2d desire_imgc_;  // 图像中心坐标和无人机期望跟踪高度
+    Eigen::Vector2d yolotag_imgc_; // 检测框的中心坐标和无人机当前高度
+
+    Eigen::Vector3d desire_pose_; // 期望的飞机相对降落板的位置
+    float desire_yaw_;            // 期望的飞机相对降落板的偏航角
+
+    Eigen::Vector3d apriltag_pose_; // apriltags 降落板相对飞机位置
+    float apriltag_yaw_;            // 二维码相对飞机的偏航角
+
     Eigen::Vector4d desire_vel_;
     Eigen::Vector3d desire_xyzVel_;
     float desire_yawVel_;
 
-    S_PID s_PidXY, s_PidZ, s_PidYaw;
-    S_PID_ITEM s_PidItemX;
-    S_PID_ITEM s_PidItemY;
-    S_PID_ITEM s_PidItemZ;
-    S_PID_ITEM s_PidItemYaw;
+    S_PID i_PidXY, i_PidZ; // 图像伺服PID
+    S_PID_ITEM i_PidItemX, i_PidItemY, i_PidItemZ;
 
-    float search_alt_;
-    float marker1_id_; // 需要检测到的二维码，默认是4
-    float marker2_id_; // 需要检测到的二维码，默认是4
-
-    Eigen::Vector3d april1_pose_; // apriltag1 降落板相对飞机位置
-    Eigen::Vector3d april2_pose_; // apriltag2 降落板相对飞机位置
-    float marker1_yaw_;           // 二维码相对飞机的偏航角
-    float marker2_yaw_;           // 二维码相对飞机的偏航角
+    S_PID p_PidXY, p_PidZ, p_PidYaw; // 位置伺服PID
+    S_PID_ITEM p_PidItemX, p_PidItemY, p_PidItemZ, p_PidItemYaw;
 
     enum
     {
         WAITING,          // 等待offboard模式
-        SEARCHING,        // 起飞到指定高度搜索目标
-        CHECKING,         // 检查合作目标
+        PREPARING,        // 起飞到指定高度
+        SEARCHING,        // 搜索目标
         TRACKING,         // 检测到二维码，开始跟踪
         LANDING,          // 检测到降落板，开始降落
         LANDOVER,         // 结束

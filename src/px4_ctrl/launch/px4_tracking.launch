@@ -1,6 +1,6 @@
 <launch>
 	<!-- 启动二维码检测节点 -->
-	<!-- <include file="$(find robot_vision)/launch/yolov5_detector.launch"/> -->
+	<include file="$(find robot_vision)/launch/yolov5_detector.launch"/>
   
     <!-- 启动二维码识别节点 -->
     <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
@@ -11,35 +11,36 @@
     </include>
 
 	<node pkg="px4_ctrl" type="px4_tracking" name="px4_tracking" output="screen">
-		<param name="search_alt_" value = "8"/>	
-		<!-- <param name="marker1_id_" value = "77"/>
-        <param name="marker2_id_" value = "96"/> -->
+		<param name="search_alt_" value = "8"/>
+		<param name="track_alt_" value = "8"/>
+
+		<param name="desire_imgc_x" value = "320"/>	
+		<param name="desire_imgc_y" value = "240"/>	
+
+		<param name="i_PidXY_p" value = "0.01"/>	
+        <param name="i_PidXY_i" value = "0"/>	
+		<param name="i_PidXY_d" value = "0"/>	
+
+		<param name="i_PidZ_p" value = "0.1"/>
+        <param name="i_PidZ_i" value = "0"/>	
+		<param name="i_PidZ_d" value = "0"/>
 
 		<param name="desire_pose_x" value = "0"/>	
 		<param name="desire_pose_y" value = "0"/>	
 		<param name="desire_pose_z" value = "0"/>
 		<param name="desire_yaw_" value = "0"/>
 
-		<param name="PidXY_p" value = "o.5"/>	
-        <param name="PidXY_i" value = "0"/>	
-		<param name="PidXY_d" value = "0"/>	
+		<param name="p_PidXY_p" value = "0.4"/>	
+        <param name="p_PidXY_i" value = "0"/>	
+		<param name="p_PidXY_d" value = "0"/>	
 
-		<param name="PidZ_p" value = "0.1"/>
-        <param name="PidZ_i" value = "0"/>	
-		<param name="PidZ_d" value = "0"/>	
+		<param name="p_PidZ_p" value = "0.1"/>
+        <param name="p_PidZ_i" value = "0"/>	
+		<param name="p_PidZ_d" value = "0"/>	
 
-		<param name="PidYaw_p" value = "0.2"/>	
-        <param name="PidYaw_i" value = "0"/>
-		<param name="PidYaw_d" value = "0"/>	
-        <!-- <param name="PidXY_p" value = "1"/>	
-		<param name="PidXY_d" value = "0.1"/>	
-		<param name="PidXY_i" value = "0.02"/>	
-		<param name="PidZ_p" value = "0.2"/>	
-		<param name="PidZ_d" value = "0.1"/>	
-		<param name="PidZ_i" value = "0"/>	
-		<param name="PidYaw_p" value = "0.1"/>	
-		<param name="PidYaw_d" value = "0"/>	
-		<param name="PidYaw_i" value = "0"/>		 -->
+		<param name="p_PidYaw_p" value = "0.2"/>	
+        <param name="p_PidYaw_i" value = "0"/>
+		<param name="p_PidYaw_d" value = "0"/>	
 	</node>
 
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find px4_ctrl)/rviz/px4_tracking.rviz"/>
