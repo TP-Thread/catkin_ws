@@ -9,7 +9,8 @@
                 "/opt/ros/noetic/include/**",
                 "/usr/include/**",
                 "${workspaceFolder}/devel/include",
-                "${workspaceFolder}/src/px4_ctrl/include"
+                "${workspaceFolder}/src/px4_ctrl/include",
+                "${workspaceFolder}/src/apriltag_ros/include"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

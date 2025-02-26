@@ -4,7 +4,7 @@
 
   <!-- configure camera input -->
   <arg name="camera_name" default="/usb_cam" />
-  <arg name="image_topic" default="image_raw" />
+  <arg name="image_topic" default="image_yolo" />
   <arg name="queue_size" default="1" />
 
   <!-- apriltag_ros continuous detection node -->
