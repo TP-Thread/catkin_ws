@@ -1,4 +1,4 @@
-prefix=/home/vic/catkin_ws/install
+prefix=/home/jetson/catkin_ws/install
 
 Name: robot_vision
 Description: Description of robot_vision

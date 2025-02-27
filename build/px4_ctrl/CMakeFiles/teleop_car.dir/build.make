@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vic/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/jetson/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vic/catkin_ws/build
+CMAKE_BINARY_DIR = /home/jetson/catkin_ws/build
 
 # Include any dependencies generated for this target.
 include px4_ctrl/CMakeFiles/teleop_car.dir/depend.make
@@ -58,17 +58,17 @@ include px4_ctrl/CMakeFiles/teleop_car.dir/progress.make
 include px4_ctrl/CMakeFiles/teleop_car.dir/flags.make
 
 px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o: px4_ctrl/CMakeFiles/teleop_car.dir/flags.make
-px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o: /home/vic/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vic/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o"
-	cd /home/vic/catkin_ws/build/px4_ctrl && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o -c /home/vic/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
+px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o: /home/jetson/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jetson/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o"
+	cd /home/jetson/catkin_ws/build/px4_ctrl && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o -c /home/jetson/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
 
 px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i"
-	cd /home/vic/catkin_ws/build/px4_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vic/catkin_ws/src/px4_ctrl/src/teleop_car.cpp > CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i
+	cd /home/jetson/catkin_ws/build/px4_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jetson/catkin_ws/src/px4_ctrl/src/teleop_car.cpp > CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i
 
 px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s"
-	cd /home/vic/catkin_ws/build/px4_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vic/catkin_ws/src/px4_ctrl/src/teleop_car.cpp -o CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
+	cd /home/jetson/catkin_ws/build/px4_ctrl && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jetson/catkin_ws/src/px4_ctrl/src/teleop_car.cpp -o CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
 
 # Object files for target teleop_car
 teleop_car_OBJECTS = \
@@ -77,248 +77,230 @@ teleop_car_OBJECTS = \
 # External object files for target teleop_car
 teleop_car_EXTERNAL_OBJECTS =
 
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/build.make
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmavros.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libGeographic.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libdiagnostic_updater.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libeigen_conversions.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/liborocos-kdl.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmavconn.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/vic/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/vic/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libm.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcv_bridge.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hdf.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hfs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_img_hash.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_quality.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_reg.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_saliency.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_transport.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libnodeletlib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libbondcpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libclass_loader.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libPocoFoundation.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libdl.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroslib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librospack.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libpython3.8.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2_ros.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libactionlib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmessage_filters.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libxmlrpcpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp_serialization.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_log4cxx.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_backend_interface.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librostime.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcpp_common.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/vic/catkin_ws/devel/lib/libapriltag_ros_common.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hdf.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hfs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_img_hash.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_quality.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_reg.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_saliency.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libapriltag.so.3.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcv_bridge.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_geometry.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hdf.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_hfs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_img_hash.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_quality.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_reg.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_saliency.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_transport.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libnodeletlib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libbondcpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libclass_loader.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libPocoFoundation.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libdl.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroslib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librospack.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libpython3.8.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2_ros.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libactionlib.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmessage_filters.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libxmlrpcpp.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp_serialization.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_log4cxx.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_backend_interface.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librostime.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcpp_common.so
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vic/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car"
-	cd /home/vic/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/teleop_car.dir/link.txt --verbose=$(VERBOSE)
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/build.make
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmavros.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libGeographic.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libdiagnostic_updater.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libeigen_conversions.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/liborocos-kdl.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmavconn.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/jetson/catkin_ws/devel/lib/libapriltag_ros_continuous_detector.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/jetson/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libm.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_gapi.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcv_bridge.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_aruco.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_bgsegm.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_bioinspired.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ccalib.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_datasets.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn_superres.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dpm.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_face.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_freetype.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_fuzzy.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_hdf.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_hfs.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_img_hash.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_line_descriptor.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_optflow.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_plot.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_quality.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_reg.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_rgbd.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_saliency.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_shape.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stereo.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_structured_light.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_superres.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_surface_matching.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_text.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_tracking.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videostab.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_viz.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ximgproc.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_xobjdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_xphoto.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_transport.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libnodeletlib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libbondcpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libuuid.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libclass_loader.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libPocoFoundation.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libdl.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroslib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librospack.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libpython3.8.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_program_options.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libtinyxml2.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2_ros.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libactionlib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmessage_filters.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libpthread.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libxmlrpcpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp_serialization.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_log4cxx.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_backend_interface.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/liblog4cxx.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librostime.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_date_time.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcpp_common.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_system.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /home/jetson/catkin_ws/devel/lib/libapriltag_ros_common.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_gapi.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.5.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libapriltag.so.3.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcv_bridge.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_geometry.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ml.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stitching.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_video.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_aruco.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_bgsegm.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_bioinspired.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ccalib.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_datasets.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dnn_superres.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_dpm.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_face.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_freetype.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_fuzzy.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_hdf.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_hfs.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_img_hash.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_line_descriptor.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_optflow.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_plot.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_quality.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_reg.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_rgbd.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_saliency.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_shape.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_stereo.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_structured_light.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_superres.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_surface_matching.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_text.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_tracking.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_videostab.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_viz.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_ximgproc.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_xobjdetect.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_xphoto.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.2.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libimage_transport.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libnodeletlib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libbondcpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libuuid.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libclass_loader.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libPocoFoundation.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libdl.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroslib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librospack.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libpython3.8.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_program_options.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libtinyxml2.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2_ros.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libactionlib.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libmessage_filters.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libpthread.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_filesystem.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libxmlrpcpp.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libtf2.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libroscpp_serialization.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_log4cxx.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librosconsole_backend_interface.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/liblog4cxx.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_regex.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/librostime.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_date_time.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /opt/ros/noetic/lib/libcpp_common.so
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_system.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libboost_thread.so.1.71.0
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: /usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4
+/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jetson/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car"
+	cd /home/jetson/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/teleop_car.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-px4_ctrl/CMakeFiles/teleop_car.dir/build: /home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car
+px4_ctrl/CMakeFiles/teleop_car.dir/build: /home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car
 
 .PHONY : px4_ctrl/CMakeFiles/teleop_car.dir/build
 
 px4_ctrl/CMakeFiles/teleop_car.dir/clean:
-	cd /home/vic/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -P CMakeFiles/teleop_car.dir/cmake_clean.cmake
+	cd /home/jetson/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -P CMakeFiles/teleop_car.dir/cmake_clean.cmake
 .PHONY : px4_ctrl/CMakeFiles/teleop_car.dir/clean
 
 px4_ctrl/CMakeFiles/teleop_car.dir/depend:
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vic/catkin_ws/src /home/vic/catkin_ws/src/px4_ctrl /home/vic/catkin_ws/build /home/vic/catkin_ws/build/px4_ctrl /home/vic/catkin_ws/build/px4_ctrl/CMakeFiles/teleop_car.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jetson/catkin_ws/src /home/jetson/catkin_ws/src/px4_ctrl /home/jetson/catkin_ws/build /home/jetson/catkin_ws/build/px4_ctrl /home/jetson/catkin_ws/build/px4_ctrl/CMakeFiles/teleop_car.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : px4_ctrl/CMakeFiles/teleop_car.dir/depend
 

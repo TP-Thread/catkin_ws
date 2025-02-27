@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/px4_landing"
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/px4_landing.pdb"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/px4_landing"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/px4_landing.pdb"
   "CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o"
 )
 

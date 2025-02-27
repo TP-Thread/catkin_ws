@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vic/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/jetson/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vic/catkin_ws/build
+CMAKE_BINARY_DIR = /home/jetson/catkin_ws/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,16 +68,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -89,16 +79,15 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : test/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -124,6 +113,17 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -137,14 +137,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/vic/catkin_ws/build/CMakeFiles /home/vic/catkin_ws/build/px4_ctrl/CMakeFiles/progress.marks
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vic/catkin_ws/build/CMakeFiles 0
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jetson/catkin_ws/build/CMakeFiles /home/jetson/catkin_ws/build/px4_ctrl/CMakeFiles/progress.marks
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jetson/catkin_ws/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/clean
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/preinstall
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/preinstall
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 px4_ctrl/CMakeFiles/teleop_car.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/teleop_car.dir/rule
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/teleop_car.dir/rule
 .PHONY : px4_ctrl/CMakeFiles/teleop_car.dir/rule
 
 # Convenience name for target.
@@ -179,72 +179,12 @@ teleop_car: px4_ctrl/CMakeFiles/teleop_car.dir/rule
 
 # fast build rule for target.
 teleop_car/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/build
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/build
 .PHONY : teleop_car/fast
 
 # Convenience name for target.
-px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-uuid_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
-
-.PHONY : uuid_msgs_generate_messages_eus
-
-# fast build rule for target.
-uuid_msgs_generate_messages_eus/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
-.PHONY : uuid_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_py: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_py
-
-# fast build rule for target.
-mavros_msgs_generate_messages_py/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
-.PHONY : mavros_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geographic_msgs_generate_messages_lisp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
-.PHONY : geographic_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_eus
-
-# fast build rule for target.
-geographic_msgs_generate_messages_eus/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
-.PHONY : geographic_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
 px4_ctrl/CMakeFiles/px4_tracking.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/px4_tracking.dir/rule
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/px4_tracking.dir/rule
 .PHONY : px4_ctrl/CMakeFiles/px4_tracking.dir/rule
 
 # Convenience name for target.
@@ -254,327 +194,42 @@ px4_tracking: px4_ctrl/CMakeFiles/px4_tracking.dir/rule
 
 # fast build rule for target.
 px4_tracking/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/build
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/build
 .PHONY : px4_tracking/fast
 
 # Convenience name for target.
-px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-uuid_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+trajectory_msgs_generate_messages_py: px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
 
-.PHONY : uuid_msgs_generate_messages_lisp
+.PHONY : trajectory_msgs_generate_messages_py
 
 # fast build rule for target.
-uuid_msgs_generate_messages_lisp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
-.PHONY : uuid_msgs_generate_messages_lisp/fast
+trajectory_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
+.PHONY : trajectory_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_py: px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+trajectory_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : std_srvs_generate_messages_py
+.PHONY : trajectory_msgs_generate_messages_cpp
 
 # fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geographic_msgs_generate_messages_cpp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build
-.PHONY : geographic_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-uuid_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : uuid_msgs_generate_messages_cpp
-
-# fast build rule for target.
-uuid_msgs_generate_messages_cpp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
-.PHONY : uuid_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_nodejs: px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_srvs_generate_messages_nodejs
-
-# fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_lisp: px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geographic_msgs_generate_messages_nodejs/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build
-.PHONY : geographic_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geographic_msgs_generate_messages_py: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
-
-.PHONY : geographic_msgs_generate_messages_py
-
-# fast build rule for target.
-geographic_msgs_generate_messages_py/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
-.PHONY : geographic_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_cpp: px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-.PHONY : std_srvs_generate_messages_cpp
-
-# fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : nav_msgs_generate_messages_cpp
-
-# fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : nav_msgs_generate_messages_lisp
-
-# fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-uuid_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : uuid_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-uuid_msgs_generate_messages_nodejs/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build
-.PHONY : uuid_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_lisp
-
-# fast build rule for target.
-mavros_msgs_generate_messages_lisp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build
-.PHONY : mavros_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_cpp
-
-# fast build rule for target.
-mavros_msgs_generate_messages_cpp/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
-.PHONY : mavros_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_eus
-
-# fast build rule for target.
-mavros_msgs_generate_messages_eus/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build
-.PHONY : mavros_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-mavros_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : mavros_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-mavros_msgs_generate_messages_nodejs/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build
-.PHONY : mavros_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-.PHONY : nav_msgs_generate_messages_eus
-
-# fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/offboard_test.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/offboard_test.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/offboard_test.dir/rule
-
-# Convenience name for target.
-offboard_test: px4_ctrl/CMakeFiles/offboard_test.dir/rule
-
-.PHONY : offboard_test
-
-# fast build rule for target.
-offboard_test/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/build
-.PHONY : offboard_test/fast
-
-# Convenience name for target.
-px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_py: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
+trajectory_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
+.PHONY : trajectory_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 px4_ctrl/CMakeFiles/circular_test.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/circular_test.dir/rule
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/circular_test.dir/rule
 .PHONY : px4_ctrl/CMakeFiles/circular_test.dir/rule
 
 # Convenience name for target.
@@ -584,27 +239,372 @@ circular_test: px4_ctrl/CMakeFiles/circular_test.dir/rule
 
 # fast build rule for target.
 circular_test/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/build
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/build
 .PHONY : circular_test/fast
 
 # Convenience name for target.
-px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
-.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
+px4_ctrl/CMakeFiles/offboard_test.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/offboard_test.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/offboard_test.dir/rule
 
 # Convenience name for target.
-uuid_msgs_generate_messages_py: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
+offboard_test: px4_ctrl/CMakeFiles/offboard_test.dir/rule
 
-.PHONY : uuid_msgs_generate_messages_py
+.PHONY : offboard_test
 
 # fast build rule for target.
-uuid_msgs_generate_messages_py/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build
-.PHONY : uuid_msgs_generate_messages_py/fast
+offboard_test/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/build
+.PHONY : offboard_test/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_py: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+
+.PHONY : nav_msgs_generate_messages_py
+
+# fast build rule for target.
+nav_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geographic_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_lisp.dir/build
+.PHONY : geographic_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_eus
+
+# fast build rule for target.
+geographic_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_eus.dir/build
+.PHONY : geographic_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_py: px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_py
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
+.PHONY : diagnostic_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geographic_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_cpp.dir/build
+.PHONY : geographic_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_nodejs: px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_srvs_generate_messages_nodejs
+
+# fast build rule for target.
+std_srvs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+.PHONY : std_srvs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_eus: px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+.PHONY : std_srvs_generate_messages_eus
+
+# fast build rule for target.
+std_srvs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+.PHONY : std_srvs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_eus
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build
+.PHONY : diagnostic_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_lisp: px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+.PHONY : std_srvs_generate_messages_lisp
+
+# fast build rule for target.
+std_srvs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+.PHONY : std_srvs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geographic_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_nodejs.dir/build
+.PHONY : geographic_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_cpp
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_cpp: px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+
+.PHONY : std_srvs_generate_messages_cpp
+
+# fast build rule for target.
+std_srvs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+.PHONY : std_srvs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : nav_msgs_generate_messages_cpp
+
+# fast build rule for target.
+nav_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+.PHONY : nav_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : nav_msgs_generate_messages_lisp
+
+# fast build rule for target.
+nav_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+.PHONY : nav_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geographic_msgs_generate_messages_py: px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/rule
+
+.PHONY : geographic_msgs_generate_messages_py
+
+# fast build rule for target.
+geographic_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/geographic_msgs_generate_messages_py.dir/build
+.PHONY : geographic_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_cpp
+
+# fast build rule for target.
+uuid_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_cpp.dir/build
+.PHONY : uuid_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_eus
+
+# fast build rule for target.
+uuid_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_eus.dir/build
+.PHONY : uuid_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_py: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_py
+
+# fast build rule for target.
+mavros_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_py.dir/build
+.PHONY : mavros_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_py: px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+.PHONY : std_srvs_generate_messages_py
+
+# fast build rule for target.
+std_srvs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/std_srvs_generate_messages_py.dir/build
+.PHONY : std_srvs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_lisp
+
+# fast build rule for target.
+uuid_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_lisp.dir/build
+.PHONY : uuid_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_lisp
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
+.PHONY : trajectory_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+uuid_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_nodejs.dir/build
+.PHONY : uuid_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_lisp
+
+# fast build rule for target.
+mavros_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_lisp.dir/build
+.PHONY : mavros_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 px4_ctrl/CMakeFiles/px4_landing.dir/rule:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/px4_landing.dir/rule
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/px4_landing.dir/rule
 .PHONY : px4_ctrl/CMakeFiles/px4_landing.dir/rule
 
 # Convenience name for target.
@@ -614,8 +614,158 @@ px4_landing: px4_ctrl/CMakeFiles/px4_landing.dir/rule
 
 # fast build rule for target.
 px4_landing/fast:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/build
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/build
 .PHONY : px4_landing/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+uuid_msgs_generate_messages_py: px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/rule
+
+.PHONY : uuid_msgs_generate_messages_py
+
+# fast build rule for target.
+uuid_msgs_generate_messages_py/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build.make px4_ctrl/CMakeFiles/uuid_msgs_generate_messages_py.dir/build
+.PHONY : uuid_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
+.PHONY : trajectory_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_eus
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
+.PHONY : trajectory_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_cpp: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_cpp
+
+# fast build rule for target.
+mavros_msgs_generate_messages_cpp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
+.PHONY : mavros_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
+.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_eus
+
+# fast build rule for target.
+mavros_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_eus.dir/build
+.PHONY : mavros_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+mavros_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : mavros_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+mavros_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_nodejs.dir/build
+.PHONY : mavros_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_nodejs: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : nav_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+nav_msgs_generate_messages_nodejs/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_lisp: px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_lisp
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_lisp/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make px4_ctrl/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+.PHONY : px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_eus: px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+.PHONY : nav_msgs_generate_messages_eus
+
+# fast build rule for target.
+nav_msgs_generate_messages_eus/fast:
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make px4_ctrl/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+.PHONY : nav_msgs_generate_messages_eus/fast
 
 src/circular_test.o: src/circular_test.cpp.o
 
@@ -623,7 +773,7 @@ src/circular_test.o: src/circular_test.cpp.o
 
 # target to build an object file
 src/circular_test.cpp.o:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.o
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.o
 .PHONY : src/circular_test.cpp.o
 
 src/circular_test.i: src/circular_test.cpp.i
@@ -632,7 +782,7 @@ src/circular_test.i: src/circular_test.cpp.i
 
 # target to preprocess a source file
 src/circular_test.cpp.i:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.i
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.i
 .PHONY : src/circular_test.cpp.i
 
 src/circular_test.s: src/circular_test.cpp.s
@@ -641,7 +791,7 @@ src/circular_test.s: src/circular_test.cpp.s
 
 # target to generate assembly for a file
 src/circular_test.cpp.s:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.s
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/circular_test.dir/build.make px4_ctrl/CMakeFiles/circular_test.dir/src/circular_test.cpp.s
 .PHONY : src/circular_test.cpp.s
 
 src/offboard_test.o: src/offboard_test.cpp.o
@@ -650,7 +800,7 @@ src/offboard_test.o: src/offboard_test.cpp.o
 
 # target to build an object file
 src/offboard_test.cpp.o:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.o
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.o
 .PHONY : src/offboard_test.cpp.o
 
 src/offboard_test.i: src/offboard_test.cpp.i
@@ -659,7 +809,7 @@ src/offboard_test.i: src/offboard_test.cpp.i
 
 # target to preprocess a source file
 src/offboard_test.cpp.i:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.i
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.i
 .PHONY : src/offboard_test.cpp.i
 
 src/offboard_test.s: src/offboard_test.cpp.s
@@ -668,7 +818,7 @@ src/offboard_test.s: src/offboard_test.cpp.s
 
 # target to generate assembly for a file
 src/offboard_test.cpp.s:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.s
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/offboard_test.dir/build.make px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.s
 .PHONY : src/offboard_test.cpp.s
 
 src/px4_landing.o: src/px4_landing.cpp.o
@@ -677,7 +827,7 @@ src/px4_landing.o: src/px4_landing.cpp.o
 
 # target to build an object file
 src/px4_landing.cpp.o:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.o
 .PHONY : src/px4_landing.cpp.o
 
 src/px4_landing.i: src/px4_landing.cpp.i
@@ -686,7 +836,7 @@ src/px4_landing.i: src/px4_landing.cpp.i
 
 # target to preprocess a source file
 src/px4_landing.cpp.i:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.i
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.i
 .PHONY : src/px4_landing.cpp.i
 
 src/px4_landing.s: src/px4_landing.cpp.s
@@ -695,7 +845,7 @@ src/px4_landing.s: src/px4_landing.cpp.s
 
 # target to generate assembly for a file
 src/px4_landing.cpp.s:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.s
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_landing.dir/build.make px4_ctrl/CMakeFiles/px4_landing.dir/src/px4_landing.cpp.s
 .PHONY : src/px4_landing.cpp.s
 
 src/px4_tracking.o: src/px4_tracking.cpp.o
@@ -704,7 +854,7 @@ src/px4_tracking.o: src/px4_tracking.cpp.o
 
 # target to build an object file
 src/px4_tracking.cpp.o:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.o
 .PHONY : src/px4_tracking.cpp.o
 
 src/px4_tracking.i: src/px4_tracking.cpp.i
@@ -713,7 +863,7 @@ src/px4_tracking.i: src/px4_tracking.cpp.i
 
 # target to preprocess a source file
 src/px4_tracking.cpp.i:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.i
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.i
 .PHONY : src/px4_tracking.cpp.i
 
 src/px4_tracking.s: src/px4_tracking.cpp.s
@@ -722,7 +872,7 @@ src/px4_tracking.s: src/px4_tracking.cpp.s
 
 # target to generate assembly for a file
 src/px4_tracking.cpp.s:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.s
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/px4_tracking.dir/build.make px4_ctrl/CMakeFiles/px4_tracking.dir/src/px4_tracking.cpp.s
 .PHONY : src/px4_tracking.cpp.s
 
 src/teleop_car.o: src/teleop_car.cpp.o
@@ -731,7 +881,7 @@ src/teleop_car.o: src/teleop_car.cpp.o
 
 # target to build an object file
 src/teleop_car.cpp.o:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o
 .PHONY : src/teleop_car.cpp.o
 
 src/teleop_car.i: src/teleop_car.cpp.i
@@ -740,7 +890,7 @@ src/teleop_car.i: src/teleop_car.cpp.i
 
 # target to preprocess a source file
 src/teleop_car.cpp.i:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.i
 .PHONY : src/teleop_car.cpp.i
 
 src/teleop_car.s: src/teleop_car.cpp.s
@@ -749,7 +899,7 @@ src/teleop_car.s: src/teleop_car.cpp.s
 
 # target to generate assembly for a file
 src/teleop_car.cpp.s:
-	cd /home/vic/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
+	cd /home/jetson/catkin_ws/build && $(MAKE) -f px4_ctrl/CMakeFiles/teleop_car.dir/build.make px4_ctrl/CMakeFiles/teleop_car.dir/src/teleop_car.cpp.s
 .PHONY : src/teleop_car.cpp.s
 
 # Help Target
@@ -759,42 +909,52 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... teleop_car"
-	@echo "... uuid_msgs_generate_messages_eus"
-	@echo "... mavros_msgs_generate_messages_py"
+	@echo "... px4_tracking"
+	@echo "... list_install_components"
+	@echo "... trajectory_msgs_generate_messages_py"
+	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... circular_test"
+	@echo "... offboard_test"
+	@echo "... nav_msgs_generate_messages_py"
 	@echo "... geographic_msgs_generate_messages_lisp"
 	@echo "... geographic_msgs_generate_messages_eus"
-	@echo "... px4_tracking"
-	@echo "... test"
-	@echo "... uuid_msgs_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_py"
+	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... install/strip"
 	@echo "... geographic_msgs_generate_messages_cpp"
-	@echo "... uuid_msgs_generate_messages_cpp"
 	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... std_srvs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_lisp"
 	@echo "... geographic_msgs_generate_messages_nodejs"
-	@echo "... geographic_msgs_generate_messages_py"
-	@echo "... std_srvs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_cpp"
 	@echo "... std_srvs_generate_messages_cpp"
 	@echo "... install/local"
 	@echo "... nav_msgs_generate_messages_cpp"
 	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... geographic_msgs_generate_messages_py"
+	@echo "... uuid_msgs_generate_messages_cpp"
+	@echo "... uuid_msgs_generate_messages_eus"
+	@echo "... mavros_msgs_generate_messages_py"
+	@echo "... test"
+	@echo "... std_srvs_generate_messages_py"
+	@echo "... uuid_msgs_generate_messages_lisp"
+	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... uuid_msgs_generate_messages_nodejs"
 	@echo "... edit_cache"
 	@echo "... mavros_msgs_generate_messages_lisp"
+	@echo "... px4_landing"
+	@echo "... uuid_msgs_generate_messages_py"
+	@echo "... trajectory_msgs_generate_messages_nodejs"
+	@echo "... trajectory_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_cpp"
+	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... mavros_msgs_generate_messages_eus"
 	@echo "... mavros_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_nodejs"
+	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_eus"
-	@echo "... offboard_test"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... circular_test"
-	@echo "... uuid_msgs_generate_messages_py"
-	@echo "... px4_landing"
 	@echo "... src/circular_test.o"
 	@echo "... src/circular_test.i"
 	@echo "... src/circular_test.s"
@@ -821,6 +981,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

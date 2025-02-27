@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -fPIC   -O3 -funsafe-loop-optimizations -fsee -funroll-
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"apriltag_ros\" -Dapriltag_ros_common_EXPORTS
 
-CXX_INCLUDES = -I/home/vic/catkin_ws/devel/include -I/home/vic/catkin_ws/src/apriltag_ros/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 -isystem /opt/ros/noetic/include -isystem /usr/include/opencv4 -isystem /opt/ros/noetic/include/apriltag 
+CXX_INCLUDES = -I/home/jetson/catkin_ws/devel/include -I/home/jetson/catkin_ws/src/apriltag_ros/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 -isystem /opt/ros/noetic/include -isystem /usr/include/opencv4 -isystem /opt/ros/noetic/include/apriltag 
 

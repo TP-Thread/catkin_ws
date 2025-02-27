@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/share/roseus/ros/robot_vision/manifest.l"
-  "/home/vic/catkin_ws/devel/share/roseus/ros/robot_vision/msg/BoundingBox.l"
-  "/home/vic/catkin_ws/devel/share/roseus/ros/robot_vision/msg/BoundingBoxes.l"
+  "/home/jetson/catkin_ws/devel/share/roseus/ros/robot_vision/manifest.l"
+  "/home/jetson/catkin_ws/devel/share/roseus/ros/robot_vision/msg/BoundingBox.l"
+  "/home/jetson/catkin_ws/devel/share/roseus/ros/robot_vision/msg/BoundingBoxes.l"
   "CMakeFiles/robot_vision_generate_messages_eus"
 )
 

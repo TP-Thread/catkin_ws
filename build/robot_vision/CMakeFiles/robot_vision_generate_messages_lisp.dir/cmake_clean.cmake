@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/share/common-lisp/ros/robot_vision/msg/BoundingBox.lisp"
-  "/home/vic/catkin_ws/devel/share/common-lisp/ros/robot_vision/msg/BoundingBoxes.lisp"
+  "/home/jetson/catkin_ws/devel/share/common-lisp/ros/robot_vision/msg/BoundingBox.lisp"
+  "/home/jetson/catkin_ws/devel/share/common-lisp/ros/robot_vision/msg/BoundingBoxes.lisp"
   "CMakeFiles/robot_vision_generate_messages_lisp"
 )
 

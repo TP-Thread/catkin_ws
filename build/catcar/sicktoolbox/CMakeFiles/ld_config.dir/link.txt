@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/ld_config.dir/c++/examples/ld/ld_config/src/main.cc.o  -o /home/vic/catkin_ws/devel/lib/sicktoolbox/ld_config  -Wl,-rpath,/home/vic/catkin_ws/devel/lib: /home/vic/catkin_ws/devel/lib/libSickLD.so /home/vic/catkin_ws/devel/lib/libLDConfigLib.so -lpthread 

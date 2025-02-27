@@ -1,4 +1,4 @@
-prefix=/home/vic/catkin_ws/install
+prefix=/home/jetson/catkin_ws/install
 
 Name: px4_ctrl
 Description: Description of px4_ctrl

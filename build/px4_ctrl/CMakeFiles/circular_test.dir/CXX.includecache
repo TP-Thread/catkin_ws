@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vic/catkin_ws/src/px4_ctrl/src/circular_test.cpp
+/home/jetson/catkin_ws/src/px4_ctrl/src/circular_test.cpp
 ros/ros.h
 -
 math.h

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vic/catkin_ws/src/apriltag_ros/src/apriltag_ros_continuous_node.cpp
+/home/jetson/catkin_ws/src/apriltag_ros/src/apriltag_ros_continuous_node.cpp
 ros/ros.h
 -
 nodelet/loader.h

@@ -120,11 +120,11 @@ void ContinuousDetector::imageCallback (
 
   // Publish the camera image overlaid by outlines of the detected tags and
   // their payload values
-  if (draw_tag_detections_image_)
-  {
-    tag_detector_->drawDetections(cv_image_);
-    tag_detections_image_publisher_.publish(cv_image_->toImageMsg());
-  }
+    // if (draw_tag_detections_image_)
+    // {
+    //   tag_detector_->drawDetections(cv_image_);
+    //   tag_detections_image_publisher_.publish(cv_image_->toImageMsg());
+    // }
 }
 
 } // namespace apriltag_ros

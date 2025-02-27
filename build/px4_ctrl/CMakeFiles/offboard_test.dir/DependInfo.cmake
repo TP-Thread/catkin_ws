@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/vic/catkin_ws/src/px4_ctrl/src/offboard_test.cpp" "/home/vic/catkin_ws/build/px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.o"
+  "/home/jetson/catkin_ws/src/px4_ctrl/src/offboard_test.cpp" "/home/jetson/catkin_ws/build/px4_ctrl/CMakeFiles/offboard_test.dir/src/offboard_test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,9 +18,9 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
-  "/home/vic/catkin_ws/src/px4_ctrl/include"
-  "/home/vic/catkin_ws/devel/include"
-  "/home/vic/catkin_ws/src/apriltag_ros/include"
+  "/home/jetson/catkin_ws/src/px4_ctrl/include"
+  "/home/jetson/catkin_ws/devel/include"
+  "/home/jetson/catkin_ws/src/apriltag_ros/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/include/apriltag"
@@ -29,9 +29,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/vic/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/DependInfo.cmake"
-  "/home/vic/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/DependInfo.cmake"
-  "/home/vic/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/DependInfo.cmake"
+  "/home/jetson/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/DependInfo.cmake"
+  "/home/jetson/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_single_image_detector.dir/DependInfo.cmake"
+  "/home/jetson/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

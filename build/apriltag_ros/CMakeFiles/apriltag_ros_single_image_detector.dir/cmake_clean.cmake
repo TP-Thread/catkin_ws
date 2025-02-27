@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.pdb"
-  "/home/vic/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.so"
+  "/home/jetson/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.pdb"
+  "/home/jetson/catkin_ws/devel/lib/libapriltag_ros_single_image_detector.so"
   "CMakeFiles/apriltag_ros_single_image_detector.dir/src/single_image_detector.cpp.o"
 )
 

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/offboard_test"
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/offboard_test.pdb"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/offboard_test"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/offboard_test.pdb"
   "CMakeFiles/offboard_test.dir/src/offboard_test.cpp.o"
 )
 

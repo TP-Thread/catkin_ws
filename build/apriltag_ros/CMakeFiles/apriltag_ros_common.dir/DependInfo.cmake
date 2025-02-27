@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/vic/catkin_ws/src/apriltag_ros/src/common_functions.cpp" "/home/vic/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/src/common_functions.cpp.o"
+  "/home/jetson/catkin_ws/src/apriltag_ros/src/common_functions.cpp" "/home/jetson/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_common.dir/src/common_functions.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,8 +18,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/vic/catkin_ws/devel/include"
-  "/home/vic/catkin_ws/src/apriltag_ros/include"
+  "/home/jetson/catkin_ws/devel/include"
+  "/home/jetson/catkin_ws/src/apriltag_ros/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/eigen3"
   "/opt/ros/noetic/include"

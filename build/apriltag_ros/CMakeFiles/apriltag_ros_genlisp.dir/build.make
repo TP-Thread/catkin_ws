@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vic/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/jetson/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vic/catkin_ws/build
+CMAKE_BINARY_DIR = /home/jetson/catkin_ws/build
 
 # Utility rule file for apriltag_ros_genlisp.
 
@@ -63,10 +63,10 @@ apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/build: apriltag_ros_genlisp
 .PHONY : apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/build
 
 apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/clean:
-	cd /home/vic/catkin_ws/build/apriltag_ros && $(CMAKE_COMMAND) -P CMakeFiles/apriltag_ros_genlisp.dir/cmake_clean.cmake
+	cd /home/jetson/catkin_ws/build/apriltag_ros && $(CMAKE_COMMAND) -P CMakeFiles/apriltag_ros_genlisp.dir/cmake_clean.cmake
 .PHONY : apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/clean
 
 apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/depend:
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vic/catkin_ws/src /home/vic/catkin_ws/src/apriltag_ros /home/vic/catkin_ws/build /home/vic/catkin_ws/build/apriltag_ros /home/vic/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jetson/catkin_ws/src /home/jetson/catkin_ws/src/apriltag_ros /home/jetson/catkin_ws/build /home/jetson/catkin_ws/build/apriltag_ros /home/jetson/catkin_ws/build/apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : apriltag_ros/CMakeFiles/apriltag_ros_genlisp.dir/depend
 

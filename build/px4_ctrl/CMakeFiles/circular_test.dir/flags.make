@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"px4_ctrl\"
 
-CXX_INCLUDES = -I/usr/include/eigen3 -I/home/vic/catkin_ws/src/px4_ctrl/include -I/home/vic/catkin_ws/devel/include -I/home/vic/catkin_ws/src/apriltag_ros/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /opt/ros/noetic/include -isystem /opt/ros/noetic/include/apriltag -isystem /usr/include/opencv4 
+CXX_INCLUDES = -I/usr/include/eigen3 -I/home/jetson/catkin_ws/src/px4_ctrl/include -I/home/jetson/catkin_ws/devel/include -I/home/jetson/catkin_ws/src/apriltag_ros/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /opt/ros/noetic/include -isystem /opt/ros/noetic/include/apriltag -isystem /usr/include/opencv4 
 

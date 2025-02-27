@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/_BoundingBox.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/_BoundingBoxes.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/__init__.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/_BoundingBox.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/_BoundingBoxes.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/robot_vision/msg/__init__.py"
   "CMakeFiles/robot_vision_generate_messages_py"
 )
 

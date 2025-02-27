@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetection.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetectionArray.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/__init__.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/_AnalyzeSingleImage.py"
-  "/home/vic/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/__init__.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetection.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/_AprilTagDetectionArray.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/msg/__init__.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/_AnalyzeSingleImage.py"
+  "/home/jetson/catkin_ws/devel/lib/python3/dist-packages/apriltag_ros/srv/__init__.py"
   "CMakeFiles/apriltag_ros_generate_messages_py"
 )
 

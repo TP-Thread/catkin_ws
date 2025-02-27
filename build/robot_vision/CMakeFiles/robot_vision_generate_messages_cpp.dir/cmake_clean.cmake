@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/include/robot_vision/BoundingBox.h"
-  "/home/vic/catkin_ws/devel/include/robot_vision/BoundingBoxes.h"
+  "/home/jetson/catkin_ws/devel/include/robot_vision/BoundingBox.h"
+  "/home/jetson/catkin_ws/devel/include/robot_vision/BoundingBoxes.h"
   "CMakeFiles/robot_vision_generate_messages_cpp"
 )
 

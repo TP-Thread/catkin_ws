@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car"
-  "/home/vic/catkin_ws/devel/lib/px4_ctrl/teleop_car.pdb"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car"
+  "/home/jetson/catkin_ws/devel/lib/px4_ctrl/teleop_car.pdb"
   "CMakeFiles/teleop_car.dir/src/teleop_car.cpp.o"
 )
 

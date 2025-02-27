@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/vic/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
+/home/jetson/catkin_ws/src/px4_ctrl/src/teleop_car.cpp
 ros/ros.h
 -
 geometry_msgs/Twist.h

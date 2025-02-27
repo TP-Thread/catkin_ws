@@ -1,8 +1,8 @@
-# Install script for directory: /home/vic/catkin_ws/src/px4_ctrl
+# Install script for directory: /home/jetson/catkin_ws/src/px4_ctrl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vic/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/jetson/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/vic/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrl.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jetson/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrl.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/px4_ctrl/cmake" TYPE FILE FILES
-    "/home/vic/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrlConfig.cmake"
-    "/home/vic/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrlConfig-version.cmake"
+    "/home/jetson/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrlConfig.cmake"
+    "/home/jetson/catkin_ws/build/px4_ctrl/catkin_generated/installspace/px4_ctrlConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/px4_ctrl" TYPE FILE FILES "/home/vic/catkin_ws/src/px4_ctrl/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/px4_ctrl" TYPE FILE FILES "/home/jetson/catkin_ws/src/px4_ctrl/package.xml")
 endif()
 

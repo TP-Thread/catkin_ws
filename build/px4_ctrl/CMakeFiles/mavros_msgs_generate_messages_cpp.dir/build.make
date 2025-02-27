@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vic/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/jetson/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vic/catkin_ws/build
+CMAKE_BINARY_DIR = /home/jetson/catkin_ws/build
 
 # Utility rule file for mavros_msgs_generate_messages_cpp.
 
@@ -63,10 +63,10 @@ px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build: mavros_msgs_gen
 .PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/build
 
 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/clean:
-	cd /home/vic/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -P CMakeFiles/mavros_msgs_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /home/jetson/catkin_ws/build/px4_ctrl && $(CMAKE_COMMAND) -P CMakeFiles/mavros_msgs_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/clean
 
 px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/depend:
-	cd /home/vic/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vic/catkin_ws/src /home/vic/catkin_ws/src/px4_ctrl /home/vic/catkin_ws/build /home/vic/catkin_ws/build/px4_ctrl /home/vic/catkin_ws/build/px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jetson/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jetson/catkin_ws/src /home/jetson/catkin_ws/src/px4_ctrl /home/jetson/catkin_ws/build /home/jetson/catkin_ws/build/px4_ctrl /home/jetson/catkin_ws/build/px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : px4_ctrl/CMakeFiles/mavros_msgs_generate_messages_cpp.dir/depend
 
