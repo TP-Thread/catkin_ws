@@ -7,52 +7,56 @@
 
 using namespace std;
 
-PX4Tracker::PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
+/**
+ * @brief   构造函数
+ **/
+PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
 {
+    // 初始化参数
     Initialize();
 
-    // 用全局句柄创建定时器，周期为0.1s，定时器触发回调函数，this表示回调函数属于哪个对象
+    // 创建周期为0.1s的定时器，定时触发回调函数，this表示回调函数属于哪个对象
     cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracker::CmdLoopCallback, this);
 
     // 订阅无人机当前状态
-    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
+    state_sub_ = nh_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅无人机local坐标系位置
-    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
+    position_sub_ = nh_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 订阅目标平台中心图像坐标
-    yolotag_sub_ = nh_private_.subscribe("/yolo_detections", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    yolotag_sub_ = nh_.subscribe("/yolo_detections", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅目标平台相对无人机的位置
-    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    apriltag_sub_ = nh_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
-    arming_client_ = nh_private_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
-    set_mode_client_ = nh_private_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
+    arming_client_ = nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
+    set_mode_client_ = nh_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
 }
 
 /**
- * @brief      参数初始化
+ * @brief   参数初始化
  **/
 void PX4Tracker::Initialize()
 {
     // 读取offboard模式下飞机的搜索高度和跟踪高度
-    nh_private_.param<float>("search_alt_", search_alt_, 8);
-    nh_private_.param<float>("track_alt_", track_alt_, 8);
+    nh_.param<float>("search_alt_", search_alt_, 8);
+    nh_.param<float>("track_alt_", track_alt_, 8);
 
     // 期望的图像中心坐标
     float desire_imgc_x, desire_imgc_y;
-    nh_private_.param<float>("desire_imgc_x", desire_imgc_x, 320);
-    nh_private_.param<float>("desire_imgc_y", desire_imgc_y, 240);
+    nh_.param<float>("desire_imgc_x", desire_imgc_x, 320);
+    nh_.param<float>("desire_imgc_y", desire_imgc_y, 240);
     desire_imgc_[0] = desire_imgc_x;
     desire_imgc_[1] = desire_imgc_y;
 
     // 无人机跟踪时的PID参数
-    nh_private_.param<float>("i_PidXY_p", i_PidXY.p, 0.01);
-    nh_private_.param<float>("i_PidXY_i", i_PidXY.i, 0.0);
-    nh_private_.param<float>("i_PidXY_d", i_PidXY.d, 0.0);
+    nh_.param<float>("i_PidXY_p", i_PidXY.p, 0.01);
+    nh_.param<float>("i_PidXY_i", i_PidXY.i, 0.0);
+    nh_.param<float>("i_PidXY_d", i_PidXY.d, 0.0);
 
-    nh_private_.param<float>("i_PidZ_p", i_PidZ.p, 0.1);
-    nh_private_.param<float>("i_PidZ_i", i_PidZ.i, 0.0);
-    nh_private_.param<float>("i_PidZ_d", i_PidZ.d, 0.0);
+    nh_.param<float>("i_PidZ_p", i_PidZ.p, 0.1);
+    nh_.param<float>("i_PidZ_i", i_PidZ.i, 0.0);
+    nh_.param<float>("i_PidZ_d", i_PidZ.d, 0.0);
 
     i_PidItemX.tempDiffer = 0;
     i_PidItemY.tempDiffer = 0;
@@ -61,26 +65,26 @@ void PX4Tracker::Initialize()
 
     // 期望的飞机相对降落板的位置
     float desire_pose_x, desire_pose_y, desire_pose_z;
-    nh_private_.param<float>("desire_pose_x", desire_pose_x, 0);
-    nh_private_.param<float>("desire_pose_y", desire_pose_y, 0);
-    nh_private_.param<float>("desire_pose_z", desire_pose_z, 0);
-    nh_private_.param<float>("desire_yaw_", desire_yaw_, 0);
+    nh_.param<float>("desire_pose_x", desire_pose_x, 0);
+    nh_.param<float>("desire_pose_y", desire_pose_y, 0);
+    nh_.param<float>("desire_pose_z", desire_pose_z, 0);
+    nh_.param<float>("desire_yaw_", desire_yaw_, 0);
     desire_pose_[0] = desire_pose_x;
     desire_pose_[1] = desire_pose_y;
     desire_pose_[2] = desire_pose_z;
 
     // 无人机降落时的PID参数
-    nh_private_.param<float>("p_PidXY_p", p_PidXY.p, 0.4);
-    nh_private_.param<float>("p_PidXY_i", p_PidXY.i, 0.01);
-    nh_private_.param<float>("p_PidXY_d", p_PidXY.d, 0.05);
+    nh_.param<float>("p_PidXY_p", p_PidXY.p, 0.4);
+    nh_.param<float>("p_PidXY_i", p_PidXY.i, 0.01);
+    nh_.param<float>("p_PidXY_d", p_PidXY.d, 0.05);
 
-    nh_private_.param<float>("p_PidZ_p", p_PidZ.p, 0.1);
-    nh_private_.param<float>("p_PidZ_i", p_PidZ.i, 0);
-    nh_private_.param<float>("p_PidZ_d", p_PidZ.d, 0);
+    nh_.param<float>("p_PidZ_p", p_PidZ.p, 0.1);
+    nh_.param<float>("p_PidZ_i", p_PidZ.i, 0);
+    nh_.param<float>("p_PidZ_d", p_PidZ.d, 0);
 
-    nh_private_.param<float>("p_PidYaw_p", p_PidYaw.p, 0.2);
-    nh_private_.param<float>("p_PidYaw_i", p_PidYaw.i, 0);
-    nh_private_.param<float>("p_PidYaw_d", p_PidYaw.d, 0);
+    nh_.param<float>("p_PidYaw_p", p_PidYaw.p, 0.2);
+    nh_.param<float>("p_PidYaw_i", p_PidYaw.i, 0);
+    nh_.param<float>("p_PidYaw_d", p_PidYaw.d, 0);
 
     detect_track_state = false;
     detect_land_state = false;
@@ -114,39 +118,15 @@ Eigen::Vector4d PX4Tracker::TrackerPidProcess(Eigen::Vector2d &currentPos, Eigen
 {
     Eigen::Vector4d s_PidOut;
 
-    /* X方向的pid控制 */
+    /* X方向的p控制 */
     i_PidItemX.difference = expectPos[0] - currentPos[0];
-    // i_PidItemX.intergral += i_PidItemX.difference;
-
-    // if (i_PidItemX.intergral >= 100)
-    //     i_PidItemX.intergral = 100;
-    // else if (i_PidItemX.intergral <= -100)
-    //     i_PidItemX.intergral = -100;
-
-    // i_PidItemX.differential = i_PidItemX.difference - i_PidItemX.tempDiffer;
-    // i_PidItemX.tempDiffer = i_PidItemX.difference;
-
     s_PidOut[0] = i_PidXY.p * i_PidItemX.difference;
-
-    /* Y方向的pid控制 */
+    /* Y方向的p控制 */
     i_PidItemY.difference = expectPos[1] - currentPos[1];
-    // i_PidItemY.intergral += i_PidItemY.difference;
-
-    // if (i_PidItemY.intergral >= 100)
-    //     i_PidItemY.intergral = 100;
-    // else if (i_PidItemY.intergral <= -100)
-    //     i_PidItemY.intergral = -100;
-
-    // i_PidItemY.differential = i_PidItemY.difference - i_PidItemY.tempDiffer;
-    // i_PidItemY.tempDiffer = i_PidItemY.difference;
-
     s_PidOut[1] = i_PidXY.p * i_PidItemY.difference;
-
-    /* Z方向的pid控制 */
+    /* Z方向的p控制 */
     i_PidItemZ.difference = track_alt_ - px4_pose_[2];
-
     s_PidOut[2] = i_PidZ.p * i_PidItemZ.difference;
-
     /* Yaw方向的pid控制 */
     s_PidOut[3] = 0;
 
@@ -231,7 +211,7 @@ void PX4Tracker::CmdLoopCallback(const ros::TimerEvent &event)
 }
 
 /**
- * @brief      状态机更新函数
+ * @brief   状态机更新函数
  **/
 void PX4Tracker::TrackerStateUpdate()
 {
@@ -374,17 +354,22 @@ void PX4Tracker::TrackerStateUpdate()
 /**
  * @brief   接收降落板框中心在图像中的坐标
  **/
-void PX4Tracker::YoloPoseCallback(const robot_vision::BoundingBoxes::ConstPtr &msg)
+void PX4Tracker::YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg)
 {
     detect_track_state = false;
 
-    for (auto &item : msg->bounding_boxes)
-    {
-        detect_track_state = true;
-        // 获取标签检测框中心图像坐标
-        yolotag_imgc_[0] = (item.xmin + item.xmax) / 2.0;
-        yolotag_imgc_[1] = (item.ymin + item.ymax) / 2.0;
-    }
+    detect_track_state = true;
+    // 获取标签检测框中心图像坐标
+    yolotag_imgc_[0] = (msg->xmin + msg->xmax) / 2.0;
+    yolotag_imgc_[1] = (msg->ymin + msg->ymax) / 2.0;
+
+    // for (auto &item : msg)
+    // {
+    //     detect_track_state = true;
+    //     // 获取标签检测框中心图像坐标
+    //     yolotag_imgc_[0] = (item.xmin + item.xmax) / 2.0;
+    //     yolotag_imgc_[1] = (item.ymin + item.ymax) / 2.0;
+    // }
 }
 
 /**
@@ -424,19 +409,23 @@ void PX4Tracker::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
 
     px4_pose_ = pos_drone_fcu_enu;
 }
+
 /*接收来自飞控的当前飞机状态*/
 void PX4Tracker::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
 {
     px4_state_ = *msg;
 }
 
+/**
+ * @brief   主函数
+ **/
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "px4_tracking");
-    ros::NodeHandle nh("");
-    ros::NodeHandle nh_private("~");
+    ros::NodeHandle nh("~"); // 私有的NodeHandle对象
 
-    PX4Tracker PX4Tracker(nh, nh_private);
+    // 创建一个PX4Tracker对象
+    PX4Tracker px4tracker(nh);
 
     ros::spin();
     return 0;

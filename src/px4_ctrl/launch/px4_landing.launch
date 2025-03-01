@@ -1,12 +1,18 @@
 <launch>
+	<!-- 启动相机节点 -->
+	<!-- <include file="$(find robot_vision)/launch/usb_cam.launch"/> -->
+
     <!-- 启动二维码识别节点 -->
     <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
 	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->
-		<!-- <arg name="camera_name" default="/camera" /> -->
 		<arg name="camera_name" default="/iris/camera/rgb" />
 		<arg name="image_topic" default="image_raw" />
     </include>
 
+	<!-- 启动图像显示节点 -->
+  	<node pkg="rqt_image_view" type="rqt_image_view" name="rqt_image_view" output="screen"/>
+
+	<!-- 启动px4_landing节点 -->
 	<node pkg="px4_ctrl" type="px4_landing" name="px4_landing" output="screen">
 		<param name="search_alt_" value = "8"/>
 
@@ -26,16 +32,8 @@
 		<param name="p_PidYaw_p" value = "0.2"/>
         <param name="p_PidYaw_i" value = "0"/>
 		<param name="p_PidYaw_d" value = "0"/>
-        <!-- <param name="PidXY_p" value = "1"/>	
-		<param name="PidXY_d" value = "0.1"/>	
-		<param name="PidXY_i" value = "0.02"/>	
-		<param name="PidZ_p" value = "0.2"/>	
-		<param name="PidZ_d" value = "0.1"/>	
-		<param name="PidZ_i" value = "0"/>	
-		<param name="PidYaw_p" value = "0.1"/>	
-		<param name="PidYaw_d" value = "0"/>	
-		<param name="PidYaw_i" value = "0"/>		 -->
 	</node>
 
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find px4_ctrl)/rviz/px4_landing.rviz"/>
+	<!-- 启动rviz节点 -->
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find px4_ctrl)/rviz/px4_landing.rviz"/> -->
 </launch>

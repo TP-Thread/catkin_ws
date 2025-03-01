@@ -13,7 +13,7 @@ using namespace std;
  * @param  nh_private  ros::NodeHandle 类型的引用
  *          ：后面表示将构造函数参数值赋给 PX4Tracker 类的成员变量。
  **/
-PX4Tracker::PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private) : nh_(nh), nh_private_(nh_private)
+PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
 {
     Initialize();
 
@@ -21,15 +21,15 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_priv
     cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracker::CmdLoopCallback, this);
 
     // 订阅无人机当前状态
-    state_sub_ = nh_private_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
+    state_sub_ = nh_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅无人机local坐标系位置
-    position_sub_ = nh_private_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
+    position_sub_ = nh_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅降落板相对飞机位置
-    apriltag_sub_ = nh_private_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    apriltag_sub_ = nh_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 创建修改系统模式的客户端
-    arming_client_ = nh_private_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
-    set_mode_client_ = nh_private_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
+    arming_client_ = nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
+    set_mode_client_ = nh_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
 }
 
 /**
@@ -38,30 +38,30 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_priv
 void PX4Tracker::Initialize()
 {
     // 读取offboard模式下飞机的搜索高度
-    nh_private_.param<float>("search_alt_", search_alt_, 5);
+    nh_.param<float>("search_alt_", search_alt_, 5);
 
     // 期望的飞机相对降落板的位置
     float desire_pose_x, desire_pose_y, desire_pose_z;
-    nh_private_.param<float>("desire_pose_x", desire_pose_x, 0);
-    nh_private_.param<float>("desire_pose_y", desire_pose_y, 0);
-    nh_private_.param<float>("desire_pose_z", desire_pose_z, 0);
-    nh_private_.param<float>("desire_yaw_", desire_yaw_, 0);
+    nh_.param<float>("desire_pose_x", desire_pose_x, 0);
+    nh_.param<float>("desire_pose_y", desire_pose_y, 0);
+    nh_.param<float>("desire_pose_z", desire_pose_z, 0);
+    nh_.param<float>("desire_yaw_", desire_yaw_, 0);
     desire_pose_[0] = desire_pose_x;
     desire_pose_[1] = desire_pose_y;
     desire_pose_[2] = desire_pose_z;
 
     // 无人机降落时的PID参数
-    nh_private_.param<float>("p_PidXY_p", p_PidXY.p, 0.4);
-    nh_private_.param<float>("p_PidXY_i", p_PidXY.i, 0.01);
-    nh_private_.param<float>("p_PidXY_d", p_PidXY.d, 0.05);
+    nh_.param<float>("p_PidXY_p", p_PidXY.p, 0.4);
+    nh_.param<float>("p_PidXY_i", p_PidXY.i, 0.01);
+    nh_.param<float>("p_PidXY_d", p_PidXY.d, 0.05);
 
-    nh_private_.param<float>("p_PidZ_p", p_PidZ.p, 0.1);
-    nh_private_.param<float>("p_PidZ_i", p_PidZ.i, 0);
-    nh_private_.param<float>("p_PidZ_d", p_PidZ.d, 0);
+    nh_.param<float>("p_PidZ_p", p_PidZ.p, 0.1);
+    nh_.param<float>("p_PidZ_i", p_PidZ.i, 0);
+    nh_.param<float>("p_PidZ_d", p_PidZ.d, 0);
 
-    nh_private_.param<float>("p_PidYaw_p", p_PidYaw.p, 0.2);
-    nh_private_.param<float>("p_PidYaw_i", p_PidYaw.i, 0);
-    nh_private_.param<float>("p_PidYaw_d", p_PidYaw.d, 0);
+    nh_.param<float>("p_PidYaw_p", p_PidYaw.p, 0.2);
+    nh_.param<float>("p_PidYaw_i", p_PidYaw.i, 0);
+    nh_.param<float>("p_PidYaw_d", p_PidYaw.d, 0);
 
     detect_land_state = false;
     desire_vel_[0] = 0;
@@ -341,11 +341,10 @@ void PX4Tracker::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "px4_landing");
-    ros::NodeHandle nh("");          // 全局的 NodeHandle 对象
-    ros::NodeHandle nh_private("~"); // 私有的 NodeHandle 对象
+    ros::NodeHandle nh("~"); // 私有的NodeHandle对象
 
     // 隐式调用构造函数初始化对象
-    PX4Tracker PX4Tracker(nh, nh_private);
+    PX4Tracker px4tracker(nh);
 
     ros::spin();
     return 0;

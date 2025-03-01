@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/vic/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_18138/fast && /usr/bin/make -f CMakeFiles/cmTC_18138.dir/build.make CMakeFiles/cmTC_18138.dir/build
+Run Build Command(s):/usr/bin/make cmTC_89eff/fast && /usr/bin/make -f CMakeFiles/cmTC_89eff.dir/build.make CMakeFiles/cmTC_89eff.dir/build
 make[1]: 进入目录“/home/vic/catkin_ws/build/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_18138.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_18138.dir/src.c.o   -c /home/vic/catkin_ws/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_18138
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18138.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_18138.dir/src.c.o  -o cmTC_18138 
-/usr/bin/ld: CMakeFiles/cmTC_18138.dir/src.c.o: in function `main':
+Building C object CMakeFiles/cmTC_89eff.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_89eff.dir/src.c.o   -c /home/vic/catkin_ws/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_89eff
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89eff.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_89eff.dir/src.c.o  -o cmTC_89eff 
+/usr/bin/ld: CMakeFiles/cmTC_89eff.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_18138.dir/build.make:87：cmTC_18138] 错误 1
+make[1]: *** [CMakeFiles/cmTC_89eff.dir/build.make:87：cmTC_89eff] 错误 1
 make[1]: 离开目录“/home/vic/catkin_ws/build/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_18138/fast] 错误 2
+make: *** [Makefile:121：cmTC_89eff/fast] 错误 2
 
 
 Source file was:
@@ -41,18 +41,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/vic/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_c22ef/fast && /usr/bin/make -f CMakeFiles/cmTC_c22ef.dir/build.make CMakeFiles/cmTC_c22ef.dir/build
+Run Build Command(s):/usr/bin/make cmTC_da040/fast && /usr/bin/make -f CMakeFiles/cmTC_da040.dir/build.make CMakeFiles/cmTC_da040.dir/build
 make[1]: 进入目录“/home/vic/catkin_ws/build/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_c22ef.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_c22ef.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_c22ef
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c22ef.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_c22ef.dir/CheckFunctionExists.c.o  -o cmTC_c22ef  -lpthreads 
+Building C object CMakeFiles/cmTC_da040.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_da040.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_da040
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da040.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_da040.dir/CheckFunctionExists.c.o  -o cmTC_da040  -lpthreads 
 /usr/bin/ld: 找不到 -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_c22ef.dir/build.make:87：cmTC_c22ef] 错误 1
+make[1]: *** [CMakeFiles/cmTC_da040.dir/build.make:87：cmTC_da040] 错误 1
 make[1]: 离开目录“/home/vic/catkin_ws/build/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_c22ef/fast] 错误 2
+make: *** [Makefile:121：cmTC_da040/fast] 错误 2
 
 
 

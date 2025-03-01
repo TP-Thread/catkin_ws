@@ -9,16 +9,15 @@
 class PX4Tracker
 {
 public:
-    // 构造函数
-    PX4Tracker(const ros::NodeHandle &nh, const ros::NodeHandle &nh_private);
+    PX4Tracker(const ros::NodeHandle &nh);
 
-    void Initialize();
-    PX4Cmd px4cmd_;
+    void Initialize(); // 参数初始化
+    PX4Cmd px4cmd_;    // 用来发送PX4控制指令
 
 private:
-    ros::NodeHandle nh_;
-    ros::NodeHandle nh_private_;
-    ros::Timer cmdloop_timer_;
+    ros::NodeHandle nh_; // 节点句柄
+
+    ros::Timer cmdloop_timer_; // 定时器
 
     ros::Subscriber state_sub_;
     ros::Subscriber position_sub_;
@@ -35,7 +34,7 @@ private:
 
     void CmdLoopCallback(const ros::TimerEvent &event);
     void TrackerStateUpdate();
-    void YoloPoseCallback(const robot_vision::BoundingBoxes::ConstPtr &msg);
+    void YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg);
     void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
     void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
     void Px4StateCallback(const mavros_msgs::State::ConstPtr &msg);

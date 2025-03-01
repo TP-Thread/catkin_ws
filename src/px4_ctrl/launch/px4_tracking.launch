@@ -1,15 +1,21 @@
 <launch>
+	<!-- 启动相机节点 -->
+	<!-- <include file="$(find robot_vision)/launch/usb_cam.launch"/> -->
+
 	<!-- 启动二维码检测节点 -->
 	<include file="$(find robot_vision)/launch/yolov5_detector.launch"/>
   
     <!-- 启动二维码识别节点 -->
-    <include file="$(find apriltag_ros)/launch/continuous_detection.launch" >
+    <include file="$(find apriltag_ros)/launch/continuous_detection.launch">
 	  	<!-- <arg name="camera_name" default="/usb_cam" /> -->
-		<!-- <arg name="camera_name" default="/camera" /> -->
-		<arg name="camera_name" default="/iris/camera/rgb" />
-		<arg name="image_topic" default="image_raw" />
+		<arg name="camera_name" default="/iris/camera/rgb"/>
+		<arg name="image_topic" default="image_raw"/>
     </include>
 
+	<!-- 启动图像显示节点 -->
+  	<node pkg="rqt_image_view" type="rqt_image_view" name="rqt_image_view" output="screen"/>
+
+	<!-- 启动px4_tracking节点 -->
 	<node pkg="px4_ctrl" type="px4_tracking" name="px4_tracking" output="screen">
 		<param name="search_alt_" value = "8"/>
 		<param name="track_alt_" value = "8"/>
@@ -43,5 +49,6 @@
 		<param name="p_PidYaw_d" value = "0"/>	
 	</node>
 
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find px4_ctrl)/rviz/px4_tracking.rviz"/>
+	<!-- 启动rviz节点 -->
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find px4_ctrl)/rviz/px4_tracking.rviz"/> -->
 </launch>
