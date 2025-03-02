@@ -17,7 +17,8 @@ class ObjectDetector:
         # 创建cv_bridge，声明图像的发布者和订阅者
         self.cv_bridge = CvBridge()
         self.image_sub = rospy.Subscriber(sub_image_topic, Image, self.callback)
-        self.image_pub = rospy.Publisher("/usb_cam/image_yolo", Image, queue_size=1)
+        # self.image_pub = rospy.Publisher("/usb_cam/image_yolo", Image, queue_size=1)
+        self.image_pub = rospy.Publisher("/iris/camera/rgb/image_yolo", Image, queue_size=1)
         # 发布识别到的目标框信息，BoundingBoxes是自定义的消息类型
         self.target_pub = rospy.Publisher("/yolo_detections", BoundingBox, queue_size=1) 
 
@@ -89,7 +90,7 @@ def main():
     # yolov5的模型置信度阈值，置信度低于conf的预测结果会被忽略
     conf = rospy.get_param('~conf', '0.5')
     # 订阅的图像话题
-    sub_image_topic = rospy.get_param('~image_rect', '')
+    sub_image_topic = rospy.get_param('~image_sub', '')
     
     yolov5_detector = ObjectDetector(yolov5_path, weight_path, conf, sub_image_topic)
     

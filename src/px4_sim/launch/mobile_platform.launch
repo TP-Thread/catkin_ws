@@ -14,8 +14,8 @@
     </include>
 
     <include file="$(find steer_mini_gazebo)/launch/steer_mini_sim.launch" >
-        <arg name="x" default="5.0"/>
-        <arg name="y" default="5.0"/>
+        <arg name="x" default="15.0"/>
+        <arg name="y" default="20.0"/>
         <arg name="z" default="0.0" />
     </include>
 

@@ -15,9 +15,6 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
     // 初始化参数
     Initialize();
 
-    // 创建周期为0.1s的定时器，定时触发回调函数，this表示回调函数属于哪个对象
-    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracker::CmdLoopCallback, this);
-
     // 订阅无人机当前状态
     state_sub_ = nh_.subscribe("/mavros/state", 1, &PX4Tracker::Px4StateCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅无人机local坐标系位置
@@ -28,9 +25,12 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
     // 订阅目标平台相对无人机的位置
     apriltag_sub_ = nh_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
-    // 创建修改系统模式的客户端
+    // 创建修改PX4飞行模式的客户端
     arming_client_ = nh_.serviceClient<mavros_msgs::CommandBool>("/mavros/cmd/arming");
     set_mode_client_ = nh_.serviceClient<mavros_msgs::SetMode>("/mavros/set_mode");
+
+    // 创建周期为0.1s的定时器，定时触发回调函数，this表示回调函数属于哪个对象
+    cmdloop_timer_ = nh_.createTimer(ros::Duration(0.1), &PX4Tracker::CmdLoopCallback, this);
 }
 
 /**
@@ -106,6 +106,66 @@ void PX4Tracker::Initialize()
     p_PidItemY.intergral = 0;
     p_PidItemZ.intergral = 0;
     p_PidItemYaw.intergral = 0;
+}
+
+/**
+ * @brief      接收来自飞控的当前飞机状态
+ * @param[in]  &msg 飞机状态消息
+ */
+void PX4Tracker::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
+{
+    px4_state_ = *msg;
+}
+
+/**
+ * @brief      接收来自飞控的当前飞机位置 local ENU坐标系
+ * @param[in]  &msg 飞机位置消息
+ */
+void PX4Tracker::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
+{
+    // Read the Drone Position from the Mavros Package [Frame: ENU]
+    Eigen::Vector3d pos_drone_fcu_enu(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
+
+    px4_pose_ = pos_drone_fcu_enu;
+}
+
+/**
+ * @brief   获取合作目标中心在图像中的坐标
+ **/
+void PX4Tracker::YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg)
+{
+    detect_track_state = true;
+    // 获取标签检测框中心图像坐标
+    yolotag_imgc_[0] = (msg->xmin + msg->xmax) / 2.0;
+    yolotag_imgc_[1] = (msg->ymin + msg->ymax) / 2.0;
+}
+
+/**
+ * @brief   获取合作目标相对于无人机的位置以及偏航角
+ **/
+void PX4Tracker::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
+{
+    detect_land_state = true;
+    double temp_roll, temp_pitch, temp_yaw;
+    tf2::Quaternion quat;
+
+    for (auto &item : msg->detections)
+    {
+        // 如果标签的ID与预期的ID匹配
+        if (item.pose.pose.pose.position.z > 0.1)
+        {
+            // 获取标签在相机坐标系中的位置信息
+            apriltag_pose_[0] = item.pose.pose.pose.position.x;
+            apriltag_pose_[1] = item.pose.pose.pose.position.y;
+            apriltag_pose_[2] = item.pose.pose.pose.position.z;
+            // 将ROS消息中的四元数表示转换为TF2库中的tf2::Quaternion对象
+            tf2::fromMsg(item.pose.pose.pose.orientation, quat);
+            // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
+            tf2::Matrix3x3(quat).getRPY(temp_roll, temp_pitch, temp_yaw);
+            // 更新标签的yaw角度
+            apriltag_yaw_ = temp_yaw;
+        }
+    }
 }
 
 /**
@@ -223,13 +283,15 @@ void PX4Tracker::TrackerStateUpdate()
             temp_pos_drone[0] = px4_pose_[0];
             temp_pos_drone[1] = px4_pose_[1];
             temp_pos_drone[2] = px4_pose_[2];
-            px4cmd_.send_pos_setpoint(temp_pos_drone, 0); // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点。否则模式开关将被拒绝。
+            // 在进入OFFBOARD模式之前，必须已经开始流式传输设定点。否则模式开关将被拒绝。
+            px4cmd_.send_pos_setpoint(temp_pos_drone, 0);
         }
         else
         {
             FlyState = PREPARING;
             cout << "PREPARING" << endl;
         }
+
         break;
     case PREPARING: // 起飞到指定高度
         posxyz_target[0] = temp_pos_drone[0];
@@ -247,18 +309,17 @@ void PX4Tracker::TrackerStateUpdate()
     case SEARCHING:
         if (detect_track_state == true)
         {
+            detect_track_state == false;
             FlyState = TRACKING;
             cout << "TRACKING" << endl;
         }
         else // 如果没有检测到二维码则升高一段距离
         {
-            search_alt_ += 0.01;
-
             posxyz_target[0] = px4_pose_[0];
             posxyz_target[1] = px4_pose_[1];
-            posxyz_target[2] = (search_alt_ < 10 ? search_alt_ : 10);
-
+            posxyz_target[2] = (search_alt_ < 10 ? search_alt_ + 0.01 : 10);
             px4cmd_.send_pos_setpoint(posxyz_target, 0);
+
             cout << "SEARCHING Target" << endl;
         }
 
@@ -266,14 +327,13 @@ void PX4Tracker::TrackerStateUpdate()
     case TRACKING:
         if (detect_track_state == true)
         {
+            detect_track_state == false;
             // 基于图像的视觉伺服控制
             desire_vel_ = TrackerPidProcess(yolotag_imgc_, desire_imgc_);
-
             desire_xyzVel_[0] = desire_vel_[1];
             desire_xyzVel_[1] = desire_vel_[0];
             desire_xyzVel_[2] = desire_vel_[2];
             desire_yawVel_ = desire_vel_[3];
-
             px4cmd_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
 
             // 如果目标平台的跟踪速度小于0.1m/s,进行降落
@@ -293,31 +353,31 @@ void PX4Tracker::TrackerStateUpdate()
     case LANDING:
         if (detect_land_state == true)
         {
+            detect_land_state == false;
             // 如果目标平台的跟踪速度小于0.1m/s,进行降落
             if (abs(desire_xyzVel_[0]) < 0.1 && abs(desire_xyzVel_[1]) < 0.1)
             {
-                if (apriltag_pose_[2] > 0.2) // 基于图像的视觉伺服控制
+                if (apriltag_pose_[2] > 0.2)
                 {
+                    // 基于图像的视觉伺服控制
                     desire_vel_ = TrackerPidProcess(apriltag_pose_, apriltag_yaw_, desire_pose_, desire_yaw_);
-
                     desire_xyzVel_[0] = desire_vel_[1];
                     desire_xyzVel_[1] = desire_vel_[0];
                     desire_xyzVel_[2] = desire_vel_[2];
                     desire_yawVel_ = desire_vel_[3];
-
                     px4cmd_.send_body_velxyz_setpoint(desire_xyzVel_, desire_yawVel_);
+
                     cout << "当前高度:" << apriltag_pose_[2] << endl;
 
                     // 如果在准备中途中切换到onboard，则保持当前位置
                     if (px4_state_.mode != "OFFBOARD")
                     {
-                        cout << "离线信号丢失" << endl;
-
                         temp_pos_drone[0] = px4_pose_[0];
                         temp_pos_drone[1] = px4_pose_[1];
                         temp_pos_drone[2] = px4_pose_[2];
-
                         px4cmd_.send_pos_setpoint(temp_pos_drone, 0);
+
+                        cout << "离线信号丢失" << endl;
                     }
                 }
                 else
@@ -349,71 +409,6 @@ void PX4Tracker::TrackerStateUpdate()
     default:
         cout << "error" << endl;
     }
-}
-
-/**
- * @brief   接收降落板框中心在图像中的坐标
- **/
-void PX4Tracker::YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg)
-{
-    detect_track_state = false;
-
-    detect_track_state = true;
-    // 获取标签检测框中心图像坐标
-    yolotag_imgc_[0] = (msg->xmin + msg->xmax) / 2.0;
-    yolotag_imgc_[1] = (msg->ymin + msg->ymax) / 2.0;
-
-    // for (auto &item : msg)
-    // {
-    //     detect_track_state = true;
-    //     // 获取标签检测框中心图像坐标
-    //     yolotag_imgc_[0] = (item.xmin + item.xmax) / 2.0;
-    //     yolotag_imgc_[1] = (item.ymin + item.ymax) / 2.0;
-    // }
-}
-
-/**
- * @brief   接收降落板相对无人机的位置以及偏航角
- **/
-void PX4Tracker::AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg)
-{
-    detect_land_state = false;
-    double temp_roll, temp_pitch, temp_yaw;
-    tf2::Quaternion quat;
-
-    for (auto &item : msg->detections)
-    {
-        // 如果标签的ID与预期的ID匹配
-        if (item.pose.pose.pose.position.z > 0.1)
-        {
-            detect_land_state = true;
-            // 获取标签在相机坐标系中的位置信息
-            apriltag_pose_[0] = item.pose.pose.pose.position.x;
-            apriltag_pose_[1] = item.pose.pose.pose.position.y;
-            apriltag_pose_[2] = item.pose.pose.pose.position.z;
-            // 将ROS消息中的四元数表示转换为TF2库中的tf2::Quaternion对象
-            tf2::fromMsg(item.pose.pose.pose.orientation, quat);
-            // 获取标签在相机坐标系中的姿态信息（四元数），并将其转换为欧拉角
-            tf2::Matrix3x3(quat).getRPY(temp_roll, temp_pitch, temp_yaw);
-            // 更新标签的yaw角度
-            apriltag_yaw_ = temp_yaw;
-        }
-    }
-}
-
-/*接收来自飞控的当前飞机位置*/
-void PX4Tracker::Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg)
-{
-    // Read the Drone Position from the Mavros Package [Frame: ENU]
-    Eigen::Vector3d pos_drone_fcu_enu(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
-
-    px4_pose_ = pos_drone_fcu_enu;
-}
-
-/*接收来自飞控的当前飞机状态*/
-void PX4Tracker::Px4StateCallback(const mavros_msgs::State::ConstPtr &msg)
-{
-    px4_state_ = *msg;
 }
 
 /**

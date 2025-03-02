@@ -9,53 +9,44 @@
 class PX4Tracker
 {
 public:
-    PX4Tracker(const ros::NodeHandle &nh);
+    PX4Tracker(const ros::NodeHandle &nh); // 构造函数
+    void Initialize();                     // 参数初始化
 
-    void Initialize(); // 参数初始化
-    PX4Cmd px4cmd_;    // 用来发送PX4控制指令
+    PX4Cmd px4cmd_; // 用来发送PX4控制指令
 
 private:
     ros::NodeHandle nh_; // 节点句柄
 
+    ros::Subscriber state_sub_;    // 订阅飞机mavros状态
+    ros::Subscriber position_sub_; // 订阅飞机local坐标系位置
+
+    ros::Subscriber yolotag_sub_;  // 订阅目标平台中心图像坐标
+    ros::Subscriber apriltag_sub_; // 订阅目标平台相对无人机的位置
+
+    ros::ServiceClient arming_client_;   // 用于解锁飞机
+    ros::ServiceClient set_mode_client_; // 用于修改飞行模式
+
     ros::Timer cmdloop_timer_; // 定时器
 
-    ros::Subscriber state_sub_;
-    ros::Subscriber position_sub_;
+    float search_alt_, track_alt_; // 搜索高度和跟踪高度
 
-    ros::Subscriber yolotag_sub_;
-    ros::Subscriber apriltag_sub_;
+    Eigen::Vector2d desire_imgc_;  // 期望的图像中心坐标
+    Eigen::Vector2d yolotag_imgc_; // 检测框的中心坐标
 
-    ros::ServiceClient arming_client_;
-    ros::ServiceClient set_mode_client_;
+    Eigen::Vector3d desire_pose_;   // 期望的飞机相对合作目标的位置
+    float desire_yaw_;              // 期望的飞机相对合作目标的偏航角
+    Eigen::Vector3d apriltag_pose_; // apriltags 合作目标相对飞机位置
+    float apriltag_yaw_;            // 合作目标相对飞机的偏航角
+
+    bool detect_track_state, detect_land_state; // 是否检测到合作目标
 
     mavros_msgs::State px4_state_; // 飞机的状态
     mavros_msgs::CommandBool arm_cmd_;
     mavros_msgs::SetMode mode_cmd_;
 
-    void CmdLoopCallback(const ros::TimerEvent &event);
-    void TrackerStateUpdate();
-    void YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg);
-    void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
-    void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
-    void Px4StateCallback(const mavros_msgs::State::ConstPtr &msg);
-    Eigen::Vector4d TrackerPidProcess(Eigen::Vector2d &currentPos, Eigen::Vector2d &expectPos);
-    Eigen::Vector4d TrackerPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw);
-
-    Eigen::Vector3d px4_pose_; // 接收飞控的东北天local坐标
-    Eigen::Vector3d temp_pos_drone;
-    Eigen::Vector3d posxyz_target; // 期望飞机的空间位置
-    float search_alt_, track_alt_;
-
-    bool detect_track_state, detect_land_state; // 是否检测到降落板标志位
-
-    Eigen::Vector2d desire_imgc_;  // 图像中心坐标和无人机期望跟踪高度
-    Eigen::Vector2d yolotag_imgc_; // 检测框的中心坐标和无人机当前高度
-
-    Eigen::Vector3d desire_pose_; // 期望的飞机相对降落板的位置
-    float desire_yaw_;            // 期望的飞机相对降落板的偏航角
-
-    Eigen::Vector3d apriltag_pose_; // apriltags 降落板相对飞机位置
-    float apriltag_yaw_;            // 二维码相对飞机的偏航角
+    Eigen::Vector3d px4_pose_;      // 接收飞控的东北天local坐标
+    Eigen::Vector3d temp_pos_drone; // 临时存储飞机位置
+    Eigen::Vector3d posxyz_target;  // 期望的飞机位置
 
     Eigen::Vector4d desire_vel_;
     Eigen::Vector3d desire_xyzVel_;
@@ -76,4 +67,13 @@ private:
         LANDING,          // 检测到降落板，开始降落
         LANDOVER,         // 结束
     } FlyState = WAITING; // 初始状态WAITING
+
+    void Px4StateCallback(const mavros_msgs::State::ConstPtr &msg);
+    void Px4PosCallback(const geometry_msgs::PoseStamped::ConstPtr &msg);
+    void YoloPoseCallback(const robot_vision::BoundingBox::ConstPtr &msg);
+    void AprilPoseCallback(const apriltag_ros::AprilTagDetectionArray::ConstPtr &msg);
+    Eigen::Vector4d TrackerPidProcess(Eigen::Vector2d &currentPos, Eigen::Vector2d &expectPos);
+    Eigen::Vector4d TrackerPidProcess(Eigen::Vector3d &currentPos, float currentYaw, Eigen::Vector3d &expectPos, float expectYaw);
+    void CmdLoopCallback(const ros::TimerEvent &event);
+    void TrackerStateUpdate();
 };
