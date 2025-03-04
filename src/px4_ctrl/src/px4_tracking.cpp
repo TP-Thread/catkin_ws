@@ -359,7 +359,7 @@ void PX4Tracker::TrackerStateUpdate()
             {
                 if (apriltag_pose_[2] > 0.2)
                 {
-                    // 基于图像的视觉伺服控制
+                    // 基于位置的视觉伺服控制
                     desire_vel_ = TrackerPidProcess(apriltag_pose_, apriltag_yaw_, desire_pose_, desire_yaw_);
                     desire_xyzVel_[0] = desire_vel_[1];
                     desire_xyzVel_[1] = desire_vel_[0];

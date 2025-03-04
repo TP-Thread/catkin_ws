@@ -6,10 +6,8 @@
     <arg name="pitch" default="0.0"/>
     <arg name="yaw" default="0.0"/>
 
-    <!-- Gazebo  -->
-    <!-- Load the surrounding environment into Gazebo -->
-    <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" >
-    </include> -->
+    <!-- 加载Gazebo仿真环境 -->
+    <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch"/> -->
 
     <!-- Load the robot description -->
     <param name="robot_description" command="cat $(find neor_mini)/urdf/neor_mini_gazebo.urdf"/>

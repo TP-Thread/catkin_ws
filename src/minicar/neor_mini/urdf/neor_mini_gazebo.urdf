@@ -15,7 +15,7 @@
     </plugin>
   </gazebo>
 
-       <link name="base_link">
+    <link name="base_link">
     <!-- avoid root link inertia warnings, annotation -->
     <inertial>
       <origin
