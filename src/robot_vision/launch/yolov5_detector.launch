@@ -4,8 +4,8 @@
     <param name="yolov5_path"       value="/home/vic/yolov5"/>
     <param name="weight_path"       value="/home/vic/yolov5/weights/yolov5s/best.pt"/>
     <param name="conf"              value="0.5"/>
-    <!-- <param name="image_sub"       value="/usb_cam/image_raw" /> -->
-    <param name="image_sub"       value="/iris/camera/rgb/image_raw"/>
+    <!-- <param name="image_sub"         value="/usb_cam/image_raw"/> -->
+    <param name="image_sub"	        value="/iris/camera/rgb/image_raw"/>
   </node>
 
 </launch>

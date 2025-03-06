@@ -2,6 +2,7 @@
     <arg name="sdf" default="$(find px4_sim)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf" />
     <arg name="world" default="$(find px4_sim)/worlds/lawn_void.world" />
 
+    <!-- 启动模拟器并通过MAVROS将ROS连接到它 -->
     <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
         <arg name="x" value="0"/>
         <arg name="y" value="0"/>

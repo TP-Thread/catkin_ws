@@ -21,7 +21,7 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
     position_sub_ = nh_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 订阅目标平台中心图像坐标
-    yolotag_sub_ = nh_.subscribe("/yolo_detections", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    yolotag_sub_ = nh_.subscribe("/yolo_detection", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅目标平台相对无人机的位置
     apriltag_sub_ = nh_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 

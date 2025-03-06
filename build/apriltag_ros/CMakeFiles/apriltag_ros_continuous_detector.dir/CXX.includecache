@@ -44,6 +44,22 @@ std_msgs/Header.h
 apriltag_ros/AprilTagDetection.h
 -
 
+/home/vic/catkin_ws/devel/include/robot_vision/BoundingBox.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/vic/catkin_ws/src/apriltag_ros/include/apriltag_ros/common_functions.h
 string
 -
@@ -98,6 +114,8 @@ nodelet/nodelet.h
 ros/service_server.h
 -
 std_srvs/Empty.h
+-
+robot_vision/BoundingBox.h
 -
 
 /home/vic/catkin_ws/src/apriltag_ros/src/continuous_detector.cpp

@@ -67,6 +67,8 @@ namespace apriltag_ros
     refresh_params_service_ =
         pnh.advertiseService("refresh_tag_params",
                              &ContinuousDetector::refreshParamsCallback, this);
+
+    yolo_subscriber_ = nh.subscribe("/yolo_detections", 1, &ContinuousDetector::yoloCallback, this);
   }
 
   void ContinuousDetector::refreshTagParameters()
@@ -84,6 +86,21 @@ namespace apriltag_ros
   {
     refreshTagParameters();
     return true;
+  }
+
+  void ContinuousDetector::yoloCallback(const robot_vision::BoundingBox::ConstPtr &msg)
+  {
+    std::scoped_lock<std::mutex> lock(yolo_mutex_);
+
+    // 检查置信度阈值
+    if (msg->confidence > 0.5)
+    {
+      yolo_bbox_[0] = msg->xmin;
+      yolo_bbox_[1] = msg->ymin;
+      yolo_bbox_[2] = msg->xmax;
+      yolo_bbox_[3] = msg->ymax;
+      yolo_bbox_[4] = msg->confidence;
+    }
   }
 
   void ContinuousDetector::imageCallback(
@@ -112,6 +129,27 @@ namespace apriltag_ros
     {
       ROS_ERROR("cv_bridge exception: %s", e.what());
       return;
+    }
+
+    // 创建一个全黑的掩码
+    cv::Mat mask = cv::Mat::zeros(cv_image_->image.size(), cv_image_->image.type());
+
+    // 如果检测到目标，目标区域保留，其余部分变黑
+    if (yolo_bbox_[4] > 0.5)
+    {
+      cv::Rect roi(
+          yolo_bbox_[0], yolo_bbox_[1],
+          yolo_bbox_[2] - yolo_bbox_[0],
+          yolo_bbox_[3] - yolo_bbox_[1]);
+
+      // 确保 ROI 在图像范围内
+      roi &= cv::Rect(0, 0, cv_image_->image.cols, cv_image_->image.rows);
+
+      // 复制目标区域到掩码
+      cv_image_->image(roi).copyTo(mask(roi));
+
+      // 更新原始图像
+      cv_image_->image = mask;
     }
 
     // Publish detected tags in the image by AprilTag 2

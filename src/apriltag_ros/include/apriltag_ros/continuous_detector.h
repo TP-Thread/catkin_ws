@@ -52,36 +52,44 @@
 #include <ros/service_server.h>
 #include <std_srvs/Empty.h>
 
+#include <robot_vision/BoundingBox.h>
+
 namespace apriltag_ros
 {
 
-class ContinuousDetector: public nodelet::Nodelet
-{
- public:
-  ContinuousDetector() = default;
-  ~ContinuousDetector() = default;
+  class ContinuousDetector : public nodelet::Nodelet
+  {
+  public:
+    ContinuousDetector() = default;
+    ~ContinuousDetector() = default;
 
-  void onInit();
+    void onInit();
 
-  void imageCallback(const sensor_msgs::ImageConstPtr& image_rect,
-                     const sensor_msgs::CameraInfoConstPtr& camera_info);
+    void imageCallback(const sensor_msgs::ImageConstPtr &image_rect,
+                       const sensor_msgs::CameraInfoConstPtr &camera_info);
 
-  void refreshTagParameters();
+    void refreshTagParameters();
 
- private:
-  std::mutex detection_mutex_;
-  std::shared_ptr<TagDetector> tag_detector_;
-  bool draw_tag_detections_image_;
-  cv_bridge::CvImagePtr cv_image_;
+  private:
+    std::mutex detection_mutex_;
+    std::shared_ptr<TagDetector> tag_detector_;
+    bool draw_tag_detections_image_;
+    cv_bridge::CvImagePtr cv_image_;
 
-  std::shared_ptr<image_transport::ImageTransport> it_;
-  image_transport::CameraSubscriber camera_image_subscriber_;
-  image_transport::Publisher tag_detections_image_publisher_;
-  ros::Publisher tag_detections_publisher_;
+    std::shared_ptr<image_transport::ImageTransport> it_;
+    image_transport::CameraSubscriber camera_image_subscriber_;
+    image_transport::Publisher tag_detections_image_publisher_;
+    ros::Publisher tag_detections_publisher_;
 
-  ros::ServiceServer refresh_params_service_;
-  bool refreshParamsCallback(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
-};
+    ros::ServiceServer refresh_params_service_;
+    bool refreshParamsCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
+
+    std::array<float, 5> yolo_bbox_ = {0, 0, 0, 0, 0}; // 存储 YOLO 检测框
+    ros::Subscriber yolo_subscriber_;                  // 订阅 YOLO 结果
+    std::mutex yolo_mutex_;                            // 保护 YOLO 数据的互斥锁
+
+    void yoloCallback(const robot_vision::BoundingBox::ConstPtr &msg);
+  };
 
 } // namespace apriltag_ros
 
