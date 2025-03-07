@@ -275,3 +275,4 @@ void PX4Cmd::send_mount_control_command(const Eigen::Vector3d &mount_sp)
 
     mount_control_pub_.publish(mount_setpoint);
 }
+

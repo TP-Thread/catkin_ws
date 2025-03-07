@@ -1,0 +1,22 @@
+<launch>
+  <!-- 启动相机节点 -->
+	<include file="$(find robot_vision)/launch/usb_cam.launch"/>
+
+  <!-- 启动二维码检测节点 -->
+  <node pkg="robot_vision" name="yolov5_detector" type="yolov5_detector.py" output="screen">
+    <param name="yolov5_path"       value="/home/jetson/yolov5"/>
+    <param name="weight_path"       value="/home/jetson/yolov5/weights/yolov5s/best.pt"/>
+    <param name="conf"              value="0.5"/>
+    <param name="image_sub"       value="/usb_cam/image_raw" />
+  </node>
+
+  <!-- 启动二维码识别节点 -->
+  <include file="$(find apriltag_ros)/launch/continuous_detection.launch">
+	  <arg name="camera_name" default="/usb_cam" />
+		<arg name="image_topic" default="image_raw"/>
+  </include>
+
+  <!-- 启动图像显示节点 -->
+  <node pkg="rqt_image_view" type="rqt_image_view" name="rqt_image_view" output="screen"/>
+</launch>
+

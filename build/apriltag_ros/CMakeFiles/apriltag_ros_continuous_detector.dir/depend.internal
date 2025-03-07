@@ -4,6 +4,7 @@
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o
  /home/jetson/catkin_ws/devel/include/apriltag_ros/AprilTagDetection.h
  /home/jetson/catkin_ws/devel/include/apriltag_ros/AprilTagDetectionArray.h
+ /home/jetson/catkin_ws/devel/include/robot_vision/BoundingBox.h
  /home/jetson/catkin_ws/src/apriltag_ros/include/apriltag_ros/common_functions.h
  /home/jetson/catkin_ws/src/apriltag_ros/include/apriltag_ros/continuous_detector.h
  /home/jetson/catkin_ws/src/apriltag_ros/src/continuous_detector.cpp

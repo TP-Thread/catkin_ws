@@ -3,6 +3,7 @@
 
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/devel/include/apriltag_ros/AprilTagDetection.h
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/devel/include/apriltag_ros/AprilTagDetectionArray.h
+apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/devel/include/robot_vision/BoundingBox.h
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/src/apriltag_ros/include/apriltag_ros/common_functions.h
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/src/apriltag_ros/include/apriltag_ros/continuous_detector.h
 apriltag_ros/CMakeFiles/apriltag_ros_continuous_detector.dir/src/continuous_detector.cpp.o: /home/jetson/catkin_ws/src/apriltag_ros/src/continuous_detector.cpp

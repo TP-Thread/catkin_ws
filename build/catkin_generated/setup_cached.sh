@@ -7,8 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/jetson/catkin_ws/devel:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH='/opt/ros/noetic/lib:/usr/local/cuda-11.4/lib64'
+export PKG_CONFIG_PATH='/opt/ros/noetic/lib/pkgconfig'
 export PWD='/home/jetson/catkin_ws/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/jetson/catkin_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/jetson/catkin_ws/src:$ROS_PACKAGE_PATH"
+export PYTHONPATH='/opt/ros/noetic/lib/python3/dist-packages'

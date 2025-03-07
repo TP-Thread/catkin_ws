@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/jetson/catkin_ws/build
 include robot_vision/CMakeFiles/_robot_vision_generate_messages_check_deps_BoundingBoxes.dir/progress.make
 
 robot_vision/CMakeFiles/_robot_vision_generate_messages_check_deps_BoundingBoxes:
-	cd /home/jetson/catkin_ws/build/robot_vision && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py robot_vision /home/jetson/catkin_ws/src/robot_vision/msg/BoundingBoxes.msg std_msgs/Header:robot_vision/BoundingBox
+	cd /home/jetson/catkin_ws/build/robot_vision && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py robot_vision /home/jetson/catkin_ws/src/robot_vision/msg/BoundingBoxes.msg robot_vision/BoundingBox:std_msgs/Header
 
 _robot_vision_generate_messages_check_deps_BoundingBoxes: robot_vision/CMakeFiles/_robot_vision_generate_messages_check_deps_BoundingBoxes
 _robot_vision_generate_messages_check_deps_BoundingBoxes: robot_vision/CMakeFiles/_robot_vision_generate_messages_check_deps_BoundingBoxes.dir/build.make
