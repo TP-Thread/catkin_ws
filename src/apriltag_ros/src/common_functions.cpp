@@ -425,9 +425,6 @@ namespace apriltag_ros
       cv::cvtColor(image->image, gray_image, CV_BGR2GRAY);
     }
 
-    // 创建一个全黑的掩码
-    static cv::Mat mask = cv::Mat::zeros(gray_image.size(), gray_image.type());
-
     // 如果检测到目标，目标区域保留，其余部分变黑
     if (yolo_bbox_[4] > 0.5)
     {
@@ -435,15 +432,12 @@ namespace apriltag_ros
           yolo_bbox_[0], yolo_bbox_[1],
           yolo_bbox_[2] - yolo_bbox_[0],
           yolo_bbox_[3] - yolo_bbox_[1]);
-
       // 确保 ROI 在图像范围内
       roi &= cv::Rect(0, 0, gray_image.cols, gray_image.rows);
-
-      // 复制目标区域到掩码
-      gray_image(roi).copyTo(mask(roi));
-
-      // 更新原始图像
-      gray_image = mask;
+      // 创建一个全黑图像，并填充 ROI
+      cv::Mat original_roi = gray_image(roi).clone();
+      gray_image.setTo(0);                  // 整体置零
+      original_roi.copyTo(gray_image(roi)); // 复制原始区域回去
     }
 
     image_u8_t apriltag_image = {.width = gray_image.cols,
