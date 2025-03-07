@@ -131,32 +131,11 @@ namespace apriltag_ros
       return;
     }
 
-    // 创建一个全黑的掩码
-    cv::Mat mask = cv::Mat::zeros(cv_image_->image.size(), cv_image_->image.type());
-
-    // 如果检测到目标，目标区域保留，其余部分变黑
-    if (yolo_bbox_[4] > 0.5)
-    {
-      cv::Rect roi(
-          yolo_bbox_[0], yolo_bbox_[1],
-          yolo_bbox_[2] - yolo_bbox_[0],
-          yolo_bbox_[3] - yolo_bbox_[1]);
-
-      // 确保 ROI 在图像范围内
-      roi &= cv::Rect(0, 0, cv_image_->image.cols, cv_image_->image.rows);
-
-      // 复制目标区域到掩码
-      cv_image_->image(roi).copyTo(mask(roi));
-
-      // 更新原始图像
-      cv_image_->image = mask;
-    }
-
     // Publish detected tags in the image by AprilTag 2
     tag_detections_publisher_.publish(
-        tag_detector_->detectTags(cv_image_, camera_info));
+        tag_detector_->detectYoloTags(cv_image_, camera_info, yolo_bbox_));
 
-    // Publish the camera image overlaid by outlines of the detected tags and
+    // Publish the camera image overlaid by outlines of the detected tagsssssssssss and
     // their payload values
     if (draw_tag_detections_image_)
     {

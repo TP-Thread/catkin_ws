@@ -3,7 +3,7 @@
 	<include file="$(find robot_vision)/launch/usb_cam.launch"/>
 
   <!-- 启动二维码检测节点 -->
-  <node pkg="robot_vision" name="yolov5_detector" type="yolov5_detector.py" output="screen">
+  <node pkg="robot_vision" name="yolov5_detector" type="yolov5_test.py" output="screen">
     <param name="yolov5_path"       value="/home/vic/yolov5"/>
     <param name="weight_path"       value="/home/vic/yolov5/weights/yolov5s/best.pt"/>
     <param name="conf"              value="0.5"/>
