@@ -21,7 +21,7 @@ PX4Tracker::PX4Tracker(const ros::NodeHandle &nh) : nh_(nh)
     position_sub_ = nh_.subscribe("/mavros/local_position/pose", 1, &PX4Tracker::Px4PosCallback, this, ros::TransportHints().tcpNoDelay());
 
     // 订阅目标平台中心图像坐标
-    yolotag_sub_ = nh_.subscribe("/yolo_detection", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
+    yolotag_sub_ = nh_.subscribe("/yolo_detections", 1, &PX4Tracker::YoloPoseCallback, this, ros::TransportHints().tcpNoDelay());
     // 订阅目标平台相对无人机的位置
     apriltag_sub_ = nh_.subscribe("/tag_detections", 1, &PX4Tracker::AprilPoseCallback, this, ros::TransportHints().tcpNoDelay());
 
@@ -44,8 +44,8 @@ void PX4Tracker::Initialize()
 
     // 期望的图像中心坐标
     float desire_imgc_x, desire_imgc_y;
-    nh_.param<float>("desire_imgc_x", desire_imgc_x, 320);
-    nh_.param<float>("desire_imgc_y", desire_imgc_y, 240);
+    nh_.param<float>("desire_imgc_x", desire_imgc_x, 640);
+    nh_.param<float>("desire_imgc_y", desire_imgc_y, 360);
     desire_imgc_[0] = desire_imgc_x;
     desire_imgc_[1] = desire_imgc_y;
 

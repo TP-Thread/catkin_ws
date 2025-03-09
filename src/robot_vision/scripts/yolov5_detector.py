@@ -57,24 +57,15 @@ class ObjectDetector:
             # bounding_boxes.bounding_boxes.append(bounding_box)
         
         # 用绿框把目标圈出来
-        # cv2.rectangle(cv_image, (bounding_box.xmin, bounding_box.ymin), (bounding_box.xmax, bounding_box.ymax), (0, 255, 0))    
+        cv2.rectangle(cv_image, (bounding_box.xmin, bounding_box.ymin), (bounding_box.xmax, bounding_box.ymax), (0, 255, 0), 2)    
         # 在框左上角打印物体类型信息Class  
-        # cv2.putText(cv_image, bounding_box.Class, (bounding_box.xmin, bounding_box.ymin), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255))    
-
-        # 创建一个全黑的掩码
-        mask = np.zeros_like(cv_image)
-        # 如果检测到目标，目标区域保留，其余部分变黑
-        if bounding_box.confidence > 0.5:
-            mask[bounding_box.ymin:bounding_box.ymax, bounding_box.xmin:bounding_box.xmax] = \
-                cv_image[bounding_box.ymin:bounding_box.ymax, bounding_box.xmin:bounding_box.xmax]
-            cv_image = mask
-
+        cv2.putText(cv_image, bounding_box.Class, (bounding_box.xmin, bounding_box.ymin), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)    
         # 确保 header 复制且时间戳更新
         cv_image = self.cv_bridge.cv2_to_imgmsg(cv_image, "bgr8")
         cv_image.header = ros_image.header  # 复制原始时间戳
-
-        # 始终发布图像
+        # 发布yolo图像
         self.image_pub.publish(cv_image)
+
         # 发布目标框信息
         self.target_pub.publish(bounding_box)
 
